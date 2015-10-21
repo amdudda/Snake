@@ -1,5 +1,9 @@
 package com.amdudda;
 
+/*
+	@author A.M. Dudda
+* */
+
 import java.awt.Point;
 import java.util.LinkedList;
 

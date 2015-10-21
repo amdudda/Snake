@@ -1,5 +1,9 @@
 package com.amdudda;
 
+/*
+	@author A.M. Dudda
+* */
+
 import java.util.Random;
 
 public class Kibble {

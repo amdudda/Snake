@@ -1,7 +1,10 @@
 package com.amdudda;
 
-import java.util.Timer;
+/*
+	@author A.M. Dudda
+* */
 
+import java.util.Timer;
 import javax.swing.*;
 
 

@@ -1,7 +1,9 @@
 package com.amdudda;
 
 /** Keeps track of, and display the user's score
- * 
+ *
+ @author A.M. Dudda
+  *
  */
 
 

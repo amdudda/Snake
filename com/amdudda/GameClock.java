@@ -2,6 +2,10 @@ package com.amdudda;
 
 import java.util.TimerTask;
 
+/*
+	@author A.M. Dudda
+* */
+
 public class GameClock extends TimerTask {
 
 	Snake snake;
