@@ -80,7 +80,8 @@ public class GameControls implements KeyListener{
 		char keyPressed = ev.getKeyChar();
 		char q = 'q';
 		// AMD: prevent game from quitting at keypress q during gameplay
-		if( keyPressed == q && SnakeGame.getGameStage() != SnakeGame.DURING_GAME){
+        // AMD: this doens't work -- debugging shows that value passed is *always* DURING_GAME, so the condition is never true.
+		if( keyPressed == q ) { // && SnakeGame.getGameStage() != SnakeGame.DURING_GAME){
 			System.exit(0);    //quit if user presses the q key.
 		}
 	}
