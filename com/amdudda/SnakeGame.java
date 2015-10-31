@@ -1,7 +1,8 @@
 package com.amdudda;
 
 /*
-	@author A.M. Dudda
+    @author clara -- code initially downloaded from
+	@student A.M. Dudda  -- revised/added coded commented with AMD: prefix
 * */
 
 import java.util.Timer;

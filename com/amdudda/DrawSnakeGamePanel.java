@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 /** This class responsible for displaying the graphics, so the snake, grid, kibble, instruction text and high score
  * 
  * @author Clara
- * @author A.M. Dudda
+ * @student A.M. Dudda
  */
 public class DrawSnakeGamePanel extends JPanel {
 	

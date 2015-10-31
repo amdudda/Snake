@@ -1,7 +1,7 @@
 package com.amdudda;
 
 /*
-	@author A.M. Dudda
+	@student A.M. Dudda
 * */
 
 import java.awt.event.KeyEvent;
@@ -79,7 +79,8 @@ public class GameControls implements KeyListener{
 		//keyTyped events are for user typing letters on the keyboard, anything that makes a character display on the screen
 		char keyPressed = ev.getKeyChar();
 		char q = 'q';
-		if( keyPressed == q){
+		// AMD: prevent game from quitting at keypress q during gameplay
+		if( keyPressed == q && SnakeGame.getGameStage() != SnakeGame.DURING_GAME){
 			System.exit(0);    //quit if user presses the q key.
 		}
 	}

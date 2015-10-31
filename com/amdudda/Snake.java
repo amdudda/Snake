@@ -1,7 +1,7 @@
 package com.amdudda;
 
 /*
-	@author A.M. Dudda
+	@student A.M. Dudda
 * */
 
 import java.awt.Point;
