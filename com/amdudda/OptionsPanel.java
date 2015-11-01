@@ -5,7 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Created by pd on 11/1/2015.
+ * Created by amdudda on 11/1/2015.
  */
 public class OptionsPanel extends JFrame {
     private JPanel rootPanel;
