@@ -92,6 +92,7 @@ public class GameControls implements KeyListener{
 		}
 		else if (keyPressed == o && gStage == SnakeGame.BEFORE_GAME) {
 			// If 'o' is typed, present the options menu.
+            SnakeGame.setGameStage(SnakeGame.SET_OPTIONS);
             OptionsPanel opts = new OptionsPanel();
 		}
 	}

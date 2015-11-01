@@ -42,7 +42,8 @@ public class DrawSnakeGamePanel extends JPanel {
         gameStage = SnakeGame.getGameStage();
 
         switch (gameStage) {
-            case SnakeGame.BEFORE_GAME: {
+            case SnakeGame.BEFORE_GAME:
+            case SnakeGame.SET_OPTIONS: {
                 displayInstructions(g);
                 break;
             }

@@ -32,6 +32,8 @@ public class SnakeGame {
 	//instead of the values so you are clear what you are setting. Easy to forget what number is Game over vs. game won
 	//Using constant names instead makes it easier to keep it straight. Refer to these variables 
 	//using statements such as SnakeGame.GAME_OVER
+	// AMD: added SET_OPTIONS to keep game from starting while options are being set
+	static final int SET_OPTIONS = 5;
 
 	private static int gameStage = BEFORE_GAME;  //use this to figure out what should be happening. 
 	//Other classes like Snake and DrawSnakeGamePanel will need to query this, and change it's value

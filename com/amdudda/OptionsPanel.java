@@ -32,6 +32,9 @@ public class OptionsPanel extends JFrame {
                 newsize = (newsize*SnakeGame.squareSize) + 1;
                 SnakeGame.xPixelMaxDimension = newsize;
                 SnakeGame.yPixelMaxDimension = newsize;
+                // don't forget to set game stage back to "before game"
+                SnakeGame.setGameStage(SnakeGame.BEFORE_GAME);
+                dispose();
             }
         });
     }
