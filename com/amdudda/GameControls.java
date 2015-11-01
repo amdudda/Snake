@@ -8,7 +8,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class GameControls implements KeyListener{
-	
+
 	Snake snake;
     // AMD: global variable to track current gamestage to gatekeep response to keyTyped event.
 	private static int gStage;
@@ -16,8 +16,9 @@ public class GameControls implements KeyListener{
 	GameControls(Snake s){
 		this.snake = s;
 	}
-	
+
 	public void keyPressed(KeyEvent ev) {
+        // AMD: Update value of gStage at every keyPressed event.
         gStage = SnakeGame.getGameStage();
 		//keyPressed events are for catching events like function keys, enter, arrow keys
 		//We want to listen for arrow keys to move snake
