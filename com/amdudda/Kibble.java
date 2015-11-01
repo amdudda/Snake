@@ -28,7 +28,8 @@ public class Kibble {
 		
 		Random rng = new Random();
 		boolean kibbleInSnake = true;
-		while (kibbleInSnake == true) {
+		// AMD: need to stop building kibble if the game has been won.
+		while (kibbleInSnake == true && SnakeGame.getGameStage() != SnakeGame.GAME_WON) {
 			//Generate random kibble location
 			kibbleX = rng.nextInt(SnakeGame.xSquares);
 			kibbleY = rng.nextInt(SnakeGame.ySquares);

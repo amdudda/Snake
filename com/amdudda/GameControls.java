@@ -51,7 +51,7 @@ public class GameControls implements KeyListener{
 			return;
 		}
 
-		
+
 		if (ev.getKeyCode() == KeyEvent.VK_DOWN) {
 			//System.out.println("snake down");
 			snake.snakeDown();
