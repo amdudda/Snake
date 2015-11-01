@@ -42,7 +42,8 @@ public class Snake {
 		//Create and fill snakeSquares with 0s 
 		snakeSquares = new int[maxX][maxY];
 		fillSnakeSquaresWithZeros();
-		createStartSnake();
+		//createStartSnake();
+        createDebugSnake();
 	}
 
 	protected void createStartSnake(){
@@ -59,7 +60,7 @@ public class Snake {
 
 		snakeSize = 3;
         // AMD: debug usage: to get to endgame faster set
-        snakeSize = 95;
+        // snakeSize = 95;
 
 		currentHeading = DIRECTION_LEFT;
 		lastHeading = DIRECTION_LEFT;
@@ -296,7 +297,59 @@ public class Snake {
 		return false;
 	}
 
+	protected void createDebugSnake(){
+		/*
+        AMD: adapted from createStartSnake()
+        creates a large snake to debug endgame
+		*/
 
+        // our snake size is going to leave 5 empty squares for the snake to eat
+        //snakeSize = (maxX * maxY) - 5;
+        int freespaces = 5;
+        snakeSize = maxX-freespaces;
+        int segmentnum = 0;
+
+        int cur_x_square=freespaces;
+        int cur_y_square=0;
+        snakeHeadX = cur_x_square;
+        snakeHeadY = cur_y_square;
+
+
+        // build first row:
+        for (cur_x_square=freespaces; cur_x_square<snakeSize+freespaces; cur_x_square++) {
+            System.out.println(segmentnum + ": " + cur_x_square + "," + cur_y_square);
+            snakeSquares[cur_x_square][cur_y_square] = ++segmentnum;
+        }
+        //fill in body of snake
+        while (cur_y_square < maxY - 1 ) {
+            cur_y_square++;
+            if (cur_y_square%2 == 0) {
+                for (cur_x_square = maxX - 1; cur_x_square > 0; cur_x_square--) {
+                    System.out.println(segmentnum + ": " + cur_x_square + "," + cur_y_square);
+                    snakeSquares[cur_x_square][cur_y_square] = ++segmentnum;
+                }
+            } else {
+                for (cur_x_square = 1; cur_x_square < maxX; cur_x_square++) {
+                    System.out.println(segmentnum + ": " + cur_x_square + "," + cur_y_square);
+                    snakeSquares[cur_x_square][cur_y_square] = ++segmentnum;
+                }
+            }
+        }
+
+        //fill in tail so it can be chased by the player as they eat the last few
+        // kibbles that appear
+        for (cur_y_square = maxY-1;cur_y_square>0; cur_y_square--) {
+            System.out.println(segmentnum + ": " + cur_x_square + "," + cur_y_square);
+            snakeSquares[0][cur_y_square] = ++segmentnum;
+        }
+
+        snakeSize = segmentnum;
+
+		currentHeading = DIRECTION_LEFT;
+		lastHeading = DIRECTION_LEFT;
+
+		justAteMustGrowThisMuch = 0;
+	}
 }
 
 
