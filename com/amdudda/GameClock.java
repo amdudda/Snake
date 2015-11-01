@@ -54,6 +54,6 @@ public class GameClock extends TimerTask {
 		}
 				
 		gamePanel.repaint();		//In every circumstance, must update screen
-		
+
 	}
 }

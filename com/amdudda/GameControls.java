@@ -10,12 +10,15 @@ import java.awt.event.KeyListener;
 public class GameControls implements KeyListener{
 	
 	Snake snake;
-	
+    // AMD: global variable to track current gamestage to gatekeep response to keyTyped event.
+	private static int gStage;
+
 	GameControls(Snake s){
 		this.snake = s;
 	}
 	
 	public void keyPressed(KeyEvent ev) {
+        gStage = SnakeGame.getGameStage();
 		//keyPressed events are for catching events like function keys, enter, arrow keys
 		//We want to listen for arrow keys to move snake
 		//Has to id if user pressed arrow key, and if so, send info to Snake object
@@ -80,8 +83,7 @@ public class GameControls implements KeyListener{
 		char keyPressed = ev.getKeyChar();
 		char q = 'q';
 		// AMD: prevent game from quitting at keypress q during gameplay
-        // AMD: this doens't work -- debugging shows that value passed is *always* DURING_GAME, so the condition is never true.
-		if( keyPressed == q ) { // && SnakeGame.getGameStage() != SnakeGame.DURING_GAME){
+		if( keyPressed == q && gStage != SnakeGame.DURING_GAME){
 			System.exit(0);    //quit if user presses the q key.
 		}
 	}
