@@ -4,6 +4,8 @@ package com.amdudda;
 	@student A.M. Dudda
 * */
 
+import jdk.nashorn.internal.runtime.options.Options;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -83,9 +85,14 @@ public class GameControls implements KeyListener{
 		//keyTyped events are for user typing letters on the keyboard, anything that makes a character display on the screen
 		char keyPressed = ev.getKeyChar();
 		char q = 'q';
+		char o = 'o';
 		// AMD: prevent game from quitting at keypress q during gameplay
 		if( keyPressed == q && gStage != SnakeGame.DURING_GAME){
 			System.exit(0);    //quit if user presses the q key.
+		}
+		else if (keyPressed == o && gStage == SnakeGame.BEFORE_GAME) {
+			// If 'o' is typed, present the options menu.
+            OptionsPanel opts = new OptionsPanel();
 		}
 	}
 

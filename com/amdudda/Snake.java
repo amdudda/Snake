@@ -42,8 +42,9 @@ public class Snake {
         //Create and fill snakeSquares with 0s
         snakeSquares = new int[maxX][maxY];
         fillSnakeSquaresWithZeros();
-        //createStartSnake();
-        createDebugSnake();
+        createStartSnake();
+        // AMD: for debugging endgame
+		// createDebugSnake();
     }
 
     protected void createStartSnake() {
