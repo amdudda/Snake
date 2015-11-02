@@ -83,7 +83,8 @@ public class DrawSnakeGamePanel extends JPanel {
         g.drawString("SCORE = " + textScore, 150, 250);
 
         g.drawString("HIGH SCORE = " + textHighScore, 150, 300);
-        g.drawString(newHighScore, 150, 400);
+        // AMD: moved new High Score announcement so it's actually readable.
+        g.drawString(newHighScore, 150, 325);
 
         g.drawString("press a key to play again", 150, 350);
         g.drawString("Press q to quit the game", 150, 400);
@@ -142,7 +143,6 @@ public class DrawSnakeGamePanel extends JPanel {
         for (Point p : coordinates) {
             g.fillRect((int) p.getX(), (int) p.getY(), SnakeGame.squareSize, SnakeGame.squareSize);
         }
-
     }
 
     private void displayInstructions(Graphics g) {

@@ -49,7 +49,10 @@ public class GameClock extends TimerTask {
 				this.cancel();   //stop timer
 				break;
 			}
-			
+            case SnakeGame.SET_OPTIONS: {
+                this.cancel();  // AMD: stop the timer?  but this freezes the game
+                break;
+            }
 		
 		}
 				

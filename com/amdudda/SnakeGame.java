@@ -76,11 +76,12 @@ public class SnakeGame {
 		xSquares = xPixelMaxDimension / squareSize;
 		ySquares = yPixelMaxDimension / squareSize;
 
-		snake = new Snake(); //xSquares, ySquares, squareSize);
+		snake = new Snake(xSquares, ySquares, squareSize);
 		kibble = new Kibble(snake);
 		score = new Score();
 
-		gameStage = BEFORE_GAME;
+        System.out.println("xSquares = " + xSquares);
+        gameStage = BEFORE_GAME;
 	}
 
 	protected static void newGame() {

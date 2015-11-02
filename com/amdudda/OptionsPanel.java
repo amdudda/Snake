@@ -35,11 +35,12 @@ public class OptionsPanel extends JFrame {
                 SnakeGame.clockInterval = Integer.parseInt(gameSpeedText.getText());
                 SnakeGame.squareSize = Integer.parseInt(squareSizeText.getText());
                 // reinitialize snake so the new settings take effect.
-                int xSquares = SnakeGame.xPixelMaxDimension / SnakeGame.squareSize;
+                SnakeGame.initializeGame();
+                /*int xSquares = SnakeGame.xPixelMaxDimension / SnakeGame.squareSize;
                 int ySquares = SnakeGame.yPixelMaxDimension / SnakeGame.squareSize;
-                SnakeGame.snake = new Snake(); //xSquares, ySquares, SnakeGame.squareSize);
-                SnakeGame.setGameStage(SnakeGame.BEFORE_GAME);
-                // and get rid of the screen
+                SnakeGame.snake = new Snake(xSquares, ySquares, SnakeGame.squareSize);
+                SnakeGame.setGameStage(SnakeGame.BEFORE_GAME);*/
+                // and get rid of the screen & restart timer
                 dispose();
             }
         });

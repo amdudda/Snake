@@ -35,18 +35,17 @@ public class Snake {
     private int maxX, maxY, squareSize;
     private int snakeHeadX, snakeHeadY; //store coordinates of head - first segment
 
-    public Snake() {
-        /*(int maxX, int maxY, int squareSize) {
+    public Snake(int maxX, int maxY, int squareSize) {
 
         this.maxX = maxX;
         this.maxY = maxY;
-        this.squareSize = squareSize;*/
+        this.squareSize = squareSize;
         // AMD: a snake's attributes are reflected in the game's global variable,
         // so there's no reason for the constructor to even take any variables
         //Create and fill snakeSquares with 0s
-        this.maxX = SnakeGame.xSquares;
+        /*this.maxX = SnakeGame.xSquares;
         this.maxY = SnakeGame.ySquares;
-        this.squareSize = SnakeGame.squareSize;
+        this.squareSize = SnakeGame.squareSize;*/
         snakeSquares = new int[this.maxX][this.maxY];
         fillSnakeSquaresWithZeros();
         createStartSnake();
