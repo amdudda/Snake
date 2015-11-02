@@ -24,6 +24,11 @@ public class OptionsPanel extends JFrame {
         gameSpeedText.setText("" + SnakeGame.clockInterval);
         squareSizeText.setText("" + SnakeGame.squareSize);
 
+        /*
+        Something here breaks the game - it works fine if I set no options,
+        but just opening the options screen & closing it causes the game to
+        end abruptly after ~10 clock ticks.
+         */
         SubmitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

@@ -17,7 +17,7 @@ public class Snake {
     private boolean hitWall = false;
     private boolean ateTail = false;
 
-    private int snakeSquares[][];  //represents all of the squares on the screen
+    protected int snakeSquares[][];  //represents all of the squares on the screen
     //NOT pixels!
     //A 0 means there is no part of the snake in this square
     //A non-zero number means part of the snake is in the square
@@ -47,7 +47,7 @@ public class Snake {
         this.maxX = SnakeGame.xSquares;
         this.maxY = SnakeGame.ySquares;
         this.squareSize = SnakeGame.squareSize;
-        snakeSquares = new int[maxX][maxY];
+        snakeSquares = new int[this.maxX][this.maxY];
         fillSnakeSquaresWithZeros();
         createStartSnake();
         // AMD: for debugging endgame
@@ -79,7 +79,7 @@ public class Snake {
     private void fillSnakeSquaresWithZeros() {
         for (int x = 0; x < this.maxX; x++) {
             for (int y = 0; y < this.maxY; y++) {
-                snakeSquares[x][y] = 0;
+                this.snakeSquares[x][y] = 0;
             }
         }
     }
