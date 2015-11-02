@@ -35,16 +35,23 @@ public class Snake {
     private int maxX, maxY, squareSize;
     private int snakeHeadX, snakeHeadY; //store coordinates of head - first segment
 
-    public Snake(int maxX, int maxY, int squareSize) {
+    public Snake() {
+        /*(int maxX, int maxY, int squareSize) {
+
         this.maxX = maxX;
         this.maxY = maxY;
-        this.squareSize = squareSize;
+        this.squareSize = squareSize;*/
+        // AMD: a snake's attributes are reflected in the game's global variable,
+        // so there's no reason for the constructor to even take any variables
         //Create and fill snakeSquares with 0s
+        this.maxX = SnakeGame.xSquares;
+        this.maxY = SnakeGame.ySquares;
+        this.squareSize = SnakeGame.squareSize;
         snakeSquares = new int[maxX][maxY];
         fillSnakeSquaresWithZeros();
         createStartSnake();
         // AMD: for debugging endgame
-		// createDebugSnake();
+        // createDebugSnake();
     }
 
     protected void createStartSnake() {
@@ -87,7 +94,7 @@ public class Snake {
                 for (int y = 0; y < maxY; y++) {
                     if (snakeSquares[x][y] == segment) {
                         //make a Point for this segment's coordinates and add to list
-                        Point p = new Point(x * squareSize, y * squareSize);
+                        Point p = new Point(x * SnakeGame.squareSize, y * SnakeGame.squareSize);
                         segmentCoordinates.add(p);
                     }
                 }
@@ -205,7 +212,6 @@ public class Snake {
         //Does this make the snake eat its tail?
 
         if (snakeSquares[snakeHeadX][snakeHeadY] != 0) {
-
             ateTail = true;
             SnakeGame.setGameStage(SnakeGame.GAME_OVER);
             return;
@@ -365,6 +371,7 @@ public class Snake {
 
         justAteMustGrowThisMuch = 0;
     }
+
 }
 
 

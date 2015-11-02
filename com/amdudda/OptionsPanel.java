@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 public class OptionsPanel extends JFrame {
     private JPanel rootPanel;
     private JTextField gameSpeedText;
-    private JTextField gridSizeText;
+    private JTextField squareSizeText;
     private JButton SubmitButton;
 
     public OptionsPanel() {
@@ -20,20 +20,21 @@ public class OptionsPanel extends JFrame {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setVisible(true);
 
-        int gridSquares = SnakeGame.xPixelMaxDimension/SnakeGame.squareSize;
+
         gameSpeedText.setText("" + SnakeGame.clockInterval);
-        gridSizeText.setText("" + gridSquares);
+        squareSizeText.setText("" + SnakeGame.squareSize);
 
         SubmitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 SnakeGame.clockInterval = Integer.parseInt(gameSpeedText.getText());
-                int newsize = Integer.parseInt(gridSizeText.getText());
-                newsize = (newsize*SnakeGame.squareSize) + 1;
-                SnakeGame.xPixelMaxDimension = newsize;
-                SnakeGame.yPixelMaxDimension = newsize;
-                // don't forget to set game stage back to "before game"
+                SnakeGame.squareSize = Integer.parseInt(squareSizeText.getText());
+                // reinitialize snake so the new settings take effect.
+                int xSquares = SnakeGame.xPixelMaxDimension / SnakeGame.squareSize;
+                int ySquares = SnakeGame.yPixelMaxDimension / SnakeGame.squareSize;
+                SnakeGame.snake = new Snake(); //xSquares, ySquares, SnakeGame.squareSize);
                 SnakeGame.setGameStage(SnakeGame.BEFORE_GAME);
+                // and get rid of the screen
                 dispose();
             }
         });

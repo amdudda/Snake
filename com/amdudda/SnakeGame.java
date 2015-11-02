@@ -11,13 +11,13 @@ import javax.swing.*;
 
 public class SnakeGame {
 
-	public  static int xPixelMaxDimension = 501;  //Pixels in window. 501 to have 50-pixel squares plus 1 to draw a border on last square
-	public  static int yPixelMaxDimension = 501;
+	public final static int xPixelMaxDimension = 501;  //Pixels in window. 501 to have 50-pixel squares plus 1 to draw a border on last square
+	public final static int yPixelMaxDimension = 501;
 
 	public static int xSquares ;
 	public static int ySquares ;
 
-	public final static int squareSize = 50;
+	public static int squareSize = 50;
 
 	protected static Snake snake ;
 
@@ -71,12 +71,12 @@ public class SnakeGame {
 		snakeFrame.setVisible(true);
 	}
 
-	private static void initializeGame() {
+	protected static void initializeGame() {
 		//set up score, snake and first kibble
 		xSquares = xPixelMaxDimension / squareSize;
 		ySquares = yPixelMaxDimension / squareSize;
 
-		snake = new Snake(xSquares, ySquares, squareSize);
+		snake = new Snake(); //xSquares, ySquares, squareSize);
 		kibble = new Kibble(snake);
 		score = new Score();
 
