@@ -16,6 +16,7 @@ public class Snake {
 
     private boolean hitWall = false;
     private boolean ateTail = false;
+    private boolean warpWalls = false; // AMD: variable to help implement warp walls.
 
     protected int snakeSquares[][];  //represents all of the squares on the screen
     //NOT pixels!
