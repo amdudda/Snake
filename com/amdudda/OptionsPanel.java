@@ -1,8 +1,10 @@
 package com.amdudda;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 
 /**
  * Created by amdudda on 11/1/2015.
@@ -41,9 +43,14 @@ public class OptionsPanel extends JFrame {
                 SnakeGame.snake = new Snake(xSquares, ySquares, SnakeGame.squareSize);
                 SnakeGame.setGameStage(SnakeGame.BEFORE_GAME);*/
                 // and get rid of the screen & restart timer
-                dispose();
+                //dispose();
+                closeWindow();
             }
         });
     }
 
+    public void closeWindow() {
+        // snagged from stack overflow: http://stackoverflow.com/questions/1234912/how-to-programmatically-close-a-jframe
+        this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+    }
 }

@@ -80,7 +80,7 @@ public class SnakeGame {
 		kibble = new Kibble(snake);
 		score = new Score();
 
-        System.out.println("xSquares = " + xSquares);
+        // AMD: debugging: System.out.println("xSquares = " + xSquares);
         gameStage = BEFORE_GAME;
 	}
 
