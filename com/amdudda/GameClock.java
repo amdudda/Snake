@@ -27,12 +27,13 @@ public class GameClock extends TimerTask {
 		int stage = SnakeGame.getGameStage();
 
 		switch (stage) {
-			case SnakeGame.BEFORE_GAME: {
+			case SnakeGame.BEFORE_GAME:
+			case SnakeGame.SET_OPTIONS: {
 				//don't do anything, waiting for user to press a key to start
 				break;
 			}
 			case SnakeGame.DURING_GAME: {
-				//
+				// AMD: play the game
 				snake.moveSnake();
 				if (snake.didEatKibble(kibble) == true) {		
 					//tell kibble to update
@@ -42,6 +43,9 @@ public class GameClock extends TimerTask {
 				break;
 			}
 			case SnakeGame.GAME_OVER: {
+                /*// AMD: debugging -- this is going to game over even though hitwall and atetail are both false!
+                System.out.println(SnakeGame.getGameStage());
+                System.out.println("hitwall: " + snake.didHitWall() + "atetail: " + snake.didEatTail());*/
                 this.cancel();		//Stop the Timer
 				break;	
 			}
@@ -49,14 +53,11 @@ public class GameClock extends TimerTask {
 				this.cancel();   //stop timer
 				break;
 			}
-            case SnakeGame.SET_OPTIONS: {
-                //this.cancel();  // AMD: stop the timer?  but this freezes the game
-                break;
-            }
 		
 		}
 				
 		gamePanel.repaint();		//In every circumstance, must update screen
 
 	}
+
 }

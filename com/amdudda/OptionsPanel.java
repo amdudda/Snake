@@ -30,20 +30,16 @@ public class OptionsPanel extends JFrame {
         Something here breaks the game - it works fine if I set no options,
         but just opening the options screen & closing it causes the game to
         end abruptly after ~10 clock ticks.
+        Fixed gridsize bug, but now timer gets really wonky if I reset settings.
         */
         SubmitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 SnakeGame.clockInterval = Integer.parseInt(gameSpeedText.getText());
                 SnakeGame.squareSize = Integer.parseInt(squareSizeText.getText());
-                // reinitialize snake so the new settings take effect.
-                SnakeGame.initializeGame();
-                /*int xSquares = SnakeGame.xPixelMaxDimension / SnakeGame.squareSize;
-                int ySquares = SnakeGame.yPixelMaxDimension / SnakeGame.squareSize;
-                SnakeGame.snake = new Snake(xSquares, ySquares, SnakeGame.squareSize);
-                SnakeGame.setGameStage(SnakeGame.BEFORE_GAME);*/
-                // and get rid of the screen & restart timer
-                //dispose();
+                // reset snake so the new settings take effect.
+                SnakeGame.snake.reset();
+                // and get rid of the screen
                 closeWindow();
             }
         });
@@ -52,5 +48,6 @@ public class OptionsPanel extends JFrame {
     public void closeWindow() {
         // snagged from stack overflow: http://stackoverflow.com/questions/1234912/how-to-programmatically-close-a-jframe
         this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+        SnakeGame.setGameStage(SnakeGame.BEFORE_GAME);
     }
 }

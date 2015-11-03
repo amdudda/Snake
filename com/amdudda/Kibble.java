@@ -31,7 +31,7 @@ public class Kibble {
 		// AMD: need to stop building kibble if the game has been won.
 		while (kibbleInSnake == true && SnakeGame.getGameStage() != SnakeGame.GAME_WON) {
 			//Generate random kibble location
-            kibbleX = rng.nextInt(SnakeGame.xSquares);
+			kibbleX = rng.nextInt(SnakeGame.xSquares);
 			kibbleY = rng.nextInt(SnakeGame.ySquares);
 			kibbleInSnake = s.isSnakeSegment(kibbleX, kibbleY);
 		}
