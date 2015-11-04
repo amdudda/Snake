@@ -92,6 +92,7 @@ public class DrawSnakeGamePanel extends JPanel {
     }
 
     private void displayGame(Graphics g) {
+        score.resetHaveNewHighScore();  // reset the high score flag to zero
         displayGameGrid(g);
         displaySnake(g);
         displayKibble(g);
