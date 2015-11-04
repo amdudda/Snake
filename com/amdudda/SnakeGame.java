@@ -19,7 +19,7 @@ public class SnakeGame {
 	public static int squareSize = 50;
     // AMD: Some additional variables that are set at the start of the game
     public static boolean hasWarpWalls = false; // AMD: variable to help implement warp walls.
-    public static boolean hasMazeWalls = true;  // AMD: variable to help implement maze walls
+    public static boolean hasMazeWalls = false;  // AMD: variable to help implement maze walls
 
 	protected static Snake snake ;
 

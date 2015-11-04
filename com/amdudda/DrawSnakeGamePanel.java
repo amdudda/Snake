@@ -119,8 +119,8 @@ public class DrawSnakeGamePanel extends JPanel {
             g.drawLine(x, 0, x, maxY);
         }
 
-        // draw our maze wall:
-        mw1.draw(g);
+        // draw our maze wall if the game is using this feature:
+        if (SnakeGame.hasMazeWalls) { mw1.draw(g); }
     }
 
     private void displayKibble(Graphics g) {
