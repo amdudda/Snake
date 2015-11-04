@@ -16,7 +16,7 @@ public class Snake {
 
     private boolean hitWall = false;
     private boolean ateTail = false;
-    private boolean warpWalls = false; // AMD: variable to help implement warp walls.
+    private boolean warpWalls = true; // AMD: variable to help implement warp walls.
 
     protected int snakeSquares[][];  //represents all of the squares on the screen
     //NOT pixels!
@@ -153,7 +153,7 @@ public class Snake {
         //Did you hit the wall, snake?
         //Or eat your tail? Don't move.
 
-        if (hitWall == true || ateTail == true) {
+        if (this.didHitWall() || ateTail == true) {
             SnakeGame.setGameStage(SnakeGame.GAME_OVER);
             return;
         }
@@ -199,7 +199,23 @@ public class Snake {
         //Does this make snake hit the wall?
         if (snakeHeadX >= maxX || snakeHeadX < 0 || snakeHeadY >= maxY || snakeHeadY < 0) {
             hitWall = true;
-            SnakeGame.setGameStage(SnakeGame.GAME_OVER);
+            if (this.didHitWall()) {  // AMD: but only end the game if the warpwalls are turned off
+                SnakeGame.setGameStage(SnakeGame.GAME_OVER);
+            } else {
+                //AMD: otherwise, move the snake's head to the other side of the board:
+                hitWall = false;
+                // AMD: Need to adjust coordinates based on which wall the snake hit:
+                if (snakeHeadX >= maxX || snakeHeadX < 0) {
+                    // AMD: if it hit the side walls, adjust the X coordinate
+                    snakeHeadX = maxX - Math.abs(snakeHeadX);
+                }
+                else {
+                    // AMD: otherwise, it hit the top/bottom wall and we adjust the Y coordinate
+                    snakeHeadY = maxY - Math.abs(snakeHeadY);
+                }
+                // AMD: Add the new head
+                snakeSquares[snakeHeadX][snakeHeadY] = 1;
+            }
             return;
         }
 
@@ -241,7 +257,8 @@ public class Snake {
     }
 
     protected boolean didHitWall() {
-        return hitWall;
+        // AMD: Adding warpWalls means that if warpWalls are on, the snake should never hit the wall.
+        return hitWall && !warpWalls;
 
     }
 
@@ -304,7 +321,7 @@ public class Snake {
     }
 
     public boolean isGameOver() {
-        if (hitWall == true || ateTail == true) {
+        if (this.didHitWall()|| ateTail == true) {
             SnakeGame.setGameStage(SnakeGame.GAME_OVER);
             return true;
 
