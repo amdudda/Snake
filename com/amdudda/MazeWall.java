@@ -8,10 +8,10 @@ import java.util.Random;
 
 public class MazeWall {
     /*
-    Constructs maze walls that obstruct the snake's path.
-    Three obvious attributes: x & y upper-left coordinate plus whether it's vertically or
-    horizontally drawn
-     */
+        Constructs maze walls that obstruct the snake's path.
+        Three obvious attributes: x & y upper-left coordinate plus whether it's vertically or
+        horizontally drawn
+         */
     private int gridX;
     private int gridY;
     private char v_or_h;  // char that is either 'v' or 'h'
@@ -29,6 +29,20 @@ public class MazeWall {
         if (pickHorV == 0) { this.v_or_h = 'v'; }
         else { this.v_or_h = 'h'; }
     }
+
+    // getters for attributes
+    public int getGridX() {
+        return gridX;
+    }
+
+    public int getGridY() {
+        return gridY;
+    }
+
+    public char getV_or_h() {
+        return v_or_h;
+    }
+    // end getters
 
     @Override
     public String toString() {

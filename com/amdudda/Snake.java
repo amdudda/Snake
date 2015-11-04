@@ -217,6 +217,9 @@ public class Snake {
             return;
         }
 
+        // does this make the snake hit a maze wall?
+        didHitMazeWall();
+
         //Does this make the snake eat its tail?
 
         if (snakeSquares[snakeHeadX][snakeHeadY] != 0) {
@@ -325,6 +328,34 @@ public class Snake {
 
         }
         return false;
+    }
+
+    public void didHitMazeWall() {
+        // has the snake hit the maze wall?
+        boolean didHit = false;
+        MazeWall mw = DrawSnakeGamePanel.mw1;
+        // our decision depends partly on the snake's direction & partly on the line's orientation
+        switch (currentHeading) {
+            case DIRECTION_UP: {
+                if (mw.getV_or_h() == 'h' && mw.getGridY() == this.snakeHeadY) {
+                    didHit = true;
+                }
+                break;
+            }
+            case DIRECTION_DOWN: {
+                break;
+            }
+            case DIRECTION_LEFT: {
+                if (mw.getV_or_h() == 'v' && mw.getGridX() == this.snakeHeadX) {
+                    didHit = true;
+                }
+                break;
+            }
+            case DIRECTION_RIGHT: {
+                break;
+            }
+        }
+        System.out.println(didHit);
     }
 
     protected void createDebugSnake() {
