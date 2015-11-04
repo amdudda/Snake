@@ -59,10 +59,10 @@ public class MazeWall {
         // two possibilities: a vertical wall and horizontal wall
         if (v_or_h == 'v') {
             // if vertical, x is 3px wide and y changes
-            g.fillRect(xPos, yPos, 3, linelength);
+            g.fillRect(xPos-1, yPos, 3, linelength);
         } else {
             // if horizontal, y is 3px wide and x changes
-            g.fillRect(xPos, yPos, linelength, 3);
+            g.fillRect(xPos, yPos-1, linelength, 3);
         }
     }
 }

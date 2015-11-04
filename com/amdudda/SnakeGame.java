@@ -91,6 +91,8 @@ public class SnakeGame {
         /*AMD: this causes the game to refresh every clockInterval milliseconds so the snake
         * can be redrawn as game play progresses.
         * */
+        // also pick a new maze wall location
+        DrawSnakeGamePanel.mw1 = new MazeWall();
 	}
 
 	public static void main(String[] args) {

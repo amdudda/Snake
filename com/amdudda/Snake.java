@@ -16,7 +16,7 @@ public class Snake {
 
     private boolean hitWall = false;
     private boolean ateTail = false;
-    private boolean warpWalls = true; // AMD: variable to help implement warp walls.
+    private boolean warpWalls = false; // AMD: variable to help implement warp walls.
 
     protected int snakeSquares[][];  //represents all of the squares on the screen
     //NOT pixels!
@@ -334,15 +334,25 @@ public class Snake {
         // has the snake hit the maze wall?
         boolean didHit = false;
         MazeWall mw = DrawSnakeGamePanel.mw1;
+        // simpler idea: compare snake's position to mazewall's position?
+        if (mw.getGridX() == snakeHeadX && mw.getGridY() == snakeHeadY) {
+            // if the drawing coordinate origins are identical, it's hit some sort of wall:
+            didHit = true;
+        } // some other cases... what are they
+
+
         // our decision depends partly on the snake's direction & partly on the line's orientation
-        switch (currentHeading) {
+        /*switch (currentHeading) {
             case DIRECTION_UP: {
-                if (mw.getV_or_h() == 'h' && mw.getGridY() == this.snakeHeadY) {
+                if (mw.getV_or_h() == 'h' && mw.getGridY() == this.snakeHeadY &&) {
                     didHit = true;
                 }
                 break;
             }
             case DIRECTION_DOWN: {
+                if (mw.getV_or_h() == 'h' && mw.getGridY() == this.snakeHeadY) {
+                    didHit = true;
+                }
                 break;
             }
             case DIRECTION_LEFT: {
@@ -354,7 +364,7 @@ public class Snake {
             case DIRECTION_RIGHT: {
                 break;
             }
-        }
+        }*/
         System.out.println(didHit);
     }
 
