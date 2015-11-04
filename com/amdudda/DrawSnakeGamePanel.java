@@ -118,6 +118,9 @@ public class DrawSnakeGamePanel extends JPanel {
         for (int x = 0; x <= maxX; x += squareSize) {
             g.drawLine(x, 0, x, maxY);
         }
+
+        // draw our maze wall:
+        mw1.draw(g);
     }
 
     private void displayKibble(Graphics g) {

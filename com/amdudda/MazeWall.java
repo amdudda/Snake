@@ -38,13 +38,17 @@ public class MazeWall {
 
     // and a method to draw the wall
     public void draw(Graphics g) {
+        g.setColor(Color.blue);
+        // gridX and gridY correspond to grid positions, not pixel positions.
+        int xPos = this.gridX * linelength;
+        int yPos = this.gridY * linelength;
         // two possibilities: a vertical wall and horizontal wall
         if (v_or_h == 'v') {
             // if vertical, x is 3px wide and y changes
-            g.fillRect(this.gridX, this.gridY, 3, linelength);
+            g.fillRect(xPos, yPos, 3, linelength);
         } else {
             // if horizontal, y is 3px wide and x changes
-            g.fillRect(this.gridX, this.gridY, linelength, 3);
+            g.fillRect(xPos, yPos, linelength, 3);
         }
     }
 }
