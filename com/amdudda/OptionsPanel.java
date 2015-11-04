@@ -1,7 +1,6 @@
 package com.amdudda;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
@@ -14,6 +13,8 @@ public class OptionsPanel extends JFrame {
     private JTextField gameSpeedText;
     private JTextField squareSizeText;
     private JButton SubmitButton;
+    private JCheckBox WarpWallsCheckBox;
+    private JCheckBox MazeWallCheckBox;
 
     public OptionsPanel() {
         super("Set game options");
@@ -38,6 +39,10 @@ public class OptionsPanel extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 SnakeGame.clockInterval = Integer.parseInt(gameSpeedText.getText());
                 SnakeGame.squareSize = Integer.parseInt(squareSizeText.getText());
+                if (WarpWallsCheckBox.isSelected()) SnakeGame.hasWarpWalls = true;
+                else SnakeGame.hasWarpWalls = false;
+                if (MazeWallCheckBox.isSelected()) SnakeGame.hasMazeWalls = true;
+                else SnakeGame.hasMazeWalls = false;
                 // reset snake so the new settings take effect.
                 SnakeGame.snake.reset();
                 // and get rid of the screen
