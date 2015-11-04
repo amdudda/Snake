@@ -30,7 +30,7 @@ public class OptionsPanel extends JFrame {
         Something here breaks the game - it works fine if I set no options,
         but just opening the options screen & closing it causes the game to
         end abruptly after ~10 clock ticks.
-        Fixed gridsize bug, but now timer gets really wonky if I reset settings.
+        Timer also gets really wonky if I reset settings.
         */
         SubmitButton.addActionListener(new ActionListener() {
             @Override
