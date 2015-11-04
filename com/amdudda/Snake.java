@@ -61,8 +61,6 @@ public class Snake {
         snakeHeadY = screenYCenter;
 
         snakeSize = 3;
-        // AMD: debug usage: to get to endgame faster set
-        // snakeSize = 95;
 
         currentHeading = DIRECTION_LEFT;
         lastHeading = DIRECTION_LEFT;
