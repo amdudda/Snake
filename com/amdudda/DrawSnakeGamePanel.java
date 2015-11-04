@@ -18,6 +18,8 @@ public class DrawSnakeGamePanel extends JPanel {
     private Snake snake;
     private Kibble kibble;
     private Score score;
+    // AMD: can I draw a mazewall now?
+    private MazeWall mw1 = new MazeWall();
 
     DrawSnakeGamePanel(Snake s, Kibble k, Score sc) {
         this.snake = s;
