@@ -266,12 +266,13 @@ public class Snake {
     }
 
     public boolean isSnakeSegment(int kibbleX, int kibbleY) {
-        /*if (snakeSquares[kibbleX][kibbleY] == 0) {
+        if (snakeSquares[kibbleX][kibbleY] == 0) {
             return false;
         }
-        return true;*/
+        return true;
         // AMD: just return the evaluation, the if statement is redundant:
-        return snakeSquares[kibbleX][kibbleY] == 0;
+        //return snakeSquares[kibbleX][kibbleY] == 0;
+        // for some reason, returning the above causes kibble to appear in snake.
     }
 
     public boolean didEatKibble(Kibble kibble) {

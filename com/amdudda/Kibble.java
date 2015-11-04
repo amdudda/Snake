@@ -34,7 +34,7 @@ public class Kibble {
 			kibbleX = rng.nextInt(SnakeGame.xSquares);
 			kibbleY = rng.nextInt(SnakeGame.ySquares);
 			kibbleInSnake = s.isSnakeSegment(kibbleX, kibbleY);
-		}
+        }
 		
 		
 	}
