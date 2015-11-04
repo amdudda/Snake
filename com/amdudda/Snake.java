@@ -16,7 +16,8 @@ public class Snake {
 
     private boolean hitWall = false;
     private boolean ateTail = false;
-    private boolean warpWalls = false; // AMD: variable to help implement warp walls.
+    //private boolean warpWalls = false; // AMD: variable to help implement warp walls.
+    //private boolean hasMazeWalls = true;  // AMD: variable to help implement maze walls
 
     protected int snakeSquares[][];  //represents all of the squares on the screen
     //NOT pixels!
@@ -150,8 +151,8 @@ public class Snake {
 
         //Did you hit the wall, snake?
         //Or eat your tail? Don't move.
-
-        if (this.didHitWall() || ateTail == true) {
+        // AMD: or has the snake hit a maze wall?
+        if (this.didHitWall() || this.didEatTail() || this.didHitMazeWall()) {
             SnakeGame.setGameStage(SnakeGame.GAME_OVER);
             return;
         }
@@ -217,9 +218,6 @@ public class Snake {
             return;
         }
 
-        // does this make the snake hit a maze wall?
-        didHitMazeWall();
-
         //Does this make the snake eat its tail?
 
         if (snakeSquares[snakeHeadX][snakeHeadY] != 0) {
@@ -259,7 +257,7 @@ public class Snake {
 
     protected boolean didHitWall() {
         // AMD: Adding warpWalls means that if warpWalls are on, the snake should never hit the wall.
-        return hitWall && !warpWalls;
+        return hitWall && !SnakeGame.hasWarpWalls;
 
     }
 
@@ -330,42 +328,40 @@ public class Snake {
         return false;
     }
 
-    public void didHitMazeWall() {
-        // has the snake hit the maze wall?
+    public boolean didHitMazeWall() {
+        // AMD: are we even using mazewalls?
+        if (!SnakeGame.hasMazeWalls) { return false; }
+        // AMD: has the snake hit the maze wall?
         boolean didHit = false;
         MazeWall mw = DrawSnakeGamePanel.mw1;
-        // simpler idea: compare snake's position to mazewall's position?
-        if (mw.getGridX() == snakeHeadX && mw.getGridY() == snakeHeadY) {
-            // if the drawing coordinate origins are identical, it's hit some sort of wall:
-            didHit = true;
-        } // some other cases... what are they
-
-
-        // our decision depends partly on the snake's direction & partly on the line's orientation
-        /*switch (currentHeading) {
+        // AMD: our decision depends partly on the snake's direction & partly on the line's orientation
+        switch (currentHeading) {
             case DIRECTION_UP: {
-                if (mw.getV_or_h() == 'h' && mw.getGridY() == this.snakeHeadY &&) {
+                if (mw.getV_or_h() == 'h' && mw.getGridX() == this.snakeHeadX && mw.getGridY() == this.snakeHeadY) {
                     didHit = true;
                 }
                 break;
             }
             case DIRECTION_DOWN: {
-                if (mw.getV_or_h() == 'h' && mw.getGridY() == this.snakeHeadY) {
+                if (mw.getV_or_h() == 'h' && mw.getGridX() == this.snakeHeadX && mw.getGridY() == this.snakeHeadY + 1) {
                     didHit = true;
                 }
                 break;
             }
             case DIRECTION_LEFT: {
-                if (mw.getV_or_h() == 'v' && mw.getGridX() == this.snakeHeadX) {
+                if (mw.getV_or_h() == 'v' && mw.getGridX() == this.snakeHeadX && mw.getGridY() == this.snakeHeadY) {
                     didHit = true;
                 }
                 break;
             }
             case DIRECTION_RIGHT: {
+                if (mw.getV_or_h() == 'v' && mw.getGridX() == this.snakeHeadX + 1 && mw.getGridY() == this.snakeHeadY) {
+                    didHit = true;
+                }
                 break;
             }
-        }*/
-        System.out.println(didHit);
+        }
+        return didHit;
     }
 
     protected void createDebugSnake() {
