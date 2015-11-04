@@ -11,6 +11,9 @@ import javax.swing.*;
 
 public class SnakeGame {
 
+    // AMD: what if we make timer global?
+    public static Timer timer = new Timer();
+
 	public final static int xPixelMaxDimension = 501;  //Pixels in window. 501 to have 50-pixel squares plus 1 to draw a border on last square
 	public final static int yPixelMaxDimension = 501;
 
@@ -87,7 +90,8 @@ public class SnakeGame {
 	}
 
 	protected static void newGame() {
-		Timer timer = new Timer();
+		// AMD: restart the timer when we kick off a new game.
+        timer = new Timer();
 		GameClock clockTick = new GameClock(snake, kibble, score, snakePanel);
 		timer.scheduleAtFixedRate(clockTick, 0 , clockInterval);
         /*AMD: this causes the game to refresh every clockInterval milliseconds so the snake

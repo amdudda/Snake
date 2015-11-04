@@ -43,6 +43,8 @@ public class GameControls implements KeyListener{
 		}
 		
 		if (SnakeGame.getGameStage() == SnakeGame.GAME_OVER){
+            // AMD: turn off the timer when the game is over
+            SnakeGame.timer.cancel();
 			snake.reset();
 			Score.resetScore();
 			
