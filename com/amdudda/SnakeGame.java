@@ -115,10 +115,12 @@ public class SnakeGame {
 	}
 
 	public static boolean gameEnded() {
-		if (gameStage == GAME_OVER || gameStage == GAME_WON){
+		/*if (gameStage == GAME_OVER || gameStage == GAME_WON){
 			return true;
 		}
-		return false;
+		return false;*/
+        // another pointless if-then statement
+        return gameStage == GAME_OVER || gameStage == GAME_WON;
 	}
 
 	public static void setGameStage(int gameStage) {

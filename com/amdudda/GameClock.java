@@ -35,7 +35,7 @@ public class GameClock extends TimerTask {
 			case SnakeGame.DURING_GAME: {
 				// AMD: play the game
 				snake.moveSnake();
-				if (snake.didEatKibble(kibble) == true) {		
+				if (snake.didEatKibble(kibble)) {
 					//tell kibble to update
 					kibble.moveKibble(snake);
 					Score.increaseScore();

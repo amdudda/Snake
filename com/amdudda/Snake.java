@@ -51,8 +51,8 @@ public class Snake {
 
     protected void createStartSnake() {
         //snake starts as 3 horizontal squares in the center of the screen, moving left
-        int screenXCenter = (int) maxX / 2;  //Cast just in case we have an odd number
-        int screenYCenter = (int) maxY / 2;  //Cast just in case we have an odd number
+        int screenXCenter = maxX / 2;  //Cast just in case we have an odd number
+        int screenYCenter = maxY / 2;  //Cast just in case we have an odd number
 
         snakeSquares[screenXCenter][screenYCenter] = 1;
         snakeSquares[screenXCenter + 1][screenYCenter] = 2;
@@ -266,10 +266,12 @@ public class Snake {
     }
 
     public boolean isSnakeSegment(int kibbleX, int kibbleY) {
-        if (snakeSquares[kibbleX][kibbleY] == 0) {
+        /*if (snakeSquares[kibbleX][kibbleY] == 0) {
             return false;
         }
-        return true;
+        return true;*/
+        // AMD: just return the evaluation, the if statement is redundant:
+        return snakeSquares[kibbleX][kibbleY] == 0;
     }
 
     public boolean didEatKibble(Kibble kibble) {
@@ -320,7 +322,7 @@ public class Snake {
     }
 
     public boolean isGameOver() {
-        if (this.didHitWall()|| ateTail == true) {
+        if (this.didHitWall() || ateTail) {
             SnakeGame.setGameStage(SnakeGame.GAME_OVER);
             return true;
 
