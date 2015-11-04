@@ -21,12 +21,13 @@ public class OptionsPanel extends JFrame {
         pack();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setVisible(true);
-
+        // turn off the timer so that the snake doesn't get weird speed effects.
+        SnakeGame.timer.cancel();
 
         gameSpeedText.setText("" + SnakeGame.clockInterval);
         squareSizeText.setText("" + SnakeGame.squareSize);
 
-        /* TODO: fix bug
+        /* DONE: fix bug
         Something here breaks the game - it works fine if I set no options,
         but just opening the options screen & closing it causes the game to
         end abruptly after ~10 clock ticks.
