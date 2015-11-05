@@ -53,7 +53,7 @@ public class Score {
     }
 
     public String newHighScore() {
-
+        // AMD: need to keep track of the existence of a new high score so it can be announced in the game display.
         if (score > highScore) {
             highScore = score;
             haveNewHighScore = true;

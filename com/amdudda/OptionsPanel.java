@@ -15,6 +15,17 @@ public class OptionsPanel extends JFrame {
     private JButton SubmitButton;
     private JCheckBox WarpWallsCheckBox;
     private JCheckBox MazeWallCheckBox;
+    private JRadioButton slowRadioButton;
+    private JRadioButton mediumRadioButton;
+    private JRadioButton fastRadioButton;
+    private JRadioButton hyperspeedRadioButton;
+    /*
+    got buttongroup usage info from two sites:
+    http://docs.oracle.com/javase/tutorial/uiswing/components/button.html#radiobutton
+    https://docs.oracle.com/javase/8/docs/api/javax/swing/ButtonGroup.html#ButtonGroup--
+    */
+    private ButtonGroup GameSpeedButtonGroup1 = new ButtonGroup();
+
 
     public OptionsPanel() {
         super("Set game options");
@@ -25,6 +36,11 @@ public class OptionsPanel extends JFrame {
         // turn off the timer so that the snake doesn't get weird speed effects.
         SnakeGame.timer.cancel();
 
+        GameSpeedButtonGroup1.add(slowRadioButton);
+        GameSpeedButtonGroup1.add(mediumRadioButton);
+        GameSpeedButtonGroup1.add(fastRadioButton);
+        GameSpeedButtonGroup1.add(hyperspeedRadioButton);
+        GameSpeedButtonGroup1.setSelected(mediumRadioButton.getModel(), true);
         gameSpeedText.setText("" + SnakeGame.clockInterval);
         squareSizeText.setText("" + SnakeGame.squareSize);
 
@@ -37,7 +53,8 @@ public class OptionsPanel extends JFrame {
         SubmitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                SnakeGame.clockInterval = Integer.parseInt(gameSpeedText.getText());
+                int game_speed = Integer.parseInt(GameSpeedButtonGroup1.getSelection().getActionCommand());
+                SnakeGame.clockInterval = game_speed;
                 SnakeGame.squareSize = Integer.parseInt(squareSizeText.getText());
                 if (WarpWallsCheckBox.isSelected()) SnakeGame.hasWarpWalls = true;
                 else SnakeGame.hasWarpWalls = false;
@@ -52,6 +69,7 @@ public class OptionsPanel extends JFrame {
                 closeWindow();
             }
         });
+
     }
 
     public void closeWindow() {
