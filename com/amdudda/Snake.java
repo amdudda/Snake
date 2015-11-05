@@ -49,6 +49,15 @@ public class Snake {
         // createDebugSnake();
     }
 
+    // AMD: setters to update maxX and maxY from options screen
+    public void setMaxX(int value) {
+        this.maxX = value;
+    }
+
+    public void setMaxY(int value) {
+        this.maxY = value;
+    }
+
     protected void createStartSnake() {
         //snake starts as 3 horizontal squares in the center of the screen, moving left
         int screenXCenter = maxX / 2;  //Cast just in case we have an odd number
