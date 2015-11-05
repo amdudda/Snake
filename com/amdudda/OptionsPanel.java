@@ -10,8 +10,6 @@ import java.awt.event.WindowEvent;
  */
 public class OptionsPanel extends JFrame {
     private JPanel rootPanel;
-    private JTextField gameSpeedText;
-    private JTextField squareSizeText;
     private JButton SubmitButton;
     private JCheckBox WarpWallsCheckBox;
     private JCheckBox MazeWallCheckBox;
@@ -19,12 +17,17 @@ public class OptionsPanel extends JFrame {
     private JRadioButton mediumRadioButton;
     private JRadioButton fastRadioButton;
     private JRadioButton hyperspeedRadioButton;
+    private JRadioButton a10x10RadioButton;
+    private JRadioButton a20x20RadioButton;
+    private JRadioButton a50x50RadioButton;
+
     /*
     got buttongroup usage info from two sites:
     http://docs.oracle.com/javase/tutorial/uiswing/components/button.html#radiobutton
     https://docs.oracle.com/javase/8/docs/api/javax/swing/ButtonGroup.html#ButtonGroup--
     */
-    private ButtonGroup GameSpeedButtonGroup1 = new ButtonGroup();
+    private ButtonGroup GameSpeedButtonGroup = new ButtonGroup();
+    private ButtonGroup SquareSizeButtonGroup = new ButtonGroup();
 
 
     public OptionsPanel() {
@@ -36,13 +39,18 @@ public class OptionsPanel extends JFrame {
         // turn off the timer so that the snake doesn't get weird speed effects.
         SnakeGame.timer.cancel();
 
-        GameSpeedButtonGroup1.add(slowRadioButton);
-        GameSpeedButtonGroup1.add(mediumRadioButton);
-        GameSpeedButtonGroup1.add(fastRadioButton);
-        GameSpeedButtonGroup1.add(hyperspeedRadioButton);
-        GameSpeedButtonGroup1.setSelected(mediumRadioButton.getModel(), true);
-        gameSpeedText.setText("" + SnakeGame.clockInterval);
-        squareSizeText.setText("" + SnakeGame.squareSize);
+        // Establish our button groups and set default option
+        GameSpeedButtonGroup.add(slowRadioButton);
+        GameSpeedButtonGroup.add(mediumRadioButton);
+        GameSpeedButtonGroup.add(fastRadioButton);
+        GameSpeedButtonGroup.add(hyperspeedRadioButton);
+        GameSpeedButtonGroup.setSelected(mediumRadioButton.getModel(), true);
+
+        SquareSizeButtonGroup.add(a10x10RadioButton);
+        SquareSizeButtonGroup.add(a20x20RadioButton);
+        SquareSizeButtonGroup.add(a50x50RadioButton);
+        SquareSizeButtonGroup.setSelected(a10x10RadioButton.getModel(), true);
+
 
         /* DONE: fix bug
         Something here breaks the game - it works fine if I set no options,
@@ -53,9 +61,10 @@ public class OptionsPanel extends JFrame {
         SubmitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int game_speed = Integer.parseInt(GameSpeedButtonGroup1.getSelection().getActionCommand());
+                int game_speed = Integer.parseInt(GameSpeedButtonGroup.getSelection().getActionCommand());
+                int sqSize = Integer.parseInt(SquareSizeButtonGroup.getSelection().getActionCommand());
                 SnakeGame.clockInterval = game_speed;
-                SnakeGame.squareSize = Integer.parseInt(squareSizeText.getText());
+                SnakeGame.squareSize = sqSize;
                 if (WarpWallsCheckBox.isSelected()) SnakeGame.hasWarpWalls = true;
                 else SnakeGame.hasWarpWalls = false;
                 if (MazeWallCheckBox.isSelected()) {

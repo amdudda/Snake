@@ -21,14 +21,6 @@
           <text value="Speed:"/>
         </properties>
       </component>
-      <component id="532b5" class="javax.swing.JTextField" binding="squareSizeText">
-        <constraints>
-          <grid row="2" column="1" row-span="1" col-span="4" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="-1"/>
-          </grid>
-        </constraints>
-        <properties/>
-      </component>
       <component id="f1790" class="javax.swing.JLabel">
         <constraints>
           <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
@@ -132,6 +124,33 @@
           <text value="Hyperspeed"/>
         </properties>
       </component>
+      <component id="ddfb4" class="javax.swing.JRadioButton" binding="a10x10RadioButton" default-binding="true">
+        <constraints>
+          <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <actionCommand value="50"/>
+          <text value="10x10"/>
+        </properties>
+      </component>
+      <component id="f7f20" class="javax.swing.JRadioButton" binding="a20x20RadioButton" default-binding="true">
+        <constraints>
+          <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <actionCommand value="25"/>
+          <text value="20x20"/>
+        </properties>
+      </component>
+      <component id="63b5f" class="javax.swing.JRadioButton" binding="a50x50RadioButton" default-binding="true">
+        <constraints>
+          <grid row="2" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <actionCommand value="10"/>
+          <text value="50x50"/>
+        </properties>
+      </component>
     </children>
   </grid>
   <buttonGroups>
@@ -140,6 +159,11 @@
       <member id="27386"/>
       <member id="88607"/>
       <member id="f3b35"/>
+    </group>
+    <group name="SquareSizeButtonGroup">
+      <member id="ddfb4"/>
+      <member id="f7f20"/>
+      <member id="63b5f"/>
     </group>
   </buttonGroups>
 </form>
