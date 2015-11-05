@@ -153,6 +153,7 @@ public class DrawSnakeGamePanel extends JPanel {
 
     private void displayInstructions(Graphics g) {
         g.drawString("Press any key to begin!", 100, 200);
+        g.drawString("Press o to view and set game options", 100, 250);
         g.drawString("Press q to quit the game", 100, 300);
     }
 
