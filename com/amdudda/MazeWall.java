@@ -16,9 +16,11 @@ public class MazeWall {
     private int gridY;
     private char v_or_h;  // char that is either 'v' or 'h'
     // plus some attributes derived from game settings
-    private static int xLines = SnakeGame.xSquares + 1;
-    private static int yLines = SnakeGame.ySquares + 1;
-    private static int linelength = SnakeGame.squareSize;
+    // because game is timer-driven, these can't be static, or all maze walls will be
+    // drawn at whatever squareSize is set to when the program loads DrawSnakeGamePanel.
+    private int xLines = SnakeGame.xSquares + 1;
+    private int yLines = SnakeGame.ySquares + 1;
+    private int linelength = SnakeGame.squareSize;
 
     // Constructor
     public MazeWall() {

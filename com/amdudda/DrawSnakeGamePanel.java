@@ -19,7 +19,7 @@ public class DrawSnakeGamePanel extends JPanel {
     private Kibble kibble;
     private Score score;
     // AMD: can I draw a mazewall now?
-    protected static MazeWall mw1 = new MazeWall();
+    protected static MazeWall mw1;
 
     DrawSnakeGamePanel(Snake s, Kibble k, Score sc) {
         this.snake = s;
@@ -94,7 +94,7 @@ public class DrawSnakeGamePanel extends JPanel {
     }
 
     private void displayGame(Graphics g) {
-        score.resetHaveNewHighScore();  // reset the high score flag to zero
+        score.resetHaveNewHighScore();  // AMD: reset the high score flag to zero
         displayGameGrid(g);
         displaySnake(g);
         displayKibble(g);

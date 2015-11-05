@@ -41,7 +41,10 @@ public class OptionsPanel extends JFrame {
                 SnakeGame.squareSize = Integer.parseInt(squareSizeText.getText());
                 if (WarpWallsCheckBox.isSelected()) SnakeGame.hasWarpWalls = true;
                 else SnakeGame.hasWarpWalls = false;
-                if (MazeWallCheckBox.isSelected()) SnakeGame.hasMazeWalls = true;
+                if (MazeWallCheckBox.isSelected()) {
+                    SnakeGame.hasMazeWalls = true;
+                    DrawSnakeGamePanel.mw1 = new MazeWall();
+                }
                 else SnakeGame.hasMazeWalls = false;
                 // reset snake so the new settings take effect.
                 SnakeGame.snake.reset();
