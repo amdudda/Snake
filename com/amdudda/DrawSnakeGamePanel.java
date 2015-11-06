@@ -2,6 +2,7 @@ package com.amdudda;
 
 import java.awt.*;
 import java.util.LinkedList;
+import java.util.Random;
 
 import javax.swing.JPanel;
 
@@ -75,7 +76,13 @@ public class DrawSnakeGamePanel extends JPanel {
         Font fontname = g.getFont();
         g.setFont(new Font(fontname.getName(),Font.BOLD,36));
         Color oldcolor = g.getColor();
-        g.setColor(Color.GREEN);
+        // let's pick a random color: https://docs.oracle.com/javase/7/docs/api/java/awt/Color.html
+        Random rng = new Random();
+        int r = rng.nextInt(255);
+        int v = rng.nextInt(255);
+        int b = rng.nextInt(255);
+        Color farbe = new Color(r,v,b);
+        g.setColor(farbe);
         g.drawString("YOU WON SNAKE!!!", SnakeGame.xPixelMaxDimension/2 - 200, SnakeGame.yPixelMaxDimension/2 + 24);
         g.setFont(fontname);
         g.setColor(oldcolor);
