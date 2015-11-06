@@ -331,6 +331,16 @@ public class Snake {
 
     }
 
+    public void refactor() {
+        // AMD: Allows refactoring of snake variables after options reset
+        this.maxX = SnakeGame.xSquares;
+        this.maxY = SnakeGame.ySquares;
+        this.squareSize = SnakeGame.squareSize;
+        snakeSquares = new int[this.maxX][this.maxY];
+        fillSnakeSquaresWithZeros();
+        createStartSnake();
+    }
+
     public boolean isGameOver() {
         if (this.didHitWall() || ateTail) {
             SnakeGame.setGameStage(SnakeGame.GAME_OVER);

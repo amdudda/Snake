@@ -61,24 +61,31 @@ public class OptionsPanel extends JFrame {
         SubmitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int game_speed = Integer.parseInt(GameSpeedButtonGroup.getSelection().getActionCommand());
-                int sqSize = Integer.parseInt(SquareSizeButtonGroup.getSelection().getActionCommand());
-                SnakeGame.clockInterval = game_speed;
-                SnakeGame.squareSize = sqSize;
-                if (WarpWallsCheckBox.isSelected()) SnakeGame.hasWarpWalls = true;
-                else SnakeGame.hasWarpWalls = false;
-                if (MazeWallCheckBox.isSelected()) {
-                    SnakeGame.hasMazeWalls = true;
-                    DrawSnakeGamePanel.mw1 = new MazeWall();
-                }
-                else SnakeGame.hasMazeWalls = false;
+                resetGameVariables();
                 // reset snake so the new settings take effect.
-                SnakeGame.snake.reset();
+                SnakeGame.snake.refactor();
                 // and get rid of the screen
                 closeWindow();
             }
         });
 
+    }
+
+    public void resetGameVariables() {
+        // resets game variables after options have been updated
+        int game_speed = Integer.parseInt(GameSpeedButtonGroup.getSelection().getActionCommand());
+        int sqSize = Integer.parseInt(SquareSizeButtonGroup.getSelection().getActionCommand());
+        SnakeGame.clockInterval = game_speed;
+        SnakeGame.squareSize = sqSize;
+        SnakeGame.xSquares = SnakeGame.xPixelMaxDimension / sqSize;
+        SnakeGame.ySquares = SnakeGame.yPixelMaxDimension / sqSize;
+        if (WarpWallsCheckBox.isSelected()) SnakeGame.hasWarpWalls = true;
+        else SnakeGame.hasWarpWalls = false;
+        if (MazeWallCheckBox.isSelected()) {
+            SnakeGame.hasMazeWalls = true;
+            DrawSnakeGamePanel.mw1 = new MazeWall();
+        }
+        else SnakeGame.hasMazeWalls = false;
     }
 
     public void closeWindow() {
