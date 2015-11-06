@@ -68,9 +68,17 @@ public class DrawSnakeGamePanel extends JPanel {
 
     private void displayGameWon(Graphics g) {
         // TODO Replace this with something really special!
+        // AMD: Looked up how to play with fonts - looked at several sites, but these two started
+        // the path to comprehension: http://www.coderanch.com/t/446177/GUI/java/change-font-JPanel
+        // and http://stackoverflow.com/questions/15260484/java-swing-how-to-change-the-font-size-on-a-jpanels-titledborder
         g.clearRect(100, 100, 350, 350);
-        g.drawString("YOU WON SNAKE!!!", 150, 150);
-
+        Font fontname = g.getFont();
+        g.setFont(new Font(fontname.getName(),Font.BOLD,36));
+        Color oldcolor = g.getColor();
+        g.setColor(Color.GREEN);
+        g.drawString("YOU WON SNAKE!!!", SnakeGame.xPixelMaxDimension/2 - 200, SnakeGame.yPixelMaxDimension/2 + 24);
+        g.setFont(fontname);
+        g.setColor(oldcolor);
     }
 
     private void displayGameOver(Graphics g) {
@@ -83,10 +91,12 @@ public class DrawSnakeGamePanel extends JPanel {
         String newHighScore = score.newHighScore();
 
         g.drawString("SCORE = " + textScore, 150, 250);
-
+        Color oldcolor = g.getColor();
         g.drawString("HIGH SCORE = " + textHighScore, 150, 300);
         // AMD: moved new High Score announcement so it's actually readable.
+        g.setColor(Color.RED);
         g.drawString(newHighScore, 150, 325);
+        g.setColor(oldcolor);
 
         g.drawString("press a key to play again", 150, 350);
         g.drawString("Press q to quit the game", 150, 400);
