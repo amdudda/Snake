@@ -85,18 +85,13 @@ public class OptionsPanel extends JFrame {
         int game_speed = Integer.parseInt(GameSpeedButtonGroup.getSelection().getActionCommand());
         int sqSize = Integer.parseInt(SquareSizeButtonGroup.getSelection().getActionCommand());
         double sizeRatio = Double.parseDouble(ScrnSzButtonGroup.getSelection().getActionCommand());
-        int ScrnSize = (int) (SnakeGame.xPixelMaxDimension * sizeRatio); // for this game, x = y
+        int ScreenSize = (int) (SnakeGame.xPixelMaxDimension * sizeRatio); // for this game, x = y
         SnakeGame.clockInterval = game_speed;
         SnakeGame.squareSize = (int) (sqSize * sizeRatio);
-        /*  AMD: Need to rethink this...*/
-        SnakeGame.xPixelMaxDimension = ScrnSize;
-        SnakeGame.yPixelMaxDimension = ScrnSize;
-        // debugging: print out dimensions
-        System.out.println("screensize = " + SnakeGame.xPixelMaxDimension);
-        System.out.println("sqsize = " + SnakeGame.squareSize);
-        SnakeGame.snakeFrame.setSize(ScrnSize, ScrnSize);
-        SnakeGame.xSquares = SnakeGame.xPixelMaxDimension / sqSize;
-        SnakeGame.ySquares = SnakeGame.yPixelMaxDimension / sqSize;
+        SnakeGame.xPixelMaxDimension = ScreenSize;
+        SnakeGame.yPixelMaxDimension = ScreenSize;
+        SnakeGame.xSquares = ScreenSize / sqSize;
+        SnakeGame.ySquares = ScreenSize / sqSize;
         if (WarpWallsCheckBox.isSelected()) SnakeGame.hasWarpWalls = true;
         else SnakeGame.hasWarpWalls = false;
         if (MazeWallCheckBox.isSelected()) {
@@ -104,6 +99,8 @@ public class OptionsPanel extends JFrame {
             DrawSnakeGamePanel.mw1 = new MazeWall();
         }
         else SnakeGame.hasMazeWalls = false;
+        // and don't forget to resize the game screen, too!  Done here to take advantage of local variables.
+        SnakeGame.snakeFrame.setSize(ScreenSize, ScreenSize);
     }
 
     public void closeWindow() {
