@@ -114,8 +114,6 @@ public class DrawSnakeGamePanel extends JPanel {
         score.resetHaveNewHighScore();  // AMD: reset the high score flag to false
         displayGameGrid(g);
         // AMD: Kibble & snake should know how to draw themselves.
-        // displaySnake(g);
-        // displayKibble(g);
         snake.draw(g);
         //kibble.draw(g);
         kibble.drawMouse(g);
