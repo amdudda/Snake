@@ -117,7 +117,8 @@ public class DrawSnakeGamePanel extends JPanel {
         // displaySnake(g);
         // displayKibble(g);
         snake.draw(g);
-        kibble.draw(g);
+        //kibble.draw(g);
+        kibble.drawMouse(g);
     }
 
     private void displayGameGrid(Graphics g) {

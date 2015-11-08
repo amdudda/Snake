@@ -4,7 +4,12 @@ package com.amdudda;
 	@student A.M. Dudda
 * */
 
+import javax.imageio.ImageIO;
+import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.Random;
 
 public class Kibble {
@@ -58,5 +63,24 @@ public class Kibble {
 		// AMD: offsets by 1 & 2 allow kibble to occur inside the grid squares.
 		q.fillRect(x + 1, y + 1, SnakeGame.squareSize - 2, SnakeGame.squareSize - 2);
 	}
-	
+
+    public void drawMouse(Graphics q) {
+        // let's draw a mouse for the snake to eat, instead of green kibble.
+        int x = this.kibbleX * SnakeGame.squareSize;
+        int y = this.kibbleY * SnakeGame.squareSize;
+        /*
+        taken from:
+        http://docs.oracle.com/javase/tutorial/2d/images/loadimage.html
+        http://docs.oracle.com/javase/tutorial/2d/images/drawimage.html
+        */
+        BufferedImage img = null;
+        try {
+            img = ImageIO.read(new File("./data/mouse_40.jpg"));
+        } catch (IOException e) {
+            System.out.println("Mouse not found!");
+            // draw the generic kibble instead.
+            this.draw(q);
+        }
+        q.drawImage(img,x+1,y+1,null) ;
+    }
 }
