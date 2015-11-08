@@ -72,6 +72,9 @@ public class Kibble {
         taken from:
         http://docs.oracle.com/javase/tutorial/2d/images/loadimage.html
         http://docs.oracle.com/javase/tutorial/2d/images/drawimage.html
+
+        image scaling hints from:
+        http://stackoverflow.com/questions/8284048/resizing-an-image-in-swing
         */
         BufferedImage img = null;
         try {
@@ -81,6 +84,6 @@ public class Kibble {
             // draw the generic kibble instead.
             this.draw(q);
         }
-        q.drawImage(img,x+1,y+1,null) ;
+        q.drawImage(img.getScaledInstance(SnakeGame.squareSize-2,SnakeGame.squareSize-2, Image.SCALE_FAST),x+1,y+1,null) ;
     }
 }
