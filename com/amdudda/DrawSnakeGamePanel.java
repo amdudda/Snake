@@ -111,7 +111,7 @@ public class DrawSnakeGamePanel extends JPanel {
     }
 
     private void displayGame(Graphics g) {
-        score.resetHaveNewHighScore();  // AMD: reset the high score flag to zero
+        score.resetHaveNewHighScore();  // AMD: reset the high score flag to false
         displayGameGrid(g);
         displaySnake(g);
         displayKibble(g);

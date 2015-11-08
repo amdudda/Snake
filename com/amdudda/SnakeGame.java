@@ -14,8 +14,9 @@ public class SnakeGame {
     // AMD: what if we make timer global?
     public static Timer timer = new Timer();
 
-	public final static int xPixelMaxDimension = 501;  //Pixels in window. 501 to have 50-pixel squares plus 1 to draw a border on last square
-	public final static int yPixelMaxDimension = 501;
+	// made Not Final so user can adjust this.
+	public static int xPixelMaxDimension = 501;  //Pixels in window. 501 to have 50-pixel squares plus 1 to draw a border on last square
+	public static int yPixelMaxDimension = 501;
 
 	public static int xSquares ;
 	public static int ySquares ;
@@ -54,7 +55,7 @@ public class SnakeGame {
 	//http://docs.oracle.com/javase/tutorial/displayCode.html?code=http://docs.oracle.com/javase/tutorial/uiswing/examples/components/FrameDemoProject/src/components/FrameDemo.java
 	//http://docs.oracle.com/javase/tutorial/uiswing/painting/step2.html
 
-	private static void createAndShowGUI() {
+	protected static void createAndShowGUI() {
 		//Create and set up the window.
 		snakeFrame = new JFrame();
 		snakeFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

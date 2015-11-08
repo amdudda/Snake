@@ -20,6 +20,9 @@ public class OptionsPanel extends JFrame {
     private JRadioButton a10x10RadioButton;
     private JRadioButton a20x20RadioButton;
     private JRadioButton a50x50RadioButton;
+    private JRadioButton ScrnSzSmallradioButton;
+    private JRadioButton ScrnSzMediumradioButton;
+    private JRadioButton ScrnSzLargeradioButton;
 
     /*
     got buttongroup usage info from two sites:
@@ -28,6 +31,7 @@ public class OptionsPanel extends JFrame {
     */
     private ButtonGroup GameSpeedButtonGroup = new ButtonGroup();
     private ButtonGroup SquareSizeButtonGroup = new ButtonGroup();
+    private ButtonGroup ScrnSzButtonGroup = new ButtonGroup();
 
 
     public OptionsPanel() {
@@ -39,7 +43,7 @@ public class OptionsPanel extends JFrame {
         // turn off the timer so that the snake doesn't get weird speed effects.
         SnakeGame.timer.cancel();
 
-        // Establish our button groups and set default option
+        // Establish our button groups and set default options
         GameSpeedButtonGroup.add(slowRadioButton);
         GameSpeedButtonGroup.add(mediumRadioButton);
         GameSpeedButtonGroup.add(fastRadioButton);
@@ -50,6 +54,11 @@ public class OptionsPanel extends JFrame {
         SquareSizeButtonGroup.add(a20x20RadioButton);
         SquareSizeButtonGroup.add(a50x50RadioButton);
         SquareSizeButtonGroup.setSelected(a10x10RadioButton.getModel(), true);
+
+        ScrnSzButtonGroup.add(ScrnSzSmallradioButton);
+        ScrnSzButtonGroup.add(ScrnSzMediumradioButton);
+        ScrnSzButtonGroup.add(ScrnSzLargeradioButton);
+        ScrnSzButtonGroup.setSelected(ScrnSzSmallradioButton.getModel(),true);
 
 
         /* DONE: fix bug
@@ -75,8 +84,17 @@ public class OptionsPanel extends JFrame {
         // resets game variables after options have been updated
         int game_speed = Integer.parseInt(GameSpeedButtonGroup.getSelection().getActionCommand());
         int sqSize = Integer.parseInt(SquareSizeButtonGroup.getSelection().getActionCommand());
+        double sizeRatio = Double.parseDouble(ScrnSzButtonGroup.getSelection().getActionCommand());
+        int ScrnSize = (int) (SnakeGame.xPixelMaxDimension * sizeRatio); // for this game, x = y
         SnakeGame.clockInterval = game_speed;
-        SnakeGame.squareSize = sqSize;
+        SnakeGame.squareSize = (int) (sqSize * sizeRatio);
+        /*  AMD: Need to rethink this...*/
+        SnakeGame.xPixelMaxDimension = ScrnSize;
+        SnakeGame.yPixelMaxDimension = ScrnSize;
+        // debugging: print out dimensions
+        System.out.println("screensize = " + SnakeGame.xPixelMaxDimension);
+        System.out.println("sqsize = " + SnakeGame.squareSize);
+        SnakeGame.snakeFrame.setSize(ScrnSize, ScrnSize);
         SnakeGame.xSquares = SnakeGame.xPixelMaxDimension / sqSize;
         SnakeGame.ySquares = SnakeGame.yPixelMaxDimension / sqSize;
         if (WarpWallsCheckBox.isSelected()) SnakeGame.hasWarpWalls = true;
