@@ -83,11 +83,11 @@ public class OptionsPanel extends JFrame {
     public void resetGameVariables() {
         // resets game variables after options have been updated
         int game_speed = Integer.parseInt(GameSpeedButtonGroup.getSelection().getActionCommand());
-        int sqSize = Integer.parseInt(SquareSizeButtonGroup.getSelection().getActionCommand());
         double sizeRatio = Double.parseDouble(ScrnSzButtonGroup.getSelection().getActionCommand());
+        int sqSize = (int) (Integer.parseInt(SquareSizeButtonGroup.getSelection().getActionCommand()) * sizeRatio);
         int ScreenSize = (int) (SnakeGame.xPixelMaxDimension * sizeRatio); // for this game, x = y
         SnakeGame.clockInterval = game_speed;
-        SnakeGame.squareSize = (int) (sqSize * sizeRatio);
+        SnakeGame.squareSize = sqSize;
         SnakeGame.xPixelMaxDimension = ScreenSize;
         SnakeGame.yPixelMaxDimension = ScreenSize;
         SnakeGame.xSquares = ScreenSize / sqSize;
@@ -101,6 +101,7 @@ public class OptionsPanel extends JFrame {
         else SnakeGame.hasMazeWalls = false;
         // and don't forget to resize the game screen, too!  Done here to take advantage of local variables.
         SnakeGame.snakeFrame.setSize(ScreenSize, ScreenSize);
+        System.out.println(ScreenSize + "/" + sqSize + " = " + SnakeGame.xSquares);
     }
 
     public void closeWindow() {
