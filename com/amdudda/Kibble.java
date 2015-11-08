@@ -4,6 +4,7 @@ package com.amdudda;
 	@student A.M. Dudda
 * */
 
+import java.awt.*;
 import java.util.Random;
 
 public class Kibble {
@@ -47,6 +48,15 @@ public class Kibble {
 		return kibbleY;
 	}
 
+	public void draw(Graphics q) {
+		// AMD: draws the kibble
+		//Draw the kibble in green
+		q.setColor(Color.GREEN);
 
+		int x = this.kibbleX * SnakeGame.squareSize;
+		int y = this.kibbleY * SnakeGame.squareSize;
+		// AMD: offsets by 1 & 2 allow kibble to occur inside the grid squares.
+		q.fillRect(x + 1, y + 1, SnakeGame.squareSize - 2, SnakeGame.squareSize - 2);
+	}
 	
 }

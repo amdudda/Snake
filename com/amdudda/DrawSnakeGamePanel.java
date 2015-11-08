@@ -113,8 +113,11 @@ public class DrawSnakeGamePanel extends JPanel {
     private void displayGame(Graphics g) {
         score.resetHaveNewHighScore();  // AMD: reset the high score flag to false
         displayGameGrid(g);
-        displaySnake(g);
-        displayKibble(g);
+        // AMD: Kibble & snake should know how to draw themselves.
+        // displaySnake(g);
+        // displayKibble(g);
+        snake.draw(g);
+        kibble.draw(g);
     }
 
     private void displayGameGrid(Graphics g) {
@@ -125,7 +128,9 @@ public class DrawSnakeGamePanel extends JPanel {
 
         g.clearRect(0, 0, maxX, maxY);
 
-        g.setColor(Color.RED);
+        // AMD: changed color to light gray so the grid lines are background info instead of foreground.
+        // Player's focus should be on snake, not on the grid it navigates.
+        g.setColor(Color.LIGHT_GRAY);
 
         //Draw grid - horizontal lines
         for (int y = 0; y <= maxY; y += squareSize) {
@@ -140,7 +145,7 @@ public class DrawSnakeGamePanel extends JPanel {
         if (SnakeGame.hasMazeWalls) { mw1.draw(g); }
     }
 
-    private void displayKibble(Graphics g) {
+    /*private void displayKibble(Graphics g) {
 
         //Draw the kibble in green
         g.setColor(Color.GREEN);
@@ -157,16 +162,16 @@ public class DrawSnakeGamePanel extends JPanel {
         LinkedList<Point> coordinates = snake.segmentsToDraw();
 
         //Draw head in grey
-        g.setColor(Color.LIGHT_GRAY);
+        g.setColor(Color.PINK);
         Point head = coordinates.pop();
         g.fillRect((int) head.getX(), (int) head.getY(), SnakeGame.squareSize, SnakeGame.squareSize);
 
         //Draw rest of snake in black
-        g.setColor(Color.BLACK);
+        g.setColor(Color.RED);
         for (Point p : coordinates) {
             g.fillRect((int) p.getX(), (int) p.getY(), SnakeGame.squareSize, SnakeGame.squareSize);
         }
-    }
+    }*/
 
     private void displayInstructions(Graphics g) {
         g.drawString("Press any key to begin!", 100, 200);

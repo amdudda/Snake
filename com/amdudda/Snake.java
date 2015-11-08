@@ -4,7 +4,7 @@ package com.amdudda;
     @student A.M. Dudda
 * */
 
-import java.awt.Point;
+import java.awt.*;
 import java.util.LinkedList;
 
 public class Snake {
@@ -36,6 +36,10 @@ public class Snake {
 
     private int maxX, maxY, squareSize;
     private int snakeHeadX, snakeHeadY; //store coordinates of head - first segment
+
+    // AMD: also set default color of snake
+    Color colorOfHead = Color.PINK;
+    Color colorOfBody = Color.RED;
 
     public Snake(int maxX, int maxY, int squareSize) {
 
@@ -303,6 +307,23 @@ public class Snake {
             textsnake += "\n";
         }
         return textsnake;
+    }
+
+    // AMD: Allow the snake to draw itself.
+    public void draw(Graphics q) {
+        // AMD: moved from DrawSnakeGamePanel
+        LinkedList<Point> coordinates = this.segmentsToDraw();
+
+        //Draw head in head color
+        q.setColor(colorOfHead);
+        Point head = coordinates.pop();
+        q.fillRect((int) head.getX(), (int) head.getY(), SnakeGame.squareSize, SnakeGame.squareSize);
+
+        //Draw rest of snake in body color
+        q.setColor(colorOfBody);
+        for (Point p : coordinates) {
+            q.fillRect((int) p.getX(), (int) p.getY(), SnakeGame.squareSize, SnakeGame.squareSize);
+        }
     }
 
     public boolean wonGame() {
