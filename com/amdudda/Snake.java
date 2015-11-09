@@ -376,33 +376,37 @@ public class Snake {
         if (!SnakeGame.hasMazeWalls) { return false; }
         // AMD: has the snake hit the maze wall?
         boolean didHit = false;
-        MazeWall mw = DrawSnakeGamePanel.mw1;
-        // AMD: our decision depends partly on the snake's direction & partly on the line's orientation
-        switch (currentHeading) {
-            case DIRECTION_UP: {
-                if (mw.getV_or_h() == 'h' && mw.getGridX() == this.snakeHeadX && mw.getGridY() == this.snakeHeadY) {
-                    didHit = true;
+        //MazeWall mw = DrawSnakeGamePanel.mw1;
+        for (MazeWall mw : DrawSnakeGamePanel.gameWalls) {
+            // AMD: our decision depends partly on the snake's direction & partly on the line's orientation
+            switch (currentHeading) {
+                case DIRECTION_UP: {
+                    if (mw.getV_or_h() == 'h' && mw.getGridX() == this.snakeHeadX && mw.getGridY() == this.snakeHeadY) {
+                        didHit = true;
+                    }
+                    break;
                 }
-                break;
-            }
-            case DIRECTION_DOWN: {
-                if (mw.getV_or_h() == 'h' && mw.getGridX() == this.snakeHeadX && mw.getGridY() == this.snakeHeadY + 1) {
-                    didHit = true;
+                case DIRECTION_DOWN: {
+                    if (mw.getV_or_h() == 'h' && mw.getGridX() == this.snakeHeadX && mw.getGridY() == this.snakeHeadY + 1) {
+                        didHit = true;
+                    }
+                    break;
                 }
-                break;
-            }
-            case DIRECTION_LEFT: {
-                if (mw.getV_or_h() == 'v' && mw.getGridX() == this.snakeHeadX && mw.getGridY() == this.snakeHeadY) {
-                    didHit = true;
+                case DIRECTION_LEFT: {
+                    if (mw.getV_or_h() == 'v' && mw.getGridX() == this.snakeHeadX && mw.getGridY() == this.snakeHeadY) {
+                        didHit = true;
+                    }
+                    break;
                 }
-                break;
-            }
-            case DIRECTION_RIGHT: {
-                if (mw.getV_or_h() == 'v' && mw.getGridX() == this.snakeHeadX + 1 && mw.getGridY() == this.snakeHeadY) {
-                    didHit = true;
+                case DIRECTION_RIGHT: {
+                    if (mw.getV_or_h() == 'v' && mw.getGridX() == this.snakeHeadX + 1 && mw.getGridY() == this.snakeHeadY) {
+                        didHit = true;
+                    }
+                    break;
                 }
-                break;
             }
+            // if the current wall under consideration has been hit, we need to exit the loop.
+            if (didHit) { break; }
         }
         return didHit;
     }

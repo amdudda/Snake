@@ -1,7 +1,7 @@
 package com.amdudda;
 
 import java.awt.*;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.Random;
 
 import javax.swing.JPanel;
@@ -20,7 +20,7 @@ public class DrawSnakeGamePanel extends JPanel {
     private Kibble kibble;
     private Score score;
     // AMD: can I draw a mazewall now?
-    protected static MazeWall mw1;
+    protected static ArrayList<MazeWall> gameWalls = new ArrayList<MazeWall>();
 
     DrawSnakeGamePanel(Snake s, Kibble k, Score sc) {
         this.snake = s;
@@ -141,7 +141,11 @@ public class DrawSnakeGamePanel extends JPanel {
         }
 
         // draw our maze wall if the game is using this feature:
-        if (SnakeGame.hasMazeWalls) { mw1.draw(g); }
+        if (SnakeGame.hasMazeWalls) {
+            for (MazeWall mw : gameWalls) {
+                mw.draw(g);
+            }
+        }
     }
 
     /*private void displayKibble(Graphics g) {

@@ -96,7 +96,7 @@ public class OptionsPanel extends JFrame {
         else SnakeGame.hasWarpWalls = false;
         if (MazeWallCheckBox.isSelected()) {
             SnakeGame.hasMazeWalls = true;
-            DrawSnakeGamePanel.mw1 = new MazeWall();
+            //DrawSnakeGamePanel.mw1 = new MazeWall();
         }
         else SnakeGame.hasMazeWalls = false;
         // and don't forget to resize the game screen, too!  Done here to take advantage of local variables.

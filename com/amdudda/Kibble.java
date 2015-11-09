@@ -5,7 +5,6 @@ package com.amdudda;
 * */
 
 import javax.imageio.ImageIO;
-import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -78,7 +77,7 @@ public class Kibble {
         */
         BufferedImage img = null;
         try {
-            img = ImageIO.read(new File("./data/mouse_40.jpg"));
+            img = ImageIO.read(new File("./data/mouse.jpg"));
         } catch (IOException e) {
             System.out.println("Mouse not found!");
             // draw the generic kibble instead.
