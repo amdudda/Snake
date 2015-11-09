@@ -92,7 +92,7 @@ public class GameControls implements KeyListener{
 		if( keyPressed == q && gStage != SnakeGame.DURING_GAME){
 			System.exit(0);    //quit if user presses the q key.
 		}
-		//  AMD: Setting this aside for now...  the game works fine without this, so I'm going to come back to this later.
+		//  AMD: Let user customize game settings before starting play.
 		else if (keyPressed == o && gStage == SnakeGame.BEFORE_GAME) {
 			// If 'o' is typed, present the options menu.
             SnakeGame.setGameStage(SnakeGame.SET_OPTIONS);

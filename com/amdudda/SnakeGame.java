@@ -62,7 +62,8 @@ public class SnakeGame {
 		snakeFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		snakeFrame.setSize(xPixelMaxDimension, yPixelMaxDimension);
-		snakeFrame.setUndecorated(true); //hide title bar
+		snakeFrame.setUndecorated(false); // AMD: Show title bar so game can be moved around screen //hide title bar
+        snakeFrame.setTitle("Snake Game: feed the snake and avoid the walls!");
 		snakeFrame.setVisible(true);
 		snakeFrame.setResizable(false);
 
@@ -107,7 +108,7 @@ public class SnakeGame {
 	}
 
 	public static void main(String[] args) {
-				//Schedule a job for the event-dispatching thread:
+        //Schedule a job for the event-dispatching thread:
 		//creating and showing this application's GUI.
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {

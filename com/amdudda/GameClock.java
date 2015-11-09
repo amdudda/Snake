@@ -43,9 +43,6 @@ public class GameClock extends TimerTask {
 				break;
 			}
 			case SnakeGame.GAME_OVER: {
-                /*// AMD: debugging -- this is going to game over even though hitwall and atetail are both false!
-                System.out.println(SnakeGame.getGameStage());
-                System.out.println("hitwall: " + snake.didHitWall() + "atetail: " + snake.didEatTail());*/
                 this.cancel();		//Stop the Timer
 				break;	
 			}

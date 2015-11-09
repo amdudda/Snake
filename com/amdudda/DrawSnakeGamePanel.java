@@ -19,7 +19,7 @@ public class DrawSnakeGamePanel extends JPanel {
     private Snake snake;
     private Kibble kibble;
     private Score score;
-    // AMD: can I draw a mazewall now?
+    // AMD: added MazeWall, need arraylist to store multiple walls.  I don't care what order they're drawn in.
     protected static ArrayList<MazeWall> gameWalls = new ArrayList<MazeWall>();
 
     DrawSnakeGamePanel(Snake s, Kibble k, Score sc) {
@@ -148,38 +148,11 @@ public class DrawSnakeGamePanel extends JPanel {
         }
     }
 
-    /*private void displayKibble(Graphics g) {
-
-        //Draw the kibble in green
-        g.setColor(Color.GREEN);
-
-        int x = kibble.getKibbleX() * SnakeGame.squareSize;
-        int y = kibble.getKibbleY() * SnakeGame.squareSize;
-
-        g.fillRect(x + 1, y + 1, SnakeGame.squareSize - 2, SnakeGame.squareSize - 2);
-
-    }
-
-    private void displaySnake(Graphics g) {
-
-        LinkedList<Point> coordinates = snake.segmentsToDraw();
-
-        //Draw head in grey
-        g.setColor(Color.PINK);
-        Point head = coordinates.pop();
-        g.fillRect((int) head.getX(), (int) head.getY(), SnakeGame.squareSize, SnakeGame.squareSize);
-
-        //Draw rest of snake in black
-        g.setColor(Color.RED);
-        for (Point p : coordinates) {
-            g.fillRect((int) p.getX(), (int) p.getY(), SnakeGame.squareSize, SnakeGame.squareSize);
-        }
-    }*/
-
     private void displayInstructions(Graphics g) {
-        g.drawString("Press any key to begin!", 100, 200);
-        g.drawString("Press o to view and set game options", 100, 250);
-        g.drawString("Press q to quit the game", 100, 300);
+        g.drawString("Press o to view and set game options", 100, 200);
+        g.drawString("Press q to quit the game", 100, 250);
+        g.drawString("Press any other key to begin!", 100, 300);
+        // AMD: Resequenced this information so users read options & quit instructions before the start game instructions.
     }
 
 
