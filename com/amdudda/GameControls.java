@@ -87,13 +87,15 @@ public class GameControls implements KeyListener{
 		//keyTyped events are for user typing letters on the keyboard, anything that makes a character display on the screen
 		char keyPressed = ev.getKeyChar();
 		char q = 'q';
+		char capitalQ = 'Q';  // make commands case-insensitive.
 		char o = 'o';
+		char capitalO = 'O';
 		// AMD: prevent game from quitting at keypress q during gameplay
-		if( keyPressed == q && gStage != SnakeGame.DURING_GAME){
+		if( (keyPressed == q || keyPressed == capitalQ) && gStage != SnakeGame.DURING_GAME){
 			System.exit(0);    //quit if user presses the q key.
 		}
 		//  AMD: Let user customize game settings before starting play.
-		else if (keyPressed == o && gStage == SnakeGame.BEFORE_GAME) {
+		else if ( (keyPressed == o || keyPressed == capitalO) && gStage == SnakeGame.BEFORE_GAME) {
 			// If 'o' is typed, present the options menu.
             SnakeGame.setGameStage(SnakeGame.SET_OPTIONS);
             OptionsPanel opts = new OptionsPanel();

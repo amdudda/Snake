@@ -101,7 +101,6 @@ public class OptionsPanel extends JFrame {
         else SnakeGame.hasMazeWalls = false;
         // and don't forget to resize the game screen, too!  Done here to take advantage of local variables.
         SnakeGame.snakeFrame.setSize(ScreenSize, ScreenSize);
-        System.out.println(ScreenSize + "/" + sqSize + " = " + SnakeGame.xSquares);
     }
 
     public void closeWindow() {

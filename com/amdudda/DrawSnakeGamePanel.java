@@ -149,8 +149,8 @@ public class DrawSnakeGamePanel extends JPanel {
     }
 
     private void displayInstructions(Graphics g) {
-        g.drawString("Press o to view and set game options", 100, 200);
-        g.drawString("Press q to quit the game", 100, 250);
+        g.drawString("Press letter O to view and set game options.", 100, 200);
+        g.drawString("Press letter Q to quit the game.", 100, 250);
         g.drawString("Press any other key to begin!", 100, 300);
         // AMD: Resequenced this information so users read options & quit instructions before the start game instructions.
     }
