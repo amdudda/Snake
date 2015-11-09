@@ -18,15 +18,15 @@ public class MazeWall {
     // plus some attributes derived from game settings
     // because game is timer-driven, these can't be static, or all maze walls will be
     // drawn at whatever squareSize is set to when the program loads DrawSnakeGamePanel.
-    private int xLines = SnakeGame.xSquares + 1;
-    private int yLines = SnakeGame.ySquares + 1;
+    private int xLines = SnakeGame.xSquares - 2;  // first offset, because I don't want walls to appear at edges of game board
+    private int yLines = SnakeGame.ySquares - 2;  // this ensures that walls are plainly visible to players
     private int linelength = SnakeGame.squareSize;
 
     // Constructor
     public MazeWall() {
         Random position = new Random();
-        this.gridX = position.nextInt(xLines);
-        this.gridY = position.nextInt(yLines);
+        this.gridX = position.nextInt(xLines) + 1;  // second offset, so walls appear inside game board
+        this.gridY = position.nextInt(yLines) + 1;
         int pickHorV = position.nextInt(2);
         if (pickHorV == 0) { this.v_or_h = 'v'; }
         else { this.v_or_h = 'h'; }

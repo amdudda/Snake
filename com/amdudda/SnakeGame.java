@@ -24,7 +24,7 @@ public class SnakeGame {
     // AMD: Some additional variables that are set at the start of the game
     public static boolean hasWarpWalls = false; // AMD: variable to help implement warp walls.
     public static boolean hasMazeWalls = false;  // AMD: variable to help implement maze walls
-    public static int numMazeWalls = 2; // the game actually generates n+1 walls... TODO: find where the 3rd one comes from.
+    public static int numMazeWalls = 3; // Number of walls to build if maze walls enabled.
 
 	protected static Snake snake ;
 
@@ -100,6 +100,7 @@ public class SnakeGame {
         * can be redrawn as game play progresses.
         * */
         // also seed a new set of mazeWalls
+        DrawSnakeGamePanel.gameWalls.clear();
 		for (int i=0; i<numMazeWalls; i++) {
 			DrawSnakeGamePanel.gameWalls.add(new MazeWall());
 		}
