@@ -45,6 +45,9 @@ public class Snake {
     private static final int COLOUR_GREEN = 2;
     private static final int COLOUR_YELLOW = 3;
     private static final int COLOUR_BLACK = 4;
+    // no built-in light green/YELLOW, so I picked colors using this website: http://rapidtables.com/web/color/RGB_Color.htm
+    private static final Color LIGHT_YELLOW = new Color(255,255,200);
+    private static final Color LIGHT_GREEN = new Color(200,255,200);
 
 
     public Snake(int maxX, int maxY, int squareSize) {
@@ -75,11 +78,10 @@ public class Snake {
             this.colorOfHead = Color.CYAN;
             this.colorOfBody = Color.BLUE;
         } else if (color == COLOUR_GREEN) {
-            // no built-in light green, so I picked a color using this website: http://rapidtables.com/web/color/RGB_Color.htm
-            this.colorOfHead = new Color(200,255,200); // Color.getHSBColor(120,50,100);
+            this.colorOfHead = LIGHT_GREEN;
             this.colorOfBody = Color.GREEN;
         } else if (color == COLOUR_YELLOW) {
-            this.colorOfHead = new Color(255,255,200);
+            this.colorOfHead = LIGHT_YELLOW;
             this.colorOfBody = Color.YELLOW;
         } else if (color == COLOUR_BLACK) {
             this.colorOfHead = Color.LIGHT_GRAY;
