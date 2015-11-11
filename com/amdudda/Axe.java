@@ -1,5 +1,9 @@
 package com.amdudda;
 
+import javax.imageio.ImageIO;
+import java.io.File;
+import java.io.IOException;
+
 /**
  * Created by amdudda on 11/11/15.
  */
@@ -10,8 +14,17 @@ public class Axe extends Kibble {
     public Axe(Snake s) {
         super(s);
         moveKibble(s);
-        this.imageLocation = "./data/axe.jpg";  // TODO: not actually showing axe, showing mouse instead.
+        this.imageLocation = "./data/axe.jpg";
         this.visible = false;
+        // need this code so that it draws the correct image:
+        try {
+            this.img = ImageIO.read(new File(imageLocation));
+            this.validImage = true;
+        } catch (IOException e) {
+            // System.out.println("Mouse not found!");
+            // draw the generic kibble instead.
+            this.validImage = false;
+        }
     }
 
     public boolean isVisible() { return this.visible; }
