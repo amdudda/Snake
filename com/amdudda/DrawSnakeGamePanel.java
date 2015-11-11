@@ -7,7 +7,7 @@ import java.util.Random;
 import javax.swing.JPanel;
 
 /**
- * This class responsible for displaying the graphics, so the snake, grid, kibble, instruction text and high score
+ * This class responsible for displaying the graphics, so the snake, grid, kibble, instruction text and high game_score
  *
  * @author Clara
  * @student A.M. Dudda
@@ -111,7 +111,7 @@ public class DrawSnakeGamePanel extends JPanel {
     }
 
     private void displayGame(Graphics g) {
-        score.resetHaveNewHighScore();  // AMD: reset the high score flag to false
+        score.resetHaveNewHighScore();  // AMD: reset the high game_score flag to false
         displayGameGrid(g);
         // AMD: Kibble & snake should know how to draw themselves.
         snake.draw(g);

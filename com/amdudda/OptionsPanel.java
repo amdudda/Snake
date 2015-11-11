@@ -1,9 +1,7 @@
 package com.amdudda;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
+import java.awt.event.*;
 
 /**
  * Created by amdudda on 11/1/2015.
@@ -23,6 +21,7 @@ public class OptionsPanel extends JFrame {
     private JRadioButton ScrnSzSmallradioButton;
     private JRadioButton ScrnSzMediumradioButton;
     private JRadioButton ScrnSzLargeradioButton;
+    private JCheckBox extendedFeaturesCheckBox;
 
     /*
     got buttongroup usage info from two sites:
@@ -60,6 +59,8 @@ public class OptionsPanel extends JFrame {
         ScrnSzButtonGroup.add(ScrnSzLargeradioButton);
         ScrnSzButtonGroup.setSelected(ScrnSzSmallradioButton.getModel(),true);
 
+        // disable the extended features tickbox
+        extendedFeaturesCheckBox.setEnabled(false);
 
         /* DONE: fix bug
         Something here breaks the game - it works fine if I set no options,
@@ -78,6 +79,13 @@ public class OptionsPanel extends JFrame {
             }
         });
 
+        MazeWallCheckBox.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                // turn on/ off extended options check box
+                OptionsPanel.this.extendedFeaturesCheckBox.setEnabled(OptionsPanel.this.MazeWallCheckBox.isSelected());
+            }
+        });
     }
 
     public void resetGameVariables() {
@@ -96,11 +104,17 @@ public class OptionsPanel extends JFrame {
         else SnakeGame.hasWarpWalls = false;
         if (MazeWallCheckBox.isSelected()) {
             SnakeGame.hasMazeWalls = true;
+            SnakeGame.enableExtendedFeatures = OptionsPanel.this.extendedFeaturesCheckBox.isSelected();
             //DrawSnakeGamePanel.mw1 = new MazeWall();
         }
-        else SnakeGame.hasMazeWalls = false;
+        else {
+            SnakeGame.hasMazeWalls = false;
+            // being careful - extended features turned on IIF mazewalls are enabled
+            SnakeGame.enableExtendedFeatures = false;
+        }
         // and don't forget to resize the game screen, too!  Done here to take advantage of local variables.
         SnakeGame.snakeFrame.setSize(ScreenSize, ScreenSize);
+
     }
 
     public void closeWindow() {

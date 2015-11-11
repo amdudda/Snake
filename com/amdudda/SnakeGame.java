@@ -24,13 +24,15 @@ public class SnakeGame {
     // AMD: Some additional variables that are set at the start of the game
     public static boolean hasWarpWalls = false; // AMD: variable to help implement warp walls.
     public static boolean hasMazeWalls = false;  // AMD: variable to help implement maze walls
-    public static int numMazeWalls = 3; // Number of walls to build if maze walls enabled.
+    public static final int NUM_MAZE_WALLS = 3; // Number of walls to build if maze walls enabled.
+	public static boolean enableExtendedFeatures = false; // turns on/off additional mazewalls and axe
+    public static final int ADD_WALL_INTERVAL = 3; // Number of kibbles to eat between new maze walls
 
 	protected static Snake snake ;
 
 	protected static Kibble kibble;
 
-	protected static Score score;
+	protected static Score game_score;  // AMD: refactored this because I want to be clear that I'm referring to game score and not object's score variable
 
 	static final int BEFORE_GAME = 1;
 	static final int DURING_GAME = 2;
@@ -67,7 +69,7 @@ public class SnakeGame {
 		snakeFrame.setVisible(true);
 		snakeFrame.setResizable(false);
 
-		snakePanel = new DrawSnakeGamePanel(snake, kibble, score);
+		snakePanel = new DrawSnakeGamePanel(snake, kibble, game_score);
 		snakePanel.setFocusable(true);
 		snakePanel.requestFocusInWindow(); //required to give this component the focus so it can generate KeyEvents
 
@@ -80,13 +82,13 @@ public class SnakeGame {
 	}
 
 	protected static void initializeGame() {
-		//set up score, snake and first kibble
+		//set up game_score, snake and first kibble
 		xSquares = xPixelMaxDimension / squareSize;
 		ySquares = yPixelMaxDimension / squareSize;
 
 		snake = new Snake(xSquares, ySquares, squareSize);
 		kibble = new Kibble(snake);
-		score = new Score();
+		game_score = new Score();
 
         // AMD: debugging: System.out.println("xSquares = " + xSquares);
         gameStage = BEFORE_GAME;
@@ -95,14 +97,14 @@ public class SnakeGame {
 	protected static void newGame() {
 		// AMD: restart the timer when we kick off a new game.
         timer = new Timer();
-		GameClock clockTick = new GameClock(snake, kibble, score, snakePanel);
+		GameClock clockTick = new GameClock(snake, kibble, game_score, snakePanel);
 		timer.scheduleAtFixedRate(clockTick, 0 , clockInterval);
         /*AMD: this causes the game to refresh every clockInterval milliseconds so the snake
         * can be redrawn as game play progresses.
         * */
         // also seed a new set of mazeWalls
         DrawSnakeGamePanel.gameWalls.clear();
-		for (int i=0; i<numMazeWalls; i++) {
+		for (int i=0; i< NUM_MAZE_WALLS; i++) {
 			DrawSnakeGamePanel.gameWalls.add(new MazeWall());
 		}
 	}

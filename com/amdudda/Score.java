@@ -1,7 +1,7 @@
 package com.amdudda;
 
 /**
- * Keeps track of, and display the user's score
+ * Keeps track of, and display the user's game_score
  *
  * @student A.M. Dudda
  */
@@ -34,8 +34,8 @@ public class Score {
         return score;
     }
 
-    //Checks if current score is greater than the current high score.
-    //updates high score and returns true if so.
+    //Checks if current game_score is greater than the current high game_score.
+    //updates high game_score and returns true if so.
 
     public boolean gameOver() {
 
@@ -46,14 +46,14 @@ public class Score {
         return false;
     }
 
-    //These methods are useful for displaying score at the end of the game
+    //These methods are useful for displaying game_score at the end of the game
 
     public String getStringScore() {
         return Integer.toString(score);
     }
 
     public String newHighScore() {
-        // AMD: need to keep track of the existence of a new high score so it can be announced in the game display.
+        // AMD: need to keep track of the existence of a new high game_score so it can be announced in the game display.
         if (score > highScore) {
             highScore = score;
             haveNewHighScore = true;

@@ -256,8 +256,14 @@ public class Snake {
             }
         } else {
             //Snake has just eaten. leave tail as is.  Decrease justAte... variable by 1.
-            justAteMustGrowThisMuch--;
+            // AMD: I think this line is a bug, because two new walls are appearing instead of one:
+            // justAteMustGrowThisMuch--;
+            justAteMustGrowThisMuch = 0;
             snakeSize++;
+            // AMD: are extended features turned on and has a third kibble been eaten? If so, a new mazewall needs to be added
+            if (SnakeGame.enableExtendedFeatures && SnakeGame.game_score.getScore() % SnakeGame.ADD_WALL_INTERVAL == 0) {
+                DrawSnakeGamePanel.gameWalls.add(new MazeWall());
+            }
         }
 
         lastHeading = currentHeading; //Update last confirmed heading
