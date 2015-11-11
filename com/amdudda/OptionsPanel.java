@@ -46,30 +46,7 @@ public class OptionsPanel extends JFrame {
         // turn off the timer so that the snake doesn't get weird speed effects.
         SnakeGame.timer.cancel();
 
-        // Establish our button groups and set default options
-        GameSpeedButtonGroup.add(slowRadioButton);
-        GameSpeedButtonGroup.add(mediumRadioButton);
-        GameSpeedButtonGroup.add(fastRadioButton);
-        GameSpeedButtonGroup.add(hyperspeedRadioButton);
-        GameSpeedButtonGroup.setSelected(mediumRadioButton.getModel(), true);
-
-        SquareSizeButtonGroup.add(a10x10RadioButton);
-        SquareSizeButtonGroup.add(a20x20RadioButton);
-        SquareSizeButtonGroup.add(a50x50RadioButton);
-        SquareSizeButtonGroup.setSelected(a10x10RadioButton.getModel(), true);
-
-        ScrnSzButtonGroup.add(ScrnSzSmallradioButton);
-        ScrnSzButtonGroup.add(ScrnSzMediumradioButton);
-        ScrnSzButtonGroup.add(ScrnSzLargeradioButton);
-        ScrnSzButtonGroup.setSelected(ScrnSzSmallradioButton.getModel(),true);
-
-        // disable the extended features tickbox
-        extendedFeaturesCheckBox.setEnabled(false);
-
-        // populate the values for snake color drop box
-        for (int j = 0; j < COLOR_OPTIONS.length; j++) {
-            snakeColorComboBox.addItem(COLOR_OPTIONS[j]);
-        }
+        setupForm();
 
         /* DONE: fix bug
         Something here breaks the game - it works fine if I set no options,
@@ -96,23 +73,51 @@ public class OptionsPanel extends JFrame {
                 OptionsPanel.this.extendedFeaturesCheckBox.setEnabled(OptionsPanel.this.MazeWallCheckBox.isSelected());
             }
         });
+
+    }
+
+    private void setupForm() {
+        // Establish our button groups and set default options
+        OptionsPanel.this.GameSpeedButtonGroup.add(slowRadioButton);
+        OptionsPanel.this.GameSpeedButtonGroup.add(mediumRadioButton);
+        OptionsPanel.this.GameSpeedButtonGroup.add(fastRadioButton);
+        OptionsPanel.this.GameSpeedButtonGroup.add(hyperspeedRadioButton);
+        OptionsPanel.this.GameSpeedButtonGroup.setSelected(mediumRadioButton.getModel(), true);
+
+        OptionsPanel.this.SquareSizeButtonGroup.add(a10x10RadioButton);
+        OptionsPanel.this.SquareSizeButtonGroup.add(a20x20RadioButton);
+        OptionsPanel.this.SquareSizeButtonGroup.add(a50x50RadioButton);
+        OptionsPanel.this.SquareSizeButtonGroup.setSelected(a10x10RadioButton.getModel(), true);
+
+        OptionsPanel.this.ScrnSzButtonGroup.add(ScrnSzSmallradioButton);
+        OptionsPanel.this.ScrnSzButtonGroup.add(ScrnSzMediumradioButton);
+        OptionsPanel.this.ScrnSzButtonGroup.add(ScrnSzLargeradioButton);
+        OptionsPanel.this.ScrnSzButtonGroup.setSelected(ScrnSzSmallradioButton.getModel(),true);
+
+        // disable the extended features tickbox
+        OptionsPanel.this.extendedFeaturesCheckBox.setEnabled(false);
+
+        // populate the values for snake color drop box
+        for (int j = 0; j < COLOR_OPTIONS.length; j++) {
+            OptionsPanel.this.snakeColorComboBox.addItem(COLOR_OPTIONS[j]);
+        }
     }
 
     public void resetGameVariables() {
         // resets game variables after options have been updated
-        int game_speed = Integer.parseInt(GameSpeedButtonGroup.getSelection().getActionCommand());
-        double sizeRatio = Double.parseDouble(ScrnSzButtonGroup.getSelection().getActionCommand());
-        int sqSize = (int) (Integer.parseInt(SquareSizeButtonGroup.getSelection().getActionCommand()) * sizeRatio);
-        int ScreenSize = (int) (SnakeGame.xPixelMaxDimension * sizeRatio); // for this game, x = y
+        int game_speed = Integer.parseInt(OptionsPanel.this.GameSpeedButtonGroup.getSelection().getActionCommand());
+        double sizeRatio = Double.parseDouble(OptionsPanel.this.ScrnSzButtonGroup.getSelection().getActionCommand());
+        int sqSize = (int) (Integer.parseInt(OptionsPanel.this.SquareSizeButtonGroup.getSelection().getActionCommand()) * sizeRatio);
+        int ScreenSize = (int) (SnakeGame.INITIAL_GAME_SIZE * sizeRatio) + 1; // for this game, x = y
         SnakeGame.clockInterval = game_speed;
         SnakeGame.squareSize = sqSize;
         SnakeGame.xPixelMaxDimension = ScreenSize;
         SnakeGame.yPixelMaxDimension = ScreenSize;
         SnakeGame.xSquares = ScreenSize / sqSize;
         SnakeGame.ySquares = ScreenSize / sqSize;
-        if (WarpWallsCheckBox.isSelected()) SnakeGame.hasWarpWalls = true;
+        if (OptionsPanel.this.WarpWallsCheckBox.isSelected()) SnakeGame.hasWarpWalls = true;
         else SnakeGame.hasWarpWalls = false;
-        if (MazeWallCheckBox.isSelected()) {
+        if (OptionsPanel.this.MazeWallCheckBox.isSelected()) {
             SnakeGame.hasMazeWalls = true;
             SnakeGame.enableExtendedFeatures = OptionsPanel.this.extendedFeaturesCheckBox.isSelected();
             //DrawSnakeGamePanel.mw1 = new MazeWall();

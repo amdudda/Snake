@@ -45,7 +45,7 @@ public class Snake {
     private static final int COLOUR_GREEN = 2;
     private static final int COLOUR_YELLOW = 3;
     private static final int COLOUR_BLACK = 4;
-    // no built-in light green/YELLOW, so I picked colors using this website: http://rapidtables.com/web/color/RGB_Color.htm
+    // no built-in light green/yellow, so I picked colors using this website: http://rapidtables.com/web/color/RGB_Color.htm
     private static final Color LIGHT_YELLOW = new Color(255,255,200);
     private static final Color LIGHT_GREEN = new Color(200,255,200);
 
@@ -87,7 +87,7 @@ public class Snake {
             this.colorOfHead = Color.LIGHT_GRAY;
             this.colorOfBody = Color.BLACK;
         }  else {
-            // something went wrong, fall back to default - identical for if color is set to COLOUR_RED
+            // either COLOUR_RED chosen, or something went wrong & fall back to default
             this.colorOfHead = Color.PINK;
             this.colorOfBody = Color.RED;
         }

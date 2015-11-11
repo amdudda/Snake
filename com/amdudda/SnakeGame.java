@@ -13,10 +13,12 @@ public class SnakeGame {
 
     // AMD: what if we make timer global?
     public static Timer timer = new Timer();
+    // AMD: we want to set a final constant as a base dimension so we can multiply, then add 1 pixel, for board sizing.
+    public static final int INITIAL_GAME_SIZE = 500;
 
 	// made Not Final so user can adjust this.
-	public static int xPixelMaxDimension = 501;  //Pixels in window. 501 to have 50-pixel squares plus 1 to draw a border on last square
-	public static int yPixelMaxDimension = 501;
+	public static int xPixelMaxDimension = INITIAL_GAME_SIZE + 1;  //Pixels in window. 501 to have 50-pixel squares plus 1 to draw a border on last square
+	public static int yPixelMaxDimension = INITIAL_GAME_SIZE + 1;
 
 	public static int xSquares ;
 	public static int ySquares ;
