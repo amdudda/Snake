@@ -20,6 +20,10 @@ public class Kibble {
 	
 	private int kibbleX; //This is the square number (not pixel)
 	private int kibbleY;  //This is the square number (not pixel)
+	// AMD: variables to help store the image associated with Kibble
+	private BufferedImage img;
+	private static boolean validImage;
+	private static String imageLocation;
 	
 	public Kibble(Snake s){
 		//Kibble needs to know where the snake is, so it does not create a kibble in the snake
@@ -27,6 +31,16 @@ public class Kibble {
 		//If in snake, try again
 		
 		moveKibble(s);
+		this.imageLocation = "./data/mouse.jpg";
+		// AMD: set up a mouse image to use for kibble
+		try {
+			this.img = ImageIO.read(new File(imageLocation));
+			this.validImage = true;
+		} catch (IOException e) {
+			// System.out.println("Mouse not found!");
+			// draw the generic kibble instead.
+			this.validImage = false;
+		}
 	}
 	
 	protected void moveKibble(Snake s){
@@ -64,7 +78,7 @@ public class Kibble {
 	}
 
     public void drawMouse(Graphics q) {
-        // let's draw a mouse for the snake to eat, instead of green kibble.
+        // AMD: let's draw a mouse for the snake to eat, instead of green kibble.
         int x = this.kibbleX * SnakeGame.squareSize;
         int y = this.kibbleY * SnakeGame.squareSize;
         /*
@@ -75,14 +89,11 @@ public class Kibble {
         image scaling hints from:
         http://stackoverflow.com/questions/8284048/resizing-an-image-in-swing
         */
-        BufferedImage img = null;
-        try {
-            img = ImageIO.read(new File("./data/mouse.jpg"));
-        } catch (IOException e) {
-            System.out.println("Mouse not found!");
-            // draw the generic kibble instead.
-            this.draw(q);
-        }
-        q.drawImage(img.getScaledInstance(SnakeGame.squareSize-2,SnakeGame.squareSize-2, Image.SCALE_FAST),x+1,y+1,null) ;
+
+		if (validImage) {
+			q.drawImage(this.img.getScaledInstance(SnakeGame.squareSize - 2, SnakeGame.squareSize - 2, Image.SCALE_FAST), x + 1, y + 1, null);
+		} else {
+			this.draw(q);
+		}
     }
 }
