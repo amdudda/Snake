@@ -18,12 +18,12 @@ public class Kibble {
 	 * 
 	 */
 	
-	private int kibbleX; //This is the square number (not pixel)
-	private int kibbleY;  //This is the square number (not pixel)
+	protected int kibbleX; //This is the square number (not pixel)
+	protected int kibbleY;  //This is the square number (not pixel)
 	// AMD: variables to help store the image associated with Kibble
-	private BufferedImage img;
-	private static boolean validImage;
-	private static String imageLocation;
+	protected BufferedImage img;
+	protected boolean validImage;
+	protected String imageLocation;
 	
 	public Kibble(Snake s){
 		//Kibble needs to know where the snake is, so it does not create a kibble in the snake
@@ -77,7 +77,7 @@ public class Kibble {
 		q.fillRect(x + 1, y + 1, SnakeGame.squareSize - 2, SnakeGame.squareSize - 2);
 	}
 
-    public void drawMouse(Graphics q) {
+    public void drawImage(Graphics q) {
         // AMD: let's draw a mouse for the snake to eat, instead of green kibble.
         int x = this.kibbleX * SnakeGame.squareSize;
         int y = this.kibbleY * SnakeGame.squareSize;

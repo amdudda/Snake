@@ -116,7 +116,7 @@ public class DrawSnakeGamePanel extends JPanel {
         // AMD: Kibble & snake should know how to draw themselves.
         snake.draw(g);
         //kibble.draw(g);
-        kibble.drawMouse(g);
+        kibble.drawImage(g);
     }
 
     private void displayGameGrid(Graphics g) {
