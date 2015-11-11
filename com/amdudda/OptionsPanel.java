@@ -1,7 +1,9 @@
 package com.amdudda;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 
 /**
  * Created by amdudda on 11/1/2015.
@@ -22,6 +24,9 @@ public class OptionsPanel extends JFrame {
     private JRadioButton ScrnSzMediumradioButton;
     private JRadioButton ScrnSzLargeradioButton;
     private JCheckBox extendedFeaturesCheckBox;
+    private JComboBox snakeColorComboBox;
+    private static final String[] COLOR_OPTIONS = {"Pink head and red body","Cyan head and blue body","Mint head with green body",
+            "Pale yellow head with yellow body","Gray head with black body"};
 
     /*
     got buttongroup usage info from two sites:
@@ -31,7 +36,6 @@ public class OptionsPanel extends JFrame {
     private ButtonGroup GameSpeedButtonGroup = new ButtonGroup();
     private ButtonGroup SquareSizeButtonGroup = new ButtonGroup();
     private ButtonGroup ScrnSzButtonGroup = new ButtonGroup();
-
 
     public OptionsPanel() {
         super("Set game options");
@@ -62,6 +66,11 @@ public class OptionsPanel extends JFrame {
         // disable the extended features tickbox
         extendedFeaturesCheckBox.setEnabled(false);
 
+        // populate the values for snake color drop box
+        for (int j = 0; j < COLOR_OPTIONS.length; j++) {
+            snakeColorComboBox.addItem(COLOR_OPTIONS[j]);
+        }
+
         /* DONE: fix bug
         Something here breaks the game - it works fine if I set no options,
         but just opening the options screen & closing it causes the game to
@@ -72,7 +81,8 @@ public class OptionsPanel extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 resetGameVariables();
-                // reset snake so the new settings take effect.
+                // Update snake color & refactor snake so the new settings take effect.
+                SnakeGame.snake.setSnakeColor(snakeColorComboBox.getSelectedIndex());
                 SnakeGame.snake.refactor();
                 // and get rid of the screen
                 closeWindow();
@@ -122,4 +132,6 @@ public class OptionsPanel extends JFrame {
         this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
         SnakeGame.setGameStage(SnakeGame.BEFORE_GAME);
     }
+
+
 }

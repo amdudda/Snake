@@ -16,8 +16,6 @@ public class Snake {
 
     private boolean hitWall = false;
     private boolean ateTail = false;
-    //private boolean warpWalls = false; // AMD: variable to help implement warp walls.
-    //private boolean hasMazeWalls = true;  // AMD: variable to help implement maze walls
 
     protected int snakeSquares[][];  //represents all of the squares on the screen
     //NOT pixels!
@@ -38,8 +36,16 @@ public class Snake {
     private int snakeHeadX, snakeHeadY; //store coordinates of head - first segment
 
     // AMD: also set default color of snake
-    Color colorOfHead = Color.PINK;
-    Color colorOfBody = Color.RED;
+    private Color colorOfHead;
+    private Color colorOfBody;
+
+    // AMD: static values to help set color of snake - uk spelling used to disambiguate from existing data type
+    private static final int COLOUR_RED = 0;
+    private static final int COLOUR_BLUE = 1;
+    private static final int COLOUR_GREEN = 2;
+    private static final int COLOUR_YELLOW = 3;
+    private static final int COLOUR_BLACK = 4;
+
 
     public Snake(int maxX, int maxY, int squareSize) {
 
@@ -47,19 +53,42 @@ public class Snake {
         this.maxY = maxY;
         this.squareSize = squareSize;
         snakeSquares = new int[this.maxX][this.maxY];
+        colorOfHead = Color.PINK;
+        colorOfBody = Color.RED;
         fillSnakeSquaresWithZeros();
         createStartSnake();
         // AMD: for debugging endgame
         // createDebugSnake();
     }
 
-    // AMD: setters to update maxX and maxY from options screen
+    // AMD: setters to update maxX and maxY from options screen plus colors for snake
     public void setMaxX(int value) {
         this.maxX = value;
     }
 
     public void setMaxY(int value) {
         this.maxY = value;
+    }
+
+    public void setSnakeColor(int color) {
+        if (color == COLOUR_BLUE) {
+            this.colorOfHead = Color.CYAN;
+            this.colorOfBody = Color.BLUE;
+        } else if (color == COLOUR_GREEN) {
+            // no built-in light green, so I picked a color using this website: http://rapidtables.com/web/color/RGB_Color.htm
+            this.colorOfHead = new Color(200,255,200); // Color.getHSBColor(120,50,100);
+            this.colorOfBody = Color.GREEN;
+        } else if (color == COLOUR_YELLOW) {
+            this.colorOfHead = new Color(255,255,200);
+            this.colorOfBody = Color.YELLOW;
+        } else if (color == COLOUR_BLACK) {
+            this.colorOfHead = Color.LIGHT_GRAY;
+            this.colorOfBody = Color.BLACK;
+        }  else {
+            // something went wrong, fall back to default - identical for if color is set to COLOUR_RED
+            this.colorOfHead = Color.PINK;
+            this.colorOfBody = Color.RED;
+        }
     }
 
     protected void createStartSnake() {
