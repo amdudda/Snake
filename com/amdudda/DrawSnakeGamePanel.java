@@ -148,7 +148,7 @@ public class DrawSnakeGamePanel extends JPanel {
         }
 
         // if enabled features are on, and score is divisible by 5, display the axe for possible collection
-        if (SnakeGame.game_score.getScore() > 0 && SnakeGame.game_score.getScore() % 5 == 0) {
+        if (SnakeGame.enableExtendedFeatures && SnakeGame.game_score.getScore() > 0 && SnakeGame.game_score.getScore() % 5 == 0) {
             SnakeGame.game_axe.setVisible(true);
             SnakeGame.game_axe.drawImage(g);
         }
