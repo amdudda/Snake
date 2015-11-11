@@ -33,6 +33,8 @@ public class SnakeGame {
 	protected static Snake snake ;
 
 	protected static Kibble kibble;
+	// AMD: added Axe
+	protected static Axe game_axe;
 
 	protected static Score game_score;  // AMD: refactored this because I want to be clear that I'm referring to game score and not object's score variable
 
@@ -90,6 +92,7 @@ public class SnakeGame {
 
 		snake = new Snake(xSquares, ySquares, squareSize);
 		kibble = new Kibble(snake);
+		game_axe = new Axe(snake);
 		game_score = new Score();
 
         // AMD: debugging: System.out.println("xSquares = " + xSquares);
