@@ -12,7 +12,7 @@ import javax.swing.*;
 public class SnakeGame {
 
     // AMD: what if we make timer global?
-	//FINDBUGS: make these protected rather than public?
+	//FINDBUGS: make these protected rather than public?  or move them inside main method?
     protected static Timer timer = new Timer();
     // AMD: we want to set a final constant as a base dimension so we can multiply, then add 1 pixel, for board sizing.
     protected static final int INITIAL_GAME_SIZE = 500;
@@ -81,7 +81,7 @@ public class SnakeGame {
 	protected static void newGame() {
 		// AMD: restart the timer when we kick off a new game.  Also updated Gameclock to deal with Axe.
         timer = new Timer();
-		GameClock clockTick = new GameClock(snake, kibble, game_score, snakePanel, game_axe);
+		GameClock clockTick = new GameClock(snake, kibble, snakePanel, game_axe);
 		timer.scheduleAtFixedRate(clockTick, 0 , clockInterval);
         /*AMD: this causes the game to refresh every clockInterval milliseconds so the snake
         * can be redrawn as game play progresses.
