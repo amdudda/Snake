@@ -277,7 +277,9 @@ public class Snake {
         //If snake did not just eat, then remove tail segment
         //to keep snake the same length.
         //find highest number, which should now be the same as snakeSize+1, and set to 0
-// TODO why does justAte... variable even exist? Can we eliminate it?
+        /* AMD: justAte... variable is a flag for whether kibble has been eaten, with "0" meaning "hungry"
+         and any other number meaning "just ate!"  This allows growthIncrement variable to modify at whim
+         without affecting other code.*/
         if (justAteMustGrowThisMuch == 0) {
             for (int x = 0; x < maxX; x++) {
                 for (int y = 0; y < maxY; y++) {
@@ -340,7 +342,7 @@ public class Snake {
     public boolean didEatKibble(Kibble kibble) {
         //Is this kibble in the snake? It should be in the same square as the snake's head
         if (kibble.getKibbleX() == snakeHeadX && kibble.getKibbleY() == snakeHeadY) {
-            //justAteMustGrowThisMuch += growthIncrement;
+            justAteMustGrowThisMuch += growthIncrement;
             return true;
         }
         return false;
