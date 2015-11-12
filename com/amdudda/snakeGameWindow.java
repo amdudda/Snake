@@ -3,7 +3,7 @@ package com.amdudda;
 import javax.swing.*;
 
 /**
- * Created by pd on 11/12/2015.
+ * Created by amdudda on 11/12/2015.
  */
 public class snakeGameWindow extends JFrame {
     // this is the window that is inside the entire game
