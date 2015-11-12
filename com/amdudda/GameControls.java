@@ -4,8 +4,6 @@ package com.amdudda;
 	@student A.M. Dudda
 * */
 
-import jdk.nashorn.internal.runtime.options.Options;
-
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 

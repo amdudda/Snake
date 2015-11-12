@@ -1,9 +1,7 @@
 package com.amdudda;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.*;
-import java.util.ArrayList;
 
 /**
  * Created by amdudda on 11/1/2015.
@@ -115,8 +113,7 @@ public class OptionsPanel extends JFrame {
         SnakeGame.yPixelMaxDimension = ScreenSize;
         SnakeGame.xSquares = ScreenSize / sqSize;
         SnakeGame.ySquares = ScreenSize / sqSize;
-        if (OptionsPanel.this.WarpWallsCheckBox.isSelected()) SnakeGame.hasWarpWalls = true;
-        else SnakeGame.hasWarpWalls = false;
+        SnakeGame.hasWarpWalls = OptionsPanel.this.WarpWallsCheckBox.isSelected();
         if (OptionsPanel.this.MazeWallCheckBox.isSelected()) {
             SnakeGame.hasMazeWalls = true;
             SnakeGame.enableExtendedFeatures = OptionsPanel.this.extendedFeaturesCheckBox.isSelected();
