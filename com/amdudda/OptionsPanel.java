@@ -103,6 +103,7 @@ public class OptionsPanel extends JFrame {
             OptionsPanel.this.snakeColorComboBox.addItem(COLOR_OPTIONS[j]);
         }
 
+        // wrapping text in textarea: http://stackoverflow.com/questions/6052821/jtextarea-how-to-wrap-text-by-words-not-characters
         OptionsPanel.this.axeDescriptionTextArea.setWrapStyleWord(true);
     }
 
