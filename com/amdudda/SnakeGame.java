@@ -100,9 +100,9 @@ public class SnakeGame {
 	}
 
 	protected static void newGame() {
-		// AMD: restart the timer when we kick off a new game.
+		// AMD: restart the timer when we kick off a new game.  Also updated Gameclock to deal with Axe.
         timer = new Timer();
-		GameClock clockTick = new GameClock(snake, kibble, game_score, snakePanel);
+		GameClock clockTick = new GameClock(snake, kibble, game_score, snakePanel, game_axe);
 		timer.scheduleAtFixedRate(clockTick, 0 , clockInterval);
         /*AMD: this causes the game to refresh every clockInterval milliseconds so the snake
         * can be redrawn as game play progresses.

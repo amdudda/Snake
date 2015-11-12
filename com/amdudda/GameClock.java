@@ -12,12 +12,14 @@ public class GameClock extends TimerTask {
 	Kibble kibble;
 	Score score;
 	DrawSnakeGamePanel gamePanel;
+	Axe axe;
 		
-	public GameClock(Snake snake, Kibble kibble, Score score, DrawSnakeGamePanel gamePanel){
+	public GameClock(Snake snake, Kibble kibble, Score score, DrawSnakeGamePanel gamePanel, Axe game_axe){
 		this.snake = snake;
 		this.kibble = kibble;
 		this.score = score;
 		this.gamePanel = gamePanel;
+		this.axe = game_axe;
 	}
 	
 	@Override
@@ -39,6 +41,12 @@ public class GameClock extends TimerTask {
 					//tell kibble to update
 					kibble.moveKibble(snake);
 					Score.increaseScore();
+				}
+				if (snake.didEatAxe(axe)) {
+					// tell axe to hide itself, move, and shrink the snake
+					axe.setVisible(false);
+					axe.moveKibble(snake);
+					// TODO: shrink the snake!
 				}
 				break;
 			}

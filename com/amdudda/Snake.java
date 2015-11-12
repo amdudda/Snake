@@ -334,6 +334,15 @@ public class Snake {
         return false;
     }
 
+    // detect whether axe has been eaten
+    public boolean didEatAxe(Axe axe) {
+        //Is this kibble in the snake? It should be in the same square as the snake's head
+        if (axe.getKibbleX() == snakeHeadX && axe.getKibbleY() == snakeHeadY) {
+            return axe.isVisible();
+        }
+        return false;
+    }
+
     public String toString() {
         String textsnake = "";
         //This looks the wrong way around. Actually need to do it this way or snake is drawn flipped 90 degrees.
