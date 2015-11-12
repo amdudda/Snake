@@ -60,7 +60,8 @@ public class GameClock extends TimerTask {
 				this.cancel();   //stop timer
 				break;
 			}
-		
+		//FINDBUGS: another default case!
+			default: break;
 		}
 				
 		gamePanel.repaint();		//In every circumstance, must update screen

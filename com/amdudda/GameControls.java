@@ -91,6 +91,7 @@ public class GameControls implements KeyListener{
 		// AMD: prevent game from quitting at keypress q during gameplay
 		if( (keyPressed == q || keyPressed == capitalQ) && gStage != SnakeGame.DURING_GAME){
 			System.exit(0);    //quit if user presses the q key.
+			//FINDBUGS: flags this, but honestly, in this case, this is exactly what we want.
 		}
 		//  AMD: Let user customize game settings before starting play.
 		else if ( (keyPressed == o || keyPressed == capitalO) && gStage == SnakeGame.BEFORE_GAME) {

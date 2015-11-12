@@ -9,11 +9,12 @@ import java.util.LinkedList;
 
 public class Snake {
 
-    final int DIRECTION_UP = 0;
-    final int DIRECTION_DOWN = 1;
-    final int DIRECTION_LEFT = 2;
-    final int DIRECTION_RIGHT = 3;  //These are completely arbitrary numbers.
-    final int NOT_A_SEGMENT = 0; // AMD: not a magic number, but helps make code easier to understand.
+    //FINDBUGS: flagged these as needing to be static
+    final static int DIRECTION_UP = 0;
+    final static int DIRECTION_DOWN = 1;
+    final static int DIRECTION_LEFT = 2;
+    final static int DIRECTION_RIGHT = 3;  //These are completely arbitrary numbers.
+    final static int NOT_A_SEGMENT = 0; // AMD: not a magic number, but helps make code easier to understand.
 
     private boolean hitWall = false;
     private boolean ateTail = false;
@@ -33,7 +34,7 @@ public class Snake {
 
     private int justAteMustGrowThisMuch = 0;
 
-    private int maxX, maxY, squareSize;
+    private int maxX, maxY, squareSize; //FINDBUGS: unused variable, TODO fix code
     private int snakeHeadX, snakeHeadY; //store coordinates of head - first segment
 
     // AMD: also set default color of snake
@@ -463,7 +464,8 @@ public class Snake {
                         didHit = true;
                     }
                     break;
-                }
+                }  //FINDBUGS: another switch case with no default.  This one is fine, four clear situations -
+                // TODO: what should our default behavior be?
             }
             // if the current wall under consideration has been hit, we need to exit the loop.
             if (didHit) { break; }

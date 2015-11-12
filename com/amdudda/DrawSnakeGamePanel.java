@@ -61,6 +61,10 @@ public class DrawSnakeGamePanel extends JPanel {
             case SnakeGame.GAME_WON: {
                 displayGameWon(g);
                 break;
+            }  //FINDBUGS: switch case might fall through, let's go to beforegame behavior
+            default: {
+                displayInstructions(g);
+                break;
             }
         }
 
