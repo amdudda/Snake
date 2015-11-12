@@ -277,7 +277,7 @@ public class Snake {
         //If snake did not just eat, then remove tail segment
         //to keep snake the same length.
         //find highest number, which should now be the same as snakeSize+1, and set to 0
-
+// TODO why does justAte... variable even exist? Can we eliminate it?
         if (justAteMustGrowThisMuch == 0) {
             for (int x = 0; x < maxX; x++) {
                 for (int y = 0; y < maxY; y++) {
@@ -290,8 +290,8 @@ public class Snake {
             //Snake has just eaten. leave tail as is.  Decrease justAte... variable by 1.
             // AMD: I think this line is a bug, because two new walls are appearing instead of one:
             // justAteMustGrowThisMuch--;
+            snakeSize += justAteMustGrowThisMuch;
             justAteMustGrowThisMuch = 0;
-            snakeSize++;
             // AMD: are extended features turned on?  check for relevant changes.
             if (SnakeGame.enableExtendedFeatures) {
                 if (SnakeGame.game_score.getScore() % SnakeGame.ADD_WALL_INTERVAL == 0) {
@@ -340,7 +340,7 @@ public class Snake {
     public boolean didEatKibble(Kibble kibble) {
         //Is this kibble in the snake? It should be in the same square as the snake's head
         if (kibble.getKibbleX() == snakeHeadX && kibble.getKibbleY() == snakeHeadY) {
-            justAteMustGrowThisMuch += growthIncrement;
+            //justAteMustGrowThisMuch += growthIncrement;
             return true;
         }
         return false;
