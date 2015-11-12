@@ -149,7 +149,7 @@ public class DrawSnakeGamePanel extends JPanel {
 
         // if enabled features are on, and score is divisible by 5, display the axe for possible collection
         if (SnakeGame.enableExtendedFeatures && SnakeGame.game_score.getScore() > 0 && SnakeGame.game_score.getScore() % 5 == 0) {
-            SnakeGame.game_axe.setVisible(true);
+            SnakeGame.game_axe.setVisible(true);  // TODO axe reappears until 6th kibble is eaten.  Should I let axe count as kibble eaten?
             SnakeGame.game_axe.drawImage(g);
         }
     }
