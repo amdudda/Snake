@@ -60,7 +60,7 @@ public class OptionsPanel extends JFrame {
                 SnakeGame.snake.setSnakeColor(snakeColorComboBox.getSelectedIndex());
                 SnakeGame.snake.refactor();
                 //tweak the size of the game window
-                SnakeGame.resizewindow();
+                SnakeGame.snakeFrame.resize();
                 // and get rid of the screen
                 closeWindow();
             }
