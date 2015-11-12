@@ -23,6 +23,7 @@ public class OptionsPanel extends JFrame {
     private JRadioButton ScrnSzLargeradioButton;
     private JCheckBox extendedFeaturesCheckBox;
     private JComboBox snakeColorComboBox;
+    private JTextArea axeDescriptionTextArea;
     private static final String[] COLOR_OPTIONS = {"Pink head and red body","Cyan head and blue body","Mint head with green body",
             "Pale yellow head with yellow body","Gray head with black body"};
 
@@ -101,6 +102,8 @@ public class OptionsPanel extends JFrame {
         for (int j = 0; j < COLOR_OPTIONS.length; j++) {
             OptionsPanel.this.snakeColorComboBox.addItem(COLOR_OPTIONS[j]);
         }
+
+        OptionsPanel.this.axeDescriptionTextArea.setWrapStyleWord(true);
     }
 
     public void resetGameVariables() {
