@@ -9,9 +9,11 @@ package com.amdudda;
 
 public class Score {
 
-    protected static int score = 0;
-    protected static int highScore = 0;
-    protected static int increment = 1;
+    // AMD: these aren't ever directly accessed outside of this object, so let's make them private.
+    // (Prompted by FINDBUGS results.)
+    private static int score = 0;
+    private static int highScore = 0;
+    private static int increment = 1;
     private static boolean haveNewHighScore = false;
 
     public Score() {
