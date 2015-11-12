@@ -58,7 +58,7 @@ public class SnakeGame {
 	//This is the time between clock ticks, in milliseconds
 	//1000 milliseconds = 1  second.
 
-	protected static snakeGameWindow snakeFrame;
+	protected static AsnakeGameWindow snakeFrame;
 	protected static DrawSnakeGamePanel snakePanel;
 	//Framework for this class adapted from the Java Swing Tutorial, FrameDemo and Custom Painting Demo. You should find them useful too.
 	//http://docs.oracle.com/javase/tutorial/displayCode.html?code=http://docs.oracle.com/javase/tutorial/uiswing/examples/components/FrameDemoProject/src/components/FrameDemo.java
@@ -99,7 +99,7 @@ public class SnakeGame {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				initializeGame();
-                snakeFrame = new snakeGameWindow(snake, kibble, game_score); // AMD: formerly == createAndShowGUI();
+				snakeFrame = new AsnakeGameWindow(snake, kibble, game_score); // AMD: formerly == createAndShowGUI();
 			}
 		});
 	}
@@ -125,7 +125,7 @@ public class SnakeGame {
     protected static void createAndShowGUI() {
         // DONE: this is technically a separate object; a container for the game.
         //Create and set up the window.
-        snakeFrame = new snakeGameWindow(snake, kibble, game_score);
+        snakeFrame = new AsnakeGameWindow(snake, kibble, game_score);
 		/*snakeFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         snakeFrame.setSize(xPixelMaxDimension, yPixelMaxDimension);
 		snakeFrame.setUndecorated(false); // AMD: Show title bar so game can be moved around screen //hide title bar

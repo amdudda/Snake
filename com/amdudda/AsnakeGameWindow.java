@@ -5,12 +5,12 @@ import javax.swing.*;
 /**
  * Created by amdudda on 11/12/2015.
  */
-public class snakeGameWindow extends JFrame {
+public class AsnakeGameWindow extends JFrame {
     // this is the window that is inside the entire game
     JFrame snakeWindow;
 
     // constructor
-    public snakeGameWindow(Snake snake, Kibble kibble, Score game_score) {
+    public AsnakeGameWindow(Snake snake, Kibble kibble, Score game_score) {
         snakeWindow = new JFrame();
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(SnakeGame.xPixelMaxDimension, SnakeGame.yPixelMaxDimension);
@@ -40,9 +40,9 @@ public class snakeGameWindow extends JFrame {
         harrumph, that's annoying:
         http://www.coderanch.com/t/333985/GUI/java/getInsets-Frames
         */
-        int titlebarheight = snakeGameWindow.this.getInsets().top + snakeGameWindow.this.getInsets().bottom;
-        int borders = snakeGameWindow.this.getInsets().left + snakeGameWindow.this.getInsets().right;
+        int titlebarheight = AsnakeGameWindow.this.getInsets().top + AsnakeGameWindow.this.getInsets().bottom;
+        int borders = AsnakeGameWindow.this.getInsets().left + AsnakeGameWindow.this.getInsets().right;
 
-        snakeGameWindow.this.setSize(SnakeGame.xPixelMaxDimension + borders, SnakeGame.yPixelMaxDimension+titlebarheight);
+        AsnakeGameWindow.this.setSize(SnakeGame.xPixelMaxDimension + borders, SnakeGame.yPixelMaxDimension+titlebarheight);
     }
 }
