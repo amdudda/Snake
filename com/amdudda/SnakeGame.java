@@ -67,11 +67,11 @@ public class SnakeGame {
 		//Create and set up the window.
 		snakeFrame = new JFrame();
 		snakeFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-		snakeFrame.setSize(xPixelMaxDimension, yPixelMaxDimension);
+        snakeFrame.setSize(xPixelMaxDimension, yPixelMaxDimension);
 		snakeFrame.setUndecorated(false); // AMD: Show title bar so game can be moved around screen //hide title bar
         snakeFrame.setTitle("Snake Game: feed the snake and avoid the walls!");
 		snakeFrame.setVisible(true);
+
 		snakeFrame.setResizable(false);
 
 		snakePanel = new DrawSnakeGamePanel(snake, kibble, game_score);
@@ -144,4 +144,18 @@ public class SnakeGame {
 	public static void setGameStage(int gameStage) {
 		SnakeGame.gameStage = gameStage;
 	}
+
+    public static void resizewindow() {
+        /*
+        AMD: trying to get draggable window that doesn't hide bottom row(s) of board
+        https://home.java.net/node/650887
+        http://stackoverflow.com/questions/12803963/how-can-i-get-the-height-of-the-title-bar-of-a-jinternalframe
+        harrumph, that's annoying:
+        http://www.coderanch.com/t/333985/GUI/java/getInsets-Frames
+        */
+        int titlebarheight = snakeFrame.getInsets().top + snakeFrame.getInsets().bottom;
+        int borders = snakeFrame.getInsets().left + snakeFrame.getInsets().right;
+
+        snakeFrame.setSize(xPixelMaxDimension+borders, yPixelMaxDimension+titlebarheight);
+    }
 }
