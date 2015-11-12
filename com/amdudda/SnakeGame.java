@@ -13,7 +13,7 @@ public class SnakeGame {
 
     // AMD: what if we make timer global?
 	//FINDBUGS: make these protected rather than public?  or move them inside main method?
-    protected static Timer timer = new Timer();
+	protected static Timer timer = new Timer();
     // AMD: we want to set a final constant as a base dimension so we can multiply, then add 1 pixel, for board sizing.
     protected static final int INITIAL_GAME_SIZE = 500;
 
@@ -64,6 +64,18 @@ public class SnakeGame {
 	//http://docs.oracle.com/javase/tutorial/displayCode.html?code=http://docs.oracle.com/javase/tutorial/uiswing/examples/components/FrameDemoProject/src/components/FrameDemo.java
 	//http://docs.oracle.com/javase/tutorial/uiswing/painting/step2.html
 
+	// AMD: Moved main method here for readability.
+	public static void main(String[] args) {
+		//Schedule a job for the event-dispatching thread:
+		//creating and showing this application's GUI.
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				initializeGame();
+				snakeFrame = new SnakeGameWindow(snake, kibble, game_score); // AMD: formerly == createAndShowGUI();
+			}
+		});
+	}
+
 	protected static void initializeGame() {
 		//set up game_score, snake and first kibble
 		xSquares = xPixelMaxDimension / squareSize;
@@ -93,16 +105,6 @@ public class SnakeGame {
 		}
 	}
 
-	public static void main(String[] args) {
-        //Schedule a job for the event-dispatching thread:
-		//creating and showing this application's GUI.
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				initializeGame();
-				snakeFrame = new SnakeGameWindow(snake, kibble, game_score); // AMD: formerly == createAndShowGUI();
-			}
-		});
-	}
 
 	public static int getGameStage() {
 		return gameStage;

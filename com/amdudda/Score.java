@@ -23,6 +23,8 @@ public class Score {
         //Possible TODO get more points for eating kibbles, the longer the snake gets?
     }
 
+    public static void setScore(int newscore) { score = newscore; }
+
     public static void resetScore() {
         score = 0;
     }
@@ -72,7 +74,8 @@ public class Score {
         return Integer.toString(highScore);
     }
 
-    public void resetHaveNewHighScore() {
+    //FINDBUGS: Made this method static
+    public static void resetHaveNewHighScore() {
         haveNewHighScore = false;
     }
 }

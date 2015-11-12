@@ -20,7 +20,8 @@ public class DrawSnakeGamePanel extends JPanel {
     private Kibble kibble;
     private Score score;
     // AMD: added MazeWall, need arraylist to store multiple walls.  I don't care what order they're drawn in.
-    protected static ArrayList<MazeWall> gameWalls = new ArrayList<MazeWall>();
+    // FINDBUGS: says this should be final.
+    protected final static ArrayList<MazeWall> gameWalls = new ArrayList<MazeWall>();
 
     DrawSnakeGamePanel(Snake s, Kibble k, Score sc) {
         this.snake = s;
