@@ -13,6 +13,7 @@ public class Snake {
     final int DIRECTION_DOWN = 1;
     final int DIRECTION_LEFT = 2;
     final int DIRECTION_RIGHT = 3;  //These are completely arbitrary numbers.
+    final int NOT_A_SEGMENT = 0; // AMD: not a magic number, but helps make code easier to understand.
 
     private boolean hitWall = false;
     private boolean ateTail = false;
@@ -116,7 +117,7 @@ public class Snake {
     private void fillSnakeSquaresWithZeros() {
         for (int x = 0; x < this.maxX; x++) {
             for (int y = 0; y < this.maxY; y++) {
-                this.snakeSquares[x][y] = 0;
+                this.snakeSquares[x][y] = NOT_A_SEGMENT;
             }
         }
     }
@@ -291,10 +292,21 @@ public class Snake {
             // justAteMustGrowThisMuch--;
             justAteMustGrowThisMuch = 0;
             snakeSize++;
-            // AMD: are extended features turned on and has a third kibble been eaten? If so, a new mazewall needs to be added
-            if (SnakeGame.enableExtendedFeatures && SnakeGame.game_score.getScore() % SnakeGame.ADD_WALL_INTERVAL == 0) {
-                DrawSnakeGamePanel.gameWalls.add(new MazeWall());
+            // AMD: are extended features turned on?  check for relevant changes.
+            if (SnakeGame.enableExtendedFeatures) {
+                if (SnakeGame.game_score.getScore() % SnakeGame.ADD_WALL_INTERVAL == 0) {
+                    // add a maze wall
+                    DrawSnakeGamePanel.gameWalls.add(new MazeWall());
+                }
+                if (SnakeGame.game_score.getScore() % SnakeGame.SHOW_AXE_INTERVAL == 0) {
+                    // turn on the axe
+                    SnakeGame.game_axe.setVisible(true);
+                }
             }
+        }
+
+        if (this.didEatAxe(SnakeGame.game_axe)) {
+            this.shrink();
         }
 
         lastHeading = currentHeading; //Update last confirmed heading
@@ -378,7 +390,7 @@ public class Snake {
         //that it has filled the screen. Win!
         for (int x = 0; x < maxX; x++) {
             for (int y = 0; y < maxY; y++) {
-                if (snakeSquares[x][y] == 0) {
+                if (snakeSquares[x][y] == NOT_A_SEGMENT) {
                     //there is still empty space on the screen, so haven't won
                     return false;
                 }
@@ -455,6 +467,20 @@ public class Snake {
             if (didHit) { break; }
         }
         return didHit;
+    }
+
+    protected void shrink() {
+        // AMD: this shrinks the snake by 50%
+        int cellsToDrop = snakeSize/2;
+        this.snakeSize = snakeSize - cellsToDrop;
+        // TODO reset the 'lost' part of the tail to be snake-free
+        for (int xCell = 0; xCell < maxX; xCell++) {
+            for (int yCell = 0; yCell < maxY; yCell++) {
+                if (snakeSquares[xCell][yCell] > snakeSize) {
+                    snakeSquares[xCell][yCell] = NOT_A_SEGMENT;
+                }
+            }
+        }
     }
 
     protected void createDebugSnake() {

@@ -29,6 +29,7 @@ public class SnakeGame {
     public static final int NUM_MAZE_WALLS = 3; // Number of walls to build if maze walls enabled.
 	public static boolean enableExtendedFeatures = false; // turns on/off additional mazewalls and axe
     public static final int ADD_WALL_INTERVAL = 3; // Number of kibbles to eat between new maze walls
+	public static final int SHOW_AXE_INTERVAL = 5; // axe shows up every fifth kibble
 
 	protected static Snake snake ;
 

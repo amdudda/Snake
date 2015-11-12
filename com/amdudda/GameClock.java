@@ -41,9 +41,11 @@ public class GameClock extends TimerTask {
 					//tell kibble to update
 					kibble.moveKibble(snake);
 					Score.increaseScore();
+                    // AMD: and turn off the axe because it only lasts until a kibble is eaten
+                    axe.setVisible(false);
 				}
 				if (snake.didEatAxe(axe)) {
-					// tell axe to hide itself, move, and shrink the snake
+					// AMD: tell axe to hide itself, move, and shrink the snake
 					axe.setVisible(false);
 					axe.moveKibble(snake);
 					// TODO: shrink the snake!
