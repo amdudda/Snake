@@ -29,6 +29,7 @@ public class snakeGameWindow extends JFrame {
         SnakeGame.setGameStage(SnakeGame.BEFORE_GAME);
 
         this.setVisible(true);
+        this.resize(); // need to make sure grid squares are all fully visible.
     }
 
     public void resize() {

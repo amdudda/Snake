@@ -99,7 +99,6 @@ public class SnakeGame {
 			public void run() {
 				initializeGame();
                 snakeFrame = new snakeGameWindow(snake, kibble, game_score); // AMD: formerly == createAndShowGUI();
-                snakeFrame.resize();
 			}
 		});
 	}
