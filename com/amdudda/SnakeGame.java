@@ -72,39 +72,42 @@ public class SnakeGame {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				initializeGame();
-				SnakeGame.setSnakeFrame(new SnakeGameWindow(SnakeGame.getSnake(), SnakeGame.getKibble(), SnakeGame.getGame_score())); // AMD: formerly == createAndShowGUI();
+				snakeFrame = new SnakeGameWindow(SnakeGame.getSnake(), SnakeGame.getKibble(), SnakeGame.getGame_score()); // AMD: formerly == createAndShowGUI();
 			}
 		});
 	}
 
 	protected static void initializeGame() {
 		//set up game_score, snake and first kibble
-		setxSquares(getxPixelMaxDimension() / getSquareSize());
-		setySquares(getyPixelMaxDimension() / getSquareSize());
+		xSquares = xPixelMaxDimension / squareSize;
+		ySquares = yPixelMaxDimension / squareSize;
 
-		SnakeGame.setSnake(new Snake(getxSquares(), getySquares()));
-        Snake localsnake = SnakeGame.getSnake();
-        SnakeGame.setKibble(new Kibble(localsnake));
-		SnakeGame.setGame_axe(new Axe(localsnake));
-		SnakeGame.setGame_score(new Score());
+		snake = new Snake(xSquares, ySquares);
+        //Snake localsnake = SnakeGame.getSnake();
+        kibble = new Kibble(snake);
+		game_axe = new Axe(snake);
+		game_score = new Score();
 
-        // AMD: debugging: System.out.println("xSquares = " + xSquares);
         SnakeGame.setGameStage(BEFORE_GAME);
 	}
 
 	protected static void newGame() {
 		// AMD: restart the timer when we kick off a new game.  Also updated Gameclock to deal with Axe.
-        setTimer(new Timer());
+        timer = new Timer();
 		GameClock clockTick = new GameClock(SnakeGame.getSnake(), SnakeGame.getKibble(), SnakeGame.getSnakePanel(), SnakeGame.getGame_axe());
-		getTimer().scheduleAtFixedRate(clockTick, 0, SnakeGame.getClockInterval());
+		timer.scheduleAtFixedRate(clockTick, 0, SnakeGame.getClockInterval());
         /*AMD: this causes the game to refresh every clockInterval milliseconds so the snake
         * can be redrawn as game play progresses.
         * */
-        // also seed a new set of mazeWalls
-        DrawSnakeGamePanel.getGameWalls().clear();
-		for (int i=0; i< NUM_MAZE_WALLS; i++) {
-			DrawSnakeGamePanel.getGameWalls().add(new MazeWall());
-		}
+        // also seed a new set of mazeWalls - but only if mazewalls are turned on
+        if (hasMazeWalls) {
+            DrawSnakeGamePanel.getGameWalls().clear();
+            for (int i = 0; i < NUM_MAZE_WALLS; i++) {
+                DrawSnakeGamePanel.getGameWalls().add(new MazeWall());
+            }
+        }
+        // AMD: and move the kibble so it's not in the same spot again.  TODO: write up bug report
+        kibble.moveKibble(snake);
 	}
 
 
