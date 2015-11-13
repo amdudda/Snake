@@ -7,22 +7,21 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- * Created by amdudda on 11/11/15.
+ * Created by amdudda on 11/13/15.
  */
-public class Axe extends Kibble {
+public class Mouse extends Kibble {
+    // so we can have different default attributes for Mouse kibble and Axe kibble.
     // AMD: variables to help store the image associated with Kibble
     protected BufferedImage img;
-    protected String imageLocation;
-    private boolean visible;
     protected boolean validImage;
+    protected String imageLocation;
     protected Color fallbackColor;
 
-    public Axe(Snake s) {
+    public Mouse(Snake s) {
         super(s);
         moveKibble(s);
-        this.imageLocation = "./data/axe.jpg";
-        this.fallbackColor = Color.RED;
-        this.visible = false;
+        this.imageLocation = "./data/mouse.jpg";
+        this.fallbackColor = Color.GREEN;
         // need this code so that it draws the correct image:
         try {
             this.img = ImageIO.read(new File(imageLocation));
@@ -33,10 +32,6 @@ public class Axe extends Kibble {
             this.validImage = false;
         }
     }
-
-    public boolean isVisible() { return this.visible; }
-
-    public void setVisible(boolean tf) { this.visible = tf; }
 
 
     public void drawImage(Graphics q) {

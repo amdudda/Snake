@@ -4,14 +4,10 @@ package com.amdudda;
 	@student A.M. Dudda
 * */
 
-import javax.imageio.ImageIO;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.util.Random;
 
-public class Kibble {
+public abstract class Kibble {
 
 	/** Identifies a random square to display a kibble
 	 * Any square is ok, so long as it doesn't have any snake segments in it. 
@@ -20,19 +16,19 @@ public class Kibble {
 	
 	protected int kibbleX; //This is the square number (not pixel)
 	protected int kibbleY;  //This is the square number (not pixel)
-	// AMD: variables to help store the image associated with Kibble
-	protected BufferedImage img;
-	protected boolean validImage;
-	protected String imageLocation;
-	protected Color fallbackColor;
-	
+
+	// kibble objects must have a way to draw an image and a way to report their fallback color for when the image is missing
+    public abstract Color getFallBackColor();
+    public abstract void drawImage(Graphics q);
+
+
 	public Kibble(Snake s){
 		//Kibble needs to know where the snake is, so it does not create a kibble in the snake
 		//Pick a random location for kibble, check if it is in the snake
 		//If in snake, try again
 		
 		moveKibble(s);
-		this.imageLocation = "./data/mouse.jpg";
+		/*this.imageLocation = "./data/mouse.jpg";
 		this.fallbackColor = Color.GREEN;
 		// AMD: set up a mouse image to use for kibble
 		try {
@@ -42,7 +38,7 @@ public class Kibble {
 			// System.out.println("Mouse not found!");
 			// draw the generic kibble instead.
 			this.validImage = false;
-		}
+		}*/
 	}
 	
 	protected void moveKibble(Snake s){
@@ -71,7 +67,7 @@ public class Kibble {
 	public void draw(Graphics q) {
 		// AMD: draws the kibble
 		//Draw the kibble in green
-		q.setColor(fallbackColor);
+		q.setColor(this.getFallBackColor());
 		int sqSz = SnakeGame.getSquareSize();
 		int x = this.kibbleX * sqSz;
 		int y = this.kibbleY * sqSz;
@@ -79,24 +75,4 @@ public class Kibble {
 		q.fillRect(x + 1, y + 1, sqSz - 2, sqSz - 2);
 	}
 
-    public void drawImage(Graphics q) {
-        // AMD: let's draw a mouse for the snake to eat, instead of green kibble.
-		int sqSz = SnakeGame.getSquareSize();
-        int x = this.kibbleX * sqSz;
-        int y = this.kibbleY * sqSz;
-        /*
-        taken from:
-        http://docs.oracle.com/javase/tutorial/2d/images/loadimage.html
-        http://docs.oracle.com/javase/tutorial/2d/images/drawimage.html
-
-        image scaling hints from:
-        http://stackoverflow.com/questions/8284048/resizing-an-image-in-swing
-        */
-
-		if (validImage) {
-			q.drawImage(this.img.getScaledInstance(sqSz - 2, sqSz - 2, Image.SCALE_FAST), x + 1, y + 1, null);
-		} else {
-			this.draw(q);
-		}
-    }
 }

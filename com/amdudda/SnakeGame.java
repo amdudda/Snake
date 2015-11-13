@@ -84,7 +84,7 @@ public class SnakeGame {
 
 		snake = new Snake(xSquares, ySquares);
         //Snake localsnake = SnakeGame.getSnake();
-        kibble = new Kibble(snake);
+        kibble = new Mouse(snake);
 		game_axe = new Axe(snake);
 		game_score = new Score();
 
