@@ -24,6 +24,7 @@ public class Kibble {
 	protected BufferedImage img;
 	protected boolean validImage;
 	protected String imageLocation;
+	protected Color fallbackColor;
 	
 	public Kibble(Snake s){
 		//Kibble needs to know where the snake is, so it does not create a kibble in the snake
@@ -32,6 +33,7 @@ public class Kibble {
 		
 		moveKibble(s);
 		this.imageLocation = "./data/mouse.jpg";
+		this.fallbackColor = Color.GREEN;
 		// AMD: set up a mouse image to use for kibble
 		try {
 			this.img = ImageIO.read(new File(imageLocation));
@@ -69,7 +71,7 @@ public class Kibble {
 	public void draw(Graphics q) {
 		// AMD: draws the kibble
 		//Draw the kibble in green
-		q.setColor(Color.GREEN);
+		q.setColor(fallbackColor);
 		int sqSz = SnakeGame.getSquareSize();
 		int x = this.kibbleX * sqSz;
 		int y = this.kibbleY * sqSz;

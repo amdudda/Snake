@@ -1,6 +1,7 @@
 package com.amdudda;
 
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
@@ -15,6 +16,7 @@ public class Axe extends Kibble {
         super(s);
         moveKibble(s);
         this.imageLocation = "./data/axe.jpg";
+        this.fallbackColor = Color.RED;
         this.visible = false;
         // need this code so that it draws the correct image:
         try {
