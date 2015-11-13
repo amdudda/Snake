@@ -81,7 +81,7 @@ public class SnakeGame {
 		xSquares = xPixelMaxDimension / squareSize;
 		ySquares = yPixelMaxDimension / squareSize;
 
-		snake = new Snake(xSquares, ySquares, squareSize);
+		snake = new Snake(xSquares, ySquares);//, squareSize);
 		kibble = new Kibble(snake);
 		game_axe = new Axe(snake);
 		game_score = new Score();
@@ -130,6 +130,10 @@ public class SnakeGame {
     public static void setySquares(int ySquares) {
         SnakeGame.ySquares = ySquares;
     }
+
+	public static int getxSquares() { return SnakeGame.xSquares; }
+
+	public static int getySquares() { return SnakeGame.ySquares; }
 
     public static void setSquareSize(int squareSize) {
         SnakeGame.squareSize = squareSize;

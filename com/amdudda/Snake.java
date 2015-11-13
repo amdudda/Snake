@@ -34,7 +34,7 @@ public class Snake {
 
     private int justAteMustGrowThisMuch = 0;
 
-    private int maxX, maxY, squareSize; //FINDBUGS: unused variable, TODO fix code
+    private int maxX, maxY;//, squareSize; //FINDBUGS: unused variable, removed from code
     private int snakeHeadX, snakeHeadY; //store coordinates of head - first segment
 
     // AMD: also set default color of snake
@@ -52,11 +52,10 @@ public class Snake {
     private static final Color LIGHT_GREEN = new Color(200,255,200);
 
 
-    public Snake(int maxX, int maxY, int squareSize) {
+    public Snake(int maxX, int maxY){ //, int squareSize) {
 
         this.maxX = maxX;
         this.maxY = maxY;
-        this.squareSize = squareSize;
         snakeSquares = new int[this.maxX][this.maxY];
         colorOfHead = Color.PINK;
         colorOfBody = Color.RED;
@@ -415,9 +414,8 @@ public class Snake {
 
     public void refactor() {
         // AMD: Allows refactoring of snake variables after options reset
-        this.maxX = SnakeGame.xSquares;
-        this.maxY = SnakeGame.ySquares;
-        this.squareSize = SnakeGame.squareSize;
+        this.maxX = SnakeGame.getxSquares();
+        this.maxY = SnakeGame.getySquares();
         snakeSquares = new int[this.maxX][this.maxY];
         fillSnakeSquaresWithZeros();
         createStartSnake();
@@ -464,7 +462,8 @@ public class Snake {
                         didHit = true;
                     }
                     break;
-                } default: {
+                }
+                default: {
                     //FINDBUGS: another switch case with no default.  This one is fine, four clear situations.
                     // Ultimately, shouldn't get here: leave something here that can be turned on for debugging:
                     // System.out.println("Invalid direction detected in Snake.didhitmazewall()!");
