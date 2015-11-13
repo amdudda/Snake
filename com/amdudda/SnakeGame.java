@@ -54,13 +54,13 @@ public class SnakeGame {
 	private static int gameStage = BEFORE_GAME;  //use this to figure out what should be happening. 
 	//Other classes like Snake and DrawSnakeGamePanel will need to query this, and change it's value
 
-	protected static long clockInterval = 500; //controls game speed
+	private static long clockInterval = 500; //controls game speed
 	//Every time the clock ticks, the snake moves
 	//This is the time between clock ticks, in milliseconds
 	//1000 milliseconds = 1  second.
 
-	protected static SnakeGameWindow snakeFrame;
-	protected static DrawSnakeGamePanel snakePanel;
+	private static SnakeGameWindow snakeFrame;
+	private static DrawSnakeGamePanel snakePanel;
 	//Framework for this class adapted from the Java Swing Tutorial, FrameDemo and Custom Painting Demo. You should find them useful too.
 	//http://docs.oracle.com/javase/tutorial/displayCode.html?code=http://docs.oracle.com/javase/tutorial/uiswing/examples/components/FrameDemoProject/src/components/FrameDemo.java
 	//http://docs.oracle.com/javase/tutorial/uiswing/painting/step2.html
@@ -72,7 +72,7 @@ public class SnakeGame {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				initializeGame();
-				snakeFrame = new SnakeGameWindow(SnakeGame.getSnake(), SnakeGame.getKibble(), SnakeGame.getGame_score()); // AMD: formerly == createAndShowGUI();
+				SnakeGame.setSnakeFrame(new SnakeGameWindow(SnakeGame.getSnake(), SnakeGame.getKibble(), SnakeGame.getGame_score())); // AMD: formerly == createAndShowGUI();
 			}
 		});
 	}
@@ -96,7 +96,7 @@ public class SnakeGame {
 		// AMD: restart the timer when we kick off a new game.  Also updated Gameclock to deal with Axe.
         setTimer(new Timer());
 		GameClock clockTick = new GameClock(SnakeGame.getSnake(), SnakeGame.getKibble(), SnakeGame.getSnakePanel(), SnakeGame.getGame_axe());
-		getTimer().scheduleAtFixedRate(clockTick, 0, clockInterval);
+		getTimer().scheduleAtFixedRate(clockTick, 0, SnakeGame.getClockInterval());
         /*AMD: this causes the game to refresh every clockInterval milliseconds so the snake
         * can be redrawn as game play progresses.
         * */
@@ -176,6 +176,22 @@ public class SnakeGame {
     }
     public static DrawSnakeGamePanel getSnakePanel(){
         return SnakeGame.snakePanel;
+    }
+
+    public static SnakeGameWindow getSnakeFrame() {
+        return SnakeGame.snakeFrame;
+    }
+
+    public static void setSnakeFrame(SnakeGameWindow snakeFrame) {
+        SnakeGame.snakeFrame = snakeFrame;
+    }
+
+    public static long getClockInterval() {
+        return SnakeGame.clockInterval;
+    }
+
+    public static void setClockInterval(long clockInterval) {
+        SnakeGame.clockInterval = clockInterval;
     }
 
     public static Timer getTimer() {
