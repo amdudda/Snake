@@ -20,9 +20,9 @@ public class MazeWall {
     // Constructor
     public MazeWall() {
         Random position = new Random();
-        int xLines = SnakeGame.xSquares - 2;
+        int xLines = SnakeGame.getxSquares() - 2;
         this.gridX = position.nextInt(xLines) + 1;  // second offset, so walls appear inside game board
-        int yLines = SnakeGame.ySquares - 2;
+        int yLines = SnakeGame.getySquares() - 2;
         this.gridY = position.nextInt(yLines) + 1;
         int pickHorV = position.nextInt(2);
         if (pickHorV == 0) { this.v_or_h = 'v'; }

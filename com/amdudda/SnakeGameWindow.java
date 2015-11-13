@@ -14,7 +14,7 @@ public class SnakeGameWindow extends JFrame {
     public SnakeGameWindow(Snake snake, Kibble kibble, Score game_score) {
         this.snakeWindow = new JFrame();
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(SnakeGame.xPixelMaxDimension, SnakeGame.yPixelMaxDimension);
+        this.setSize(SnakeGame.getxPixelMaxDimension(), SnakeGame.getyPixelMaxDimension());
         this.setUndecorated(false); // AMD: Show title bar so game can be moved around screen //hide title bar
         this.setTitle("Snake Game: feed the snake and avoid the walls!");
         this.setVisible(true);
@@ -46,6 +46,6 @@ public class SnakeGameWindow extends JFrame {
         int titlebarheight = SnakeGameWindow.this.getInsets().top + SnakeGameWindow.this.getInsets().bottom;
         int borders = SnakeGameWindow.this.getInsets().left + SnakeGameWindow.this.getInsets().right;
 
-        SnakeGameWindow.this.setSize(SnakeGame.xPixelMaxDimension + borders, SnakeGame.yPixelMaxDimension+titlebarheight);
+        SnakeGameWindow.this.setSize(SnakeGame.getxPixelMaxDimension() + borders, SnakeGame.getyPixelMaxDimension() + titlebarheight);
     }
 }

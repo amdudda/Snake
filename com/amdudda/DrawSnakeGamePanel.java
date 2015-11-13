@@ -28,7 +28,7 @@ public class DrawSnakeGamePanel extends JPanel {
     }
 
     public Dimension getPreferredSize() {
-        return new Dimension(SnakeGame.xPixelMaxDimension, SnakeGame.yPixelMaxDimension);
+        return new Dimension(SnakeGame.getxPixelMaxDimension(), SnakeGame.getyPixelMaxDimension());
     }
 
     public void paintComponent(Graphics g) {
@@ -87,7 +87,7 @@ public class DrawSnakeGamePanel extends JPanel {
         int b = rng.nextInt(255);
         Color farbe = new Color(r,v,b);
         g.setColor(farbe);
-        g.drawString("YOU WON SNAKE!!!", SnakeGame.xPixelMaxDimension/2 - 200, SnakeGame.yPixelMaxDimension/2 + 24);
+        g.drawString("YOU WON SNAKE!!!", SnakeGame.getxPixelMaxDimension()/2 - 200, SnakeGame.getyPixelMaxDimension()/2 + 24);
         g.setFont(fontname);
         g.setColor(oldcolor);
     }
@@ -125,8 +125,8 @@ public class DrawSnakeGamePanel extends JPanel {
 
     private void displayGameGrid(Graphics g) {
 
-        int maxX = SnakeGame.xPixelMaxDimension;
-        int maxY = SnakeGame.yPixelMaxDimension;
+        int maxX = SnakeGame.getxPixelMaxDimension();
+        int maxY = SnakeGame.getyPixelMaxDimension();
         int squareSize = SnakeGame.squareSize;
 
         g.clearRect(0, 0, maxX, maxY);

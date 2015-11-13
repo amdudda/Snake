@@ -13,15 +13,15 @@ public class SnakeGame {
 
     // AMD: what if we make timer global?
 	//FINDBUGS: make these protected rather than public?  or move them inside main method?
-	protected static Timer timer;
+	private static Timer timer;
     // AMD: we want to set a final constant as a base dimension so we can multiply, then add 1 pixel, for board sizing.
     protected static final int INITIAL_GAME_SIZE = 500;
 
     // made Not Final so user can adjust this.
-	protected static int xPixelMaxDimension = INITIAL_GAME_SIZE + 1;  //Pixels in window. 501 to have 50-pixel squares plus 1 to draw a border on last square
-	protected static int yPixelMaxDimension = INITIAL_GAME_SIZE + 1;
+	private static int xPixelMaxDimension = INITIAL_GAME_SIZE + 1;  //Pixels in window. 501 to have 50-pixel squares plus 1 to draw a border on last square
+	private static int yPixelMaxDimension = INITIAL_GAME_SIZE + 1;
 
-	protected static int xSquares ;
+	private static int xSquares ;
 	protected static int ySquares ;
 	protected static int squareSize = 50;
     // AMD: Some additional variables that are set at the start of the game
@@ -78,10 +78,10 @@ public class SnakeGame {
 
 	protected static void initializeGame() {
 		//set up game_score, snake and first kibble
-		xSquares = xPixelMaxDimension / squareSize;
-		ySquares = yPixelMaxDimension / squareSize;
+		setxSquares(xPixelMaxDimension / squareSize);
+		setySquares(yPixelMaxDimension / squareSize);
 
-		snake = new Snake(xSquares, ySquares);//, squareSize);
+		snake = new Snake(getxSquares(), getySquares());//, squareSize);
 		kibble = new Kibble(snake);
 		game_axe = new Axe(snake);
 		game_score = new Score();
@@ -121,6 +121,14 @@ public class SnakeGame {
 
     public static void setyPixelMaxDimension(int yPixelMaxDimension) {
         SnakeGame.yPixelMaxDimension = yPixelMaxDimension;
+    }
+
+    public static int getxPixelMaxDimension() {
+        return SnakeGame.xPixelMaxDimension;
+    }
+
+    public static int getyPixelMaxDimension() {
+        return SnakeGame.yPixelMaxDimension;
     }
 
     public static void setxSquares(int xSquares) {
@@ -169,6 +177,8 @@ public class SnakeGame {
     public static void setTimer(Timer t) {
         SnakeGame.timer = t;
     }
+
+
     //FINDBUGS: end setters for gobal variables
 
 
