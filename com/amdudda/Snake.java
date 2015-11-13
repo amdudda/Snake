@@ -132,7 +132,7 @@ public class Snake {
                 for (int y = 0; y < maxY; y++) {
                     if (snakeSquares[x][y] == segment) {
                         //make a Point for this segment's coordinates and add to list
-                        Point p = new Point(x * SnakeGame.squareSize, y * SnakeGame.squareSize);
+                        Point p = new Point(x * SnakeGame.getSquareSize(), y * SnakeGame.getSquareSize());
                         segmentCoordinates.add(p);
                     }
                 }
@@ -295,7 +295,7 @@ public class Snake {
             snakeSize += justAteMustGrowThisMuch;
             justAteMustGrowThisMuch = 0;
             // AMD: are extended features turned on?  check for relevant changes.
-            if (SnakeGame.enableExtendedFeatures) {
+            if (SnakeGame.getEnableExtendedFeatures()) {
                 if (SnakeGame.game_score.getScore() % SnakeGame.ADD_WALL_INTERVAL == 0) {
                     // add a maze wall
                     DrawSnakeGamePanel.getGameWalls().add(new MazeWall());
@@ -321,7 +321,7 @@ public class Snake {
 
     protected boolean didHitWall() {
         // AMD: Adding warpWalls means that if warpWalls are on, the snake should never hit the wall.
-        return hitWall && !SnakeGame.hasWarpWalls;
+        return hitWall && !SnakeGame.getHasWarpWalls();
 
     }
 
@@ -377,12 +377,12 @@ public class Snake {
         //Draw head in head color
         q.setColor(colorOfHead);
         Point head = coordinates.pop();
-        q.fillRect((int) head.getX(), (int) head.getY(), SnakeGame.squareSize, SnakeGame.squareSize);
+        q.fillRect((int) head.getX(), (int) head.getY(), SnakeGame.getSquareSize(), SnakeGame.getSquareSize());
 
         //Draw rest of snake in body color
         q.setColor(colorOfBody);
         for (Point p : coordinates) {
-            q.fillRect((int) p.getX(), (int) p.getY(), SnakeGame.squareSize, SnakeGame.squareSize);
+            q.fillRect((int) p.getX(), (int) p.getY(), SnakeGame.getSquareSize(), SnakeGame.getSquareSize());
         }
     }
 
@@ -432,7 +432,7 @@ public class Snake {
 
     public boolean didHitMazeWall() {
         // AMD: are we even using mazewalls?
-        if (!SnakeGame.hasMazeWalls) { return false; }
+        if (!SnakeGame.getHasMazeWalls()) { return false; }
         // AMD: has the snake hit the maze wall?
         boolean didHit = false;
         //MazeWall mw = DrawSnakeGamePanel.mw1;

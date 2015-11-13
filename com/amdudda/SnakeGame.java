@@ -12,25 +12,26 @@ import javax.swing.*;
 public class SnakeGame {
 
     // AMD: what if we make timer global?
-	//FINDBUGS: make these protected rather than public?  or move them inside main method?
-	private static Timer timer;
+    //FINDBUGS: make these protected rather than public?  or move them inside main method?
+    private static Timer timer;
     // AMD: we want to set a final constant as a base dimension so we can multiply, then add 1 pixel, for board sizing.
     protected static final int INITIAL_GAME_SIZE = 500;
+    // AMD: and a few other static final constants
+    protected static final int NUM_MAZE_WALLS = 3; // Number of walls to build if maze walls enabled.
+    protected static final int ADD_WALL_INTERVAL = 3; // Number of kibbles to eat between new maze walls
+    protected static final int SHOW_AXE_INTERVAL = 5; // axe shows up every fifth kibble
 
     // made Not Final so user can adjust this.
-	private static int xPixelMaxDimension = INITIAL_GAME_SIZE + 1;  //Pixels in window. 501 to have 50-pixel squares plus 1 to draw a border on last square
-	private static int yPixelMaxDimension = INITIAL_GAME_SIZE + 1;
+    private static int xPixelMaxDimension = INITIAL_GAME_SIZE + 1;  //Pixels in window. 501 to have 50-pixel squares plus 1 to draw a border on last square
+    private static int yPixelMaxDimension = INITIAL_GAME_SIZE + 1;
 
-	private static int xSquares ;
-	protected static int ySquares ;
-	protected static int squareSize = 50;
+    private static int xSquares ;
+    private static int ySquares ;
+	private static int squareSize = 50;
     // AMD: Some additional variables that are set at the start of the game
-	protected static boolean hasWarpWalls = false; // AMD: variable to help implement warp walls.
-	protected static boolean hasMazeWalls = false;  // AMD: variable to help implement maze walls
-	protected static final int NUM_MAZE_WALLS = 3; // Number of walls to build if maze walls enabled.
-	protected static boolean enableExtendedFeatures = false; // turns on/off additional mazewalls and axe
-	protected static final int ADD_WALL_INTERVAL = 3; // Number of kibbles to eat between new maze walls
-	protected static final int SHOW_AXE_INTERVAL = 5; // axe shows up every fifth kibble
+	private static boolean hasWarpWalls = false; // AMD: variable to help implement warp walls.
+	private static boolean hasMazeWalls = false;  // AMD: variable to help implement maze walls
+	private static boolean enableExtendedFeatures = false; // turns on/off additional mazewalls and axe
 
 	protected static Snake snake ;
 
@@ -78,8 +79,8 @@ public class SnakeGame {
 
 	protected static void initializeGame() {
 		//set up game_score, snake and first kibble
-		setxSquares(xPixelMaxDimension / squareSize);
-		setySquares(yPixelMaxDimension / squareSize);
+		setxSquares(xPixelMaxDimension / getSquareSize());
+		setySquares(yPixelMaxDimension / getSquareSize());
 
 		snake = new Snake(getxSquares(), getySquares());//, squareSize);
 		kibble = new Kibble(snake);
@@ -151,13 +152,19 @@ public class SnakeGame {
         SnakeGame.hasWarpWalls = hasWarpWalls;
     }
 
+    public static boolean getHasWarpWalls() { return SnakeGame.hasWarpWalls; }
+
     public static void setHasMazeWalls(boolean hasMazeWalls) {
         SnakeGame.hasMazeWalls = hasMazeWalls;
     }
 
+    public static boolean getHasMazeWalls() { return SnakeGame.hasMazeWalls; }
+
     public static void setEnableExtendedFeatures(boolean enableExtendedFeatures) {
         SnakeGame.enableExtendedFeatures = enableExtendedFeatures;
     }
+
+    public static boolean getEnableExtendedFeatures() { return SnakeGame.enableExtendedFeatures; }
 
     public static void setClockInterval(int clockInt) {
         SnakeGame.clockInterval = clockInt;
@@ -178,8 +185,10 @@ public class SnakeGame {
         SnakeGame.timer = t;
     }
 
-
-    //FINDBUGS: end setters for gobal variables
+    public static int getSquareSize() {
+        return squareSize;
+    }
+//FINDBUGS: end setters for gobal variables
 
 
 	public static boolean gameEnded() {

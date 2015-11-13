@@ -127,7 +127,7 @@ public class DrawSnakeGamePanel extends JPanel {
 
         int maxX = SnakeGame.getxPixelMaxDimension();
         int maxY = SnakeGame.getyPixelMaxDimension();
-        int squareSize = SnakeGame.squareSize;
+        int squareSize = SnakeGame.getSquareSize();
 
         g.clearRect(0, 0, maxX, maxY);
 
@@ -145,14 +145,14 @@ public class DrawSnakeGamePanel extends JPanel {
         }
 
         // draw our maze wall if the game is using this feature:
-        if (SnakeGame.hasMazeWalls) {
+        if (SnakeGame.getHasMazeWalls()) {
             for (MazeWall mw : gameWalls) {
                 mw.draw(g);
             }
         }
 
         // if enabled features are on, and the axe is set to visible, display the axe for possible collection
-        if (SnakeGame.enableExtendedFeatures && SnakeGame.game_axe.isVisible()) {
+        if (SnakeGame.getEnableExtendedFeatures() && SnakeGame.game_axe.isVisible()) {
             //SnakeGame.game_axe.setVisible(true);  // TODO axe reappears until 6th kibble is eaten.  Should I let axe count as kibble eaten?
             SnakeGame.game_axe.drawImage(g);
         }

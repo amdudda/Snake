@@ -15,7 +15,7 @@ public class MazeWall {
     private int gridX;
     private int gridY;
     private char v_or_h;  // char that is either 'v' or 'h'
-    private int linelength = SnakeGame.squareSize;
+    private int linelength = SnakeGame.getSquareSize();
 
     // Constructor
     public MazeWall() {
