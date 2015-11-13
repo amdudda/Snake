@@ -35,7 +35,7 @@ public class SnakeGame {
 
 	private static Snake snake ;
 
-	private static Kibble kibble;
+	private static Mouse kibble;
 	// AMD: added Axe
 	private static Axe game_axe;
 
@@ -83,7 +83,6 @@ public class SnakeGame {
 		ySquares = yPixelMaxDimension / squareSize;
 
 		snake = new Snake(xSquares, ySquares);
-        //Snake localsnake = SnakeGame.getSnake();
         kibble = new Mouse(snake);
 		game_axe = new Axe(snake);
 		game_score = new Score();
@@ -119,7 +118,7 @@ public class SnakeGame {
         SnakeGame.gameStage = gameStage;
     }
 
-    //FINDBUGS: setters for static globals
+    //FINDBUGS: getters & setters for static globals
     public static void setxPixelMaxDimension(int xPixelMaxDimension) {
         SnakeGame.xPixelMaxDimension = xPixelMaxDimension;
     }
@@ -221,7 +220,7 @@ public class SnakeGame {
         return SnakeGame.kibble;
     }
 
-    public static void setKibble(Kibble kibble) {
+    public static void setKibble(Mouse kibble) {
         SnakeGame.kibble = kibble;
     }
 
@@ -241,7 +240,7 @@ public class SnakeGame {
         SnakeGame.game_score = game_score;
     }
 
-    //FINDBUGS: end setters for gobal variables
+    //FINDBUGS: end of getters & setters for global variables
 
 
 	public static boolean gameEnded() {

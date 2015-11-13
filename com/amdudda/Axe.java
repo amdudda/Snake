@@ -11,16 +11,15 @@ import java.io.IOException;
  */
 public class Axe extends Kibble {
     // AMD: variables to help store the image associated with Kibble
-    protected BufferedImage img;
-    protected String imageLocation;
+    private BufferedImage img;
+    private static String imageLocation = "./data/axe.jpg";
     private boolean visible;
-    protected boolean validImage;
-    protected Color fallbackColor;
+    private boolean validImage;
+    private Color fallbackColor;
 
     public Axe(Snake s) {
         super(s);
         moveKibble(s);
-        this.imageLocation = "./data/axe.jpg";
         this.fallbackColor = Color.RED;
         this.visible = false;
         // need this code so that it draws the correct image:
