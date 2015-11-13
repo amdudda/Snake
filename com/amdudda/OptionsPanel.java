@@ -58,8 +58,8 @@ public class OptionsPanel extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 resetGameVariables();
                 // Update snake color & refactor snake so the new settings take effect.
-                SnakeGame.snake.setSnakeColor(snakeColorComboBox.getSelectedIndex());
-                SnakeGame.snake.refactor();
+                SnakeGame.getSnake().setSnakeColor(snakeColorComboBox.getSelectedIndex());
+                SnakeGame.getSnake().refactor();
                 //tweak the size of the game window
                 SnakeGame.snakeFrame.resize();
                 // and get rid of the screen

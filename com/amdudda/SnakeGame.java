@@ -33,13 +33,13 @@ public class SnakeGame {
 	private static boolean hasMazeWalls = false;  // AMD: variable to help implement maze walls
 	private static boolean enableExtendedFeatures = false; // turns on/off additional mazewalls and axe
 
-	protected static Snake snake ;
+	private static Snake snake ;
 
-	protected static Kibble kibble;
+	private static Kibble kibble;
 	// AMD: added Axe
-	protected static Axe game_axe;
+	private static Axe game_axe;
 
-	protected static Score game_score;  // AMD: refactored this because I want to be clear that I'm referring to game score and not object's score variable
+	private static Score game_score;  // AMD: refactored this because I want to be clear that I'm referring to game score and not object's score variable
 
 	protected static final int BEFORE_GAME = 1;
 	protected static final int DURING_GAME = 2;
@@ -72,29 +72,30 @@ public class SnakeGame {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				initializeGame();
-				snakeFrame = new SnakeGameWindow(snake, kibble, game_score); // AMD: formerly == createAndShowGUI();
+				snakeFrame = new SnakeGameWindow(SnakeGame.getSnake(), SnakeGame.getKibble(), SnakeGame.getGame_score()); // AMD: formerly == createAndShowGUI();
 			}
 		});
 	}
 
 	protected static void initializeGame() {
 		//set up game_score, snake and first kibble
-		setxSquares(xPixelMaxDimension / getSquareSize());
-		setySquares(yPixelMaxDimension / getSquareSize());
+		setxSquares(getxPixelMaxDimension() / getSquareSize());
+		setySquares(getyPixelMaxDimension() / getSquareSize());
 
-		snake = new Snake(getxSquares(), getySquares());//, squareSize);
-		kibble = new Kibble(snake);
-		game_axe = new Axe(snake);
-		game_score = new Score();
+		SnakeGame.setSnake(new Snake(getxSquares(), getySquares()));
+        Snake localsnake = SnakeGame.getSnake();
+        SnakeGame.setKibble(new Kibble(localsnake));
+		SnakeGame.setGame_axe(new Axe(localsnake));
+		SnakeGame.setGame_score(new Score());
 
         // AMD: debugging: System.out.println("xSquares = " + xSquares);
-        gameStage = BEFORE_GAME;
+        SnakeGame.setGameStage(BEFORE_GAME);
 	}
 
 	protected static void newGame() {
 		// AMD: restart the timer when we kick off a new game.  Also updated Gameclock to deal with Axe.
         setTimer(new Timer());
-		GameClock clockTick = new GameClock(snake, kibble, snakePanel, game_axe);
+		GameClock clockTick = new GameClock(SnakeGame.getSnake(), SnakeGame.getKibble(), SnakeGame.getSnakePanel(), SnakeGame.getGame_axe());
 		getTimer().scheduleAtFixedRate(clockTick, 0, clockInterval);
         /*AMD: this causes the game to refresh every clockInterval milliseconds so the snake
         * can be redrawn as game play progresses.
@@ -186,9 +187,42 @@ public class SnakeGame {
     }
 
     public static int getSquareSize() {
-        return squareSize;
+        return SnakeGame.squareSize;
     }
-//FINDBUGS: end setters for gobal variables
+
+    public static Snake getSnake() {
+        return SnakeGame.snake;
+    }
+
+    public static void setSnake(Snake snake) {
+        SnakeGame.snake = snake;
+    }
+
+    public static Kibble getKibble() {
+        return SnakeGame.kibble;
+    }
+
+    public static void setKibble(Kibble kibble) {
+        SnakeGame.kibble = kibble;
+    }
+
+    public static Axe getGame_axe() {
+        return SnakeGame.game_axe;
+    }
+
+    public static void setGame_axe(Axe game_axe) {
+        SnakeGame.game_axe = game_axe;
+    }
+
+    public static Score getGame_score() {
+        return SnakeGame.game_score;
+    }
+
+    public static void setGame_score(Score game_score) {
+        SnakeGame.game_score = game_score;
+    }
+
+    //FINDBUGS: end setters for gobal variables
 
 
 	public static boolean gameEnded() {

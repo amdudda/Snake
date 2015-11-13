@@ -296,18 +296,18 @@ public class Snake {
             justAteMustGrowThisMuch = 0;
             // AMD: are extended features turned on?  check for relevant changes.
             if (SnakeGame.getEnableExtendedFeatures()) {
-                if (SnakeGame.game_score.getScore() % SnakeGame.ADD_WALL_INTERVAL == 0) {
+                if (SnakeGame.getGame_score().getScore() % SnakeGame.ADD_WALL_INTERVAL == 0) {
                     // add a maze wall
                     DrawSnakeGamePanel.getGameWalls().add(new MazeWall());
                 }
-                if (SnakeGame.game_score.getScore() % SnakeGame.SHOW_AXE_INTERVAL == 0) {
+                if (SnakeGame.getGame_score().getScore() % SnakeGame.SHOW_AXE_INTERVAL == 0) {
                     // turn on the axe
-                    SnakeGame.game_axe.setVisible(true);
+                    SnakeGame.getGame_axe().setVisible(true);
                 }
             }
         }
 
-        if (this.didEatAxe(SnakeGame.game_axe)) {
+        if (this.didEatAxe(SnakeGame.getGame_axe())) {
             this.shrink();
         }
 
