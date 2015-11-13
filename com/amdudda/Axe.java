@@ -11,11 +11,13 @@ import java.io.IOException;
  */
 public class Axe extends Kibble {
     // AMD: variables to help store the image associated with Kibble
-    private BufferedImage img;
+    private static BufferedImage img;
     private static String imageLocation = "./data/axe.jpg";
+    private static boolean validImage;
+    private static Color fallbackColor;
+    // it's theoretically possible you might have multiple axes with different visibility flags,
+    // though that should never happen in this version of the game.
     private boolean visible;
-    private boolean validImage;
-    private Color fallbackColor;
 
     public Axe(Snake s) {
         super(s);

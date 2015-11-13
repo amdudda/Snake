@@ -12,10 +12,10 @@ import java.io.IOException;
 public class Mouse extends Kibble {
     // so we can have different default attributes for Mouse kibble and Axe kibble.
     // AMD: variables to help store the image associated with Kibble
-    private BufferedImage img;
-    private boolean validImage;
+    private static BufferedImage img;
+    private static boolean validImage;
     private static String imageLocation = "./data/mouse.jpg";
-    private Color fallbackColor;  // leaving this non-static in case other developers want to have mice with different fallback colors.
+    private static Color fallbackColor;
 
     public Mouse(Snake s) {
         super(s);
