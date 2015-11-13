@@ -12,7 +12,7 @@ public class SnakeGameWindow extends JFrame {
 
     // constructor
     public SnakeGameWindow(Snake snake, Kibble kibble, Score game_score) {
-        snakeWindow = new JFrame();
+        this.snakeWindow = new JFrame();
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(SnakeGame.xPixelMaxDimension, SnakeGame.yPixelMaxDimension);
         this.setUndecorated(false); // AMD: Show title bar so game can be moved around screen //hide title bar
@@ -20,7 +20,7 @@ public class SnakeGameWindow extends JFrame {
         this.setVisible(true);
         this.setResizable(false);
 
-        //FINDBUGS: use setter to change snakePanel
+        //FINDBUGS: use setter to change snake Panel
         this.sPanel = new DrawSnakeGamePanel(snake, kibble, game_score);
         this.sPanel.setFocusable(true);
         this.sPanel.requestFocusInWindow(); //required to give this component the focus so it can generate KeyEvents
