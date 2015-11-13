@@ -14,14 +14,12 @@ import javax.swing.JPanel;
  */
 public class DrawSnakeGamePanel extends JPanel {
 
-    private static int gameStage = SnakeGame.BEFORE_GAME;  //use this to figure out what to paint
-
     private Snake snake;
     private Kibble kibble;
     private Score score;
     // AMD: added MazeWall, need arraylist to store multiple walls.  I don't care what order they're drawn in.
     // FINDBUGS: says this should be final.
-    protected final static ArrayList<MazeWall> gameWalls = new ArrayList<MazeWall>();
+    private final static ArrayList<MazeWall> gameWalls = new ArrayList<MazeWall>();
 
     DrawSnakeGamePanel(Snake s, Kibble k, Score sc) {
         this.snake = s;
@@ -43,7 +41,8 @@ public class DrawSnakeGamePanel extends JPanel {
          * 4. or, game won
          */
 
-        gameStage = SnakeGame.getGameStage();
+        // FINDBUGS: made this a local variable - it's the game's job to track game stage.
+        int gameStage = SnakeGame.getGameStage();
 
         switch (gameStage) {
             case SnakeGame.BEFORE_GAME:
@@ -166,6 +165,9 @@ public class DrawSnakeGamePanel extends JPanel {
         // AMD: Resequenced this information so users read options & quit instructions before the start game instructions.
     }
 
-
+    public static ArrayList<MazeWall> getGameWalls() {
+        //FINDBUGS: prompted by bug check
+        return gameWalls;
+    }
 }
 

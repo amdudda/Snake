@@ -19,7 +19,7 @@ public class Snake {
     private boolean hitWall = false;
     private boolean ateTail = false;
 
-    protected int snakeSquares[][];  //represents all of the squares on the screen
+    private int snakeSquares[][];  //represents all of the squares on the screen
     //NOT pixels!
     //A 0 means there is no part of the snake in this square
     //A non-zero number means part of the snake is in the square
@@ -299,7 +299,7 @@ public class Snake {
             if (SnakeGame.enableExtendedFeatures) {
                 if (SnakeGame.game_score.getScore() % SnakeGame.ADD_WALL_INTERVAL == 0) {
                     // add a maze wall
-                    DrawSnakeGamePanel.gameWalls.add(new MazeWall());
+                    DrawSnakeGamePanel.getGameWalls().add(new MazeWall());
                 }
                 if (SnakeGame.game_score.getScore() % SnakeGame.SHOW_AXE_INTERVAL == 0) {
                     // turn on the axe
@@ -438,7 +438,7 @@ public class Snake {
         // AMD: has the snake hit the maze wall?
         boolean didHit = false;
         //MazeWall mw = DrawSnakeGamePanel.mw1;
-        for (MazeWall mw : DrawSnakeGamePanel.gameWalls) {
+        for (MazeWall mw : DrawSnakeGamePanel.getGameWalls()) {
             // AMD: our decision depends partly on the snake's direction & partly on the line's orientation
             switch (currentHeading) {
                 case DIRECTION_UP: {

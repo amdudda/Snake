@@ -113,16 +113,17 @@ public class OptionsPanel extends JFrame {
         double sizeRatio = Double.parseDouble(OptionsPanel.this.ScrnSzButtonGroup.getSelection().getActionCommand());
         int sqSize = (int) (Integer.parseInt(OptionsPanel.this.SquareSizeButtonGroup.getSelection().getActionCommand()) * sizeRatio);
         int ScreenSize = (int) (SnakeGame.INITIAL_GAME_SIZE * sizeRatio) + 1; // for this game, x = y
-        SnakeGame.clockInterval = game_speed;
-        SnakeGame.squareSize = sqSize;
-        SnakeGame.xPixelMaxDimension = ScreenSize;
-        SnakeGame.yPixelMaxDimension = ScreenSize;
-        SnakeGame.xSquares = ScreenSize / sqSize;
-        SnakeGame.ySquares = ScreenSize / sqSize;
-        SnakeGame.hasWarpWalls = OptionsPanel.this.WarpWallsCheckBox.isSelected();
+        //FINDBUGS: used setters to modify static global vars
+        SnakeGame.setClockInterval(game_speed);
+        SnakeGame.setSquareSize(sqSize);
+        SnakeGame.setxPixelMaxDimension(ScreenSize);
+        SnakeGame.setyPixelMaxDimension(ScreenSize);
+        SnakeGame.setxSquares(ScreenSize / sqSize);
+        SnakeGame.setySquares(ScreenSize / sqSize);
+        SnakeGame.setHasWarpWalls(OptionsPanel.this.WarpWallsCheckBox.isSelected());
         if (OptionsPanel.this.MazeWallCheckBox.isSelected()) {
-            SnakeGame.hasMazeWalls = true;
-            SnakeGame.enableExtendedFeatures = OptionsPanel.this.extendedFeaturesCheckBox.isSelected();
+            SnakeGame.setHasMazeWalls(true);
+            SnakeGame.setEnableExtendedFeatures(OptionsPanel.this.extendedFeaturesCheckBox.isSelected());
             //DrawSnakeGamePanel.mw1 = new MazeWall();
         }
         else {

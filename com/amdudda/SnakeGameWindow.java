@@ -32,7 +32,7 @@ public class SnakeGameWindow extends JFrame {
         this.resize(); // need to make sure grid squares are all fully visible.
     }
 
-    public void resize() {
+    protected void resize() {
         /*
         AMD: trying to get draggable window that doesn't hide bottom row(s) of board
         https://home.java.net/node/650887

@@ -17,7 +17,7 @@ public class SnakeGame {
     // AMD: we want to set a final constant as a base dimension so we can multiply, then add 1 pixel, for board sizing.
     protected static final int INITIAL_GAME_SIZE = 500;
 
-	// made Not Final so user can adjust this.
+    // made Not Final so user can adjust this.
 	protected static int xPixelMaxDimension = INITIAL_GAME_SIZE + 1;  //Pixels in window. 501 to have 50-pixel squares plus 1 to draw a border on last square
 	protected static int yPixelMaxDimension = INITIAL_GAME_SIZE + 1;
 
@@ -99,9 +99,9 @@ public class SnakeGame {
         * can be redrawn as game play progresses.
         * */
         // also seed a new set of mazeWalls
-        DrawSnakeGamePanel.gameWalls.clear();
+        DrawSnakeGamePanel.getGameWalls().clear();
 		for (int i=0; i< NUM_MAZE_WALLS; i++) {
-			DrawSnakeGamePanel.gameWalls.add(new MazeWall());
+			DrawSnakeGamePanel.getGameWalls().add(new MazeWall());
 		}
 	}
 
@@ -109,6 +109,49 @@ public class SnakeGame {
 	public static int getGameStage() {
 		return gameStage;
 	}
+
+    public static void setGameStage(int gameStage) {
+        SnakeGame.gameStage = gameStage;
+    }
+
+    //FINDBUGS: setters for static globals
+    public static void setxPixelMaxDimension(int xPixelMaxDimension) {
+        SnakeGame.xPixelMaxDimension = xPixelMaxDimension;
+    }
+
+    public static void setyPixelMaxDimension(int yPixelMaxDimension) {
+        SnakeGame.yPixelMaxDimension = yPixelMaxDimension;
+    }
+
+    public static void setxSquares(int xSquares) {
+        SnakeGame.xSquares = xSquares;
+    }
+
+    public static void setySquares(int ySquares) {
+        SnakeGame.ySquares = ySquares;
+    }
+
+    public static void setSquareSize(int squareSize) {
+        SnakeGame.squareSize = squareSize;
+    }
+
+    public static void setHasWarpWalls(boolean hasWarpWalls) {
+        SnakeGame.hasWarpWalls = hasWarpWalls;
+    }
+
+    public static void setHasMazeWalls(boolean hasMazeWalls) {
+        SnakeGame.hasMazeWalls = hasMazeWalls;
+    }
+
+    public static void setEnableExtendedFeatures(boolean enableExtendedFeatures) {
+        SnakeGame.enableExtendedFeatures = enableExtendedFeatures;
+    }
+
+    public static void setClockInterval(int clockInt) {
+        SnakeGame.clockInterval = clockInt;
+    }
+    //FINDBUGS: end setters for gobal variables
+
 
 	public static boolean gameEnded() {
 		/*if (gameStage == GAME_OVER || gameStage == GAME_WON){
@@ -118,11 +161,6 @@ public class SnakeGame {
         // another pointless if-then statement
         return gameStage == GAME_OVER || gameStage == GAME_WON;
 	}
-
-	public static void setGameStage(int gameStage) {
-		SnakeGame.gameStage = gameStage;
-	}
-
 
     protected static void createAndShowGUI() {
         // DONE: this is technically a separate object; a container for the game.
