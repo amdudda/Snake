@@ -22,13 +22,13 @@ public class SnakeGameWindow extends JFrame {
 
         //FINDBUGS: use setter to change snakePanel
         this.sPanel = new DrawSnakeGamePanel(snake, kibble, game_score);
-        SnakeGame.setSnakePanel(this.sPanel);
         this.sPanel.setFocusable(true);
         this.sPanel.requestFocusInWindow(); //required to give this component the focus so it can generate KeyEvents
 
-        this.add(SnakeGame.snakePanel);
-        SnakeGame.snakePanel.addKeyListener(new GameControls(snake));
+        this.add(this.sPanel);
+        this.sPanel.addKeyListener(new GameControls(snake));
 
+        SnakeGame.setSnakePanel(this.sPanel);
         SnakeGame.setGameStage(SnakeGame.BEFORE_GAME);
 
         this.setVisible(true);

@@ -154,6 +154,9 @@ public class SnakeGame {
     public static void setSnakePanel(DrawSnakeGamePanel panelToUse){
         SnakeGame.snakePanel = panelToUse;
     }
+    public static DrawSnakeGamePanel getSnakePanel(){
+        return SnakeGame.snakePanel;
+    }
     //FINDBUGS: end setters for gobal variables
 
 

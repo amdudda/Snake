@@ -23,11 +23,11 @@ public class Score {
         //Possible TODO get more points for eating kibbles, the longer the snake gets?
     }
 
-    public static void setScore(int newscore) { score = newscore; }
+    public static void setScore(int newscore) { Score.score = newscore; }
 
-    public static void setHighScore(int hi_score) { highScore = hi_score; }
+    public static void setHighScore(int hi_score) { Score.highScore = hi_score; }
 
-    public static void setHaveNewHighScore(boolean tf) { haveNewHighScore = tf; }
+    public static void setHaveNewHighScore(boolean tf) { Score.haveNewHighScore = tf; }
 
     public static void resetScore() {
         score = 0;
@@ -46,14 +46,15 @@ public class Score {
     //Checks if current game_score is greater than the current high game_score.
     //updates high game_score and returns true if so.
 
-    public boolean gameOver() {
-
-        if (score > highScore) {
-            setHighScore(score);
+    /*  FINDBUGS: This isn't even used, why am I trying to fix this?
+    public static boolean gameOver() {
+        int localscore = Score.score;
+        if (localscore > Score.highScore) {
+            setHighScore(localscore);
             return true;
         }
         return false;
-    }
+    }*/
 
     //These methods are useful for displaying game_score at the end of the game
 
@@ -64,7 +65,7 @@ public class Score {
     public static String newHighScore() {
         // AMD: need to keep track of the existence of a new high game_score so it can be announced in the game display.
         if (score > highScore) {
-            setHighScore(score);
+            setHighScore(Score.score);
             setHaveNewHighScore(true);
         }
         if (haveNewHighScore) {
