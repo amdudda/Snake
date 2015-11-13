@@ -43,7 +43,7 @@ public class OptionsPanel extends JFrame {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setVisible(true);
         // turn off the timer so that the snake doesn't get weird speed effects.
-        SnakeGame.timer.cancel();
+        SnakeGame.getTimer().cancel();
 
         setupForm();
 

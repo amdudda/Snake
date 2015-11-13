@@ -13,7 +13,7 @@ public class SnakeGame {
 
     // AMD: what if we make timer global?
 	//FINDBUGS: make these protected rather than public?  or move them inside main method?
-	protected static Timer timer = new Timer();
+	protected static Timer timer;
     // AMD: we want to set a final constant as a base dimension so we can multiply, then add 1 pixel, for board sizing.
     protected static final int INITIAL_GAME_SIZE = 500;
 
@@ -92,9 +92,9 @@ public class SnakeGame {
 
 	protected static void newGame() {
 		// AMD: restart the timer when we kick off a new game.  Also updated Gameclock to deal with Axe.
-        timer = new Timer();
+        setTimer(new Timer());
 		GameClock clockTick = new GameClock(snake, kibble, snakePanel, game_axe);
-		timer.scheduleAtFixedRate(clockTick, 0 , clockInterval);
+		getTimer().scheduleAtFixedRate(clockTick, 0, clockInterval);
         /*AMD: this causes the game to refresh every clockInterval milliseconds so the snake
         * can be redrawn as game play progresses.
         * */
@@ -157,6 +157,14 @@ public class SnakeGame {
     public static DrawSnakeGamePanel getSnakePanel(){
         return SnakeGame.snakePanel;
     }
+
+    public static Timer getTimer() {
+        return SnakeGame.timer;
+    }
+
+    public static void setTimer(Timer t) {
+        SnakeGame.timer = t;
+    }
     //FINDBUGS: end setters for gobal variables
 
 
@@ -172,7 +180,7 @@ public class SnakeGame {
     protected static void createAndShowGUI() {
         // DONE: this is technically a separate object; a container for the game.
         //Create and set up the window.
-        snakeFrame = new SnakeGameWindow(snake, kibble, game_score);
+        //snakeFrame = new SnakeGameWindow(snake, kibble, game_score);
 		/*snakeFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         snakeFrame.setSize(xPixelMaxDimension, yPixelMaxDimension);
 		snakeFrame.setUndecorated(false); // AMD: Show title bar so game can be moved around screen //hide title bar

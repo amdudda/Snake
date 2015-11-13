@@ -464,8 +464,12 @@ public class Snake {
                         didHit = true;
                     }
                     break;
-                }  //FINDBUGS: another switch case with no default.  This one is fine, four clear situations -
-                // TODO: what should our default behavior be?
+                } default: {
+                    //FINDBUGS: another switch case with no default.  This one is fine, four clear situations.
+                    // Ultimately, shouldn't get here: leave something here that can be turned on for debugging:
+                    // System.out.println("Invalid direction detected in Snake.didhitmazewall()!");
+                    break;
+                }
             }
             // if the current wall under consideration has been hit, we need to exit the loop.
             if (didHit) { break; }
