@@ -7,7 +7,8 @@ import javax.swing.*;
  */
 public class SnakeGameWindow extends JFrame {
     // this is the window that is inside the entire game
-    JFrame snakeWindow;
+    private JFrame snakeWindow;
+    private DrawSnakeGamePanel sPanel;
 
     // constructor
     public SnakeGameWindow(Snake snake, Kibble kibble, Score game_score) {
@@ -19,9 +20,11 @@ public class SnakeGameWindow extends JFrame {
         this.setVisible(true);
         this.setResizable(false);
 
-        SnakeGame.snakePanel = new DrawSnakeGamePanel(snake, kibble, game_score);
-        SnakeGame.snakePanel.setFocusable(true);
-        SnakeGame.snakePanel.requestFocusInWindow(); //required to give this component the focus so it can generate KeyEvents
+        //FINDBUGS: use setter to change snakePanel
+        this.sPanel = new DrawSnakeGamePanel(snake, kibble, game_score);
+        SnakeGame.setSnakePanel(this.sPanel);
+        this.sPanel.setFocusable(true);
+        this.sPanel.requestFocusInWindow(); //required to give this component the focus so it can generate KeyEvents
 
         this.add(SnakeGame.snakePanel);
         SnakeGame.snakePanel.addKeyListener(new GameControls(snake));

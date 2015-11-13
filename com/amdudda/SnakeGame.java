@@ -150,6 +150,10 @@ public class SnakeGame {
     public static void setClockInterval(int clockInt) {
         SnakeGame.clockInterval = clockInt;
     }
+
+    public static void setSnakePanel(DrawSnakeGamePanel panelToUse){
+        SnakeGame.snakePanel = panelToUse;
+    }
     //FINDBUGS: end setters for gobal variables
 
 

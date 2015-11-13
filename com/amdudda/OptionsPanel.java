@@ -127,9 +127,9 @@ public class OptionsPanel extends JFrame {
             //DrawSnakeGamePanel.mw1 = new MazeWall();
         }
         else {
-            SnakeGame.hasMazeWalls = false;
+            SnakeGame.setHasMazeWalls(false);
             // being careful - extended features turned on IIF mazewalls are enabled
-            SnakeGame.enableExtendedFeatures = false;
+            SnakeGame.setEnableExtendedFeatures(false);
         }
         // and don't forget to resize the game screen, too!  Done here to take advantage of local variables.
         SnakeGame.snakeFrame.setSize(ScreenSize, ScreenSize);

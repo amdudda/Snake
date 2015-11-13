@@ -25,6 +25,10 @@ public class Score {
 
     public static void setScore(int newscore) { score = newscore; }
 
+    public static void setHighScore(int hi_score) { highScore = hi_score; }
+
+    public static void setHaveNewHighScore(boolean tf) { haveNewHighScore = tf; }
+
     public static void resetScore() {
         score = 0;
     }
@@ -45,7 +49,7 @@ public class Score {
     public boolean gameOver() {
 
         if (score > highScore) {
-            highScore = score;
+            setHighScore(score);
             return true;
         }
         return false;
@@ -57,11 +61,11 @@ public class Score {
         return Integer.toString(score);
     }
 
-    public String newHighScore() {
+    public static String newHighScore() {
         // AMD: need to keep track of the existence of a new high game_score so it can be announced in the game display.
         if (score > highScore) {
-            highScore = score;
-            haveNewHighScore = true;
+            setHighScore(score);
+            setHaveNewHighScore(true);
         }
         if (haveNewHighScore) {
             return "New High Score!!";
