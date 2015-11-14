@@ -12,24 +12,13 @@
     <children>
       <component id="9b0a9" class="javax.swing.JLabel">
         <constraints>
-          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-          <gridbag weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties>
-          <background color="-4473925"/>
-          <foreground color="-16777216"/>
-          <text value="Speed:"/>
-        </properties>
-      </component>
-      <component id="f1790" class="javax.swing.JLabel">
-        <constraints>
           <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
           <background color="-4473925"/>
           <foreground color="-16777216"/>
-          <text value="Grid squares:"/>
+          <text value="Speed:"/>
         </properties>
       </component>
       <component id="3cb1" class="javax.swing.JButton" binding="SubmitButton">
@@ -112,7 +101,7 @@
       </component>
       <component id="24516" class="javax.swing.JRadioButton" binding="slowRadioButton" default-binding="true">
         <constraints>
-          <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
           <gridbag weightx="1.0" weighty="0.0"/>
         </constraints>
         <properties>
@@ -124,7 +113,7 @@
       </component>
       <component id="27386" class="javax.swing.JRadioButton" binding="mediumRadioButton" default-binding="true">
         <constraints>
-          <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
           <gridbag weightx="1.0" weighty="0.0"/>
         </constraints>
         <properties>
@@ -136,7 +125,7 @@
       </component>
       <component id="88607" class="javax.swing.JRadioButton" binding="fastRadioButton" default-binding="true">
         <constraints>
-          <grid row="2" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="3" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
           <gridbag weightx="1.0" weighty="0.0"/>
         </constraints>
         <properties>
@@ -148,7 +137,7 @@
       </component>
       <component id="f3b35" class="javax.swing.JRadioButton" binding="hyperspeedRadioButton" default-binding="true">
         <constraints>
-          <grid row="2" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="3" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
           <gridbag weightx="1.0" weighty="0.0"/>
         </constraints>
         <properties>
@@ -156,42 +145,6 @@
           <background color="-1"/>
           <foreground color="-16777216"/>
           <text value="Hyperspeed"/>
-        </properties>
-      </component>
-      <component id="ddfb4" class="javax.swing.JRadioButton" binding="a10x10RadioButton" default-binding="true">
-        <constraints>
-          <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-          <gridbag weightx="1.0" weighty="0.0"/>
-        </constraints>
-        <properties>
-          <actionCommand value="50"/>
-          <background color="-1"/>
-          <foreground color="-16777216"/>
-          <text value="10x10"/>
-        </properties>
-      </component>
-      <component id="f7f20" class="javax.swing.JRadioButton" binding="a20x20RadioButton" default-binding="true">
-        <constraints>
-          <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-          <gridbag weightx="1.0" weighty="0.0"/>
-        </constraints>
-        <properties>
-          <actionCommand value="20"/>
-          <background color="-1"/>
-          <foreground color="-16777216"/>
-          <text value="25x25"/>
-        </properties>
-      </component>
-      <component id="63b5f" class="javax.swing.JRadioButton" binding="a50x50RadioButton" default-binding="true">
-        <constraints>
-          <grid row="3" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-          <gridbag weightx="1.0" weighty="0.0"/>
-        </constraints>
-        <properties>
-          <actionCommand value="10"/>
-          <background color="-1"/>
-          <foreground color="-16777216"/>
-          <text value="50x50"/>
         </properties>
       </component>
       <component id="d46f0" class="javax.swing.JLabel">
@@ -300,6 +253,53 @@
           <background color="-1"/>
           <foreground color="-16777216"/>
           <text value="Extended features (only available if maze walls are selected):"/>
+        </properties>
+      </component>
+      <component id="f1790" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <background color="-4473925"/>
+          <foreground color="-16777216"/>
+          <text value="Grid squares:"/>
+        </properties>
+      </component>
+      <component id="ddfb4" class="javax.swing.JRadioButton" binding="a10x10RadioButton" default-binding="true">
+        <constraints>
+          <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="1.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <actionCommand value="50"/>
+          <background color="-1"/>
+          <foreground color="-16777216"/>
+          <text value="10x10"/>
+        </properties>
+      </component>
+      <component id="f7f20" class="javax.swing.JRadioButton" binding="a20x20RadioButton" default-binding="true">
+        <constraints>
+          <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="1.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <actionCommand value="20"/>
+          <background color="-1"/>
+          <foreground color="-16777216"/>
+          <text value="25x25"/>
+        </properties>
+      </component>
+      <component id="63b5f" class="javax.swing.JRadioButton" binding="a50x50RadioButton" default-binding="true">
+        <constraints>
+          <grid row="2" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="1.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <actionCommand value="10"/>
+          <background color="-1"/>
+          <foreground color="-16777216"/>
+          <text value="50x50"/>
         </properties>
       </component>
     </children>
