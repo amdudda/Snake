@@ -14,7 +14,7 @@ public class Axe extends Kibble {
     private BufferedImage img;
     private boolean validImage;
     private static String imageLocation = "./data/axe.jpg";
-    private static Color fallbackColor;
+    private static Color fallbackColor = Color.RED;
     // it's theoretically possible you might have multiple axes with different visibility flags,
     // though that should never happen in this version of the game.
     private boolean visible;
@@ -22,7 +22,6 @@ public class Axe extends Kibble {
     public Axe(Snake s) {
         super(s);
         moveKibble(s);
-        this.fallbackColor = Color.RED;
         this.visible = false;
         // need this code so that it draws the correct image:
         try {
