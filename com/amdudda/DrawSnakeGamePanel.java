@@ -76,7 +76,7 @@ public class DrawSnakeGamePanel extends JPanel {
         // AMD: Looked up how to play with fonts - looked at several sites, but these two started
         // the path to comprehension: http://www.coderanch.com/t/446177/GUI/java/change-font-JPanel
         // and http://stackoverflow.com/questions/15260484/java-swing-how-to-change-the-font-size-on-a-jpanels-titledborder
-        g.clearRect(100, 100, 350, 350);
+        g.clearRect(0, 0, SnakeGame.getxPixelMaxDimension(), SnakeGame.getyPixelMaxDimension());
         Font fontname = g.getFont();
         g.setFont(new Font(fontname.getName(),Font.BOLD,36));
         Color oldcolor = g.getColor();
@@ -94,7 +94,7 @@ public class DrawSnakeGamePanel extends JPanel {
 
     private void displayGameOver(Graphics g) {
 
-        g.clearRect(100, 100, 350, 350);
+        g.clearRect(0, 0, SnakeGame.getxPixelMaxDimension(), SnakeGame.getyPixelMaxDimension());
         g.drawString("GAME OVER", 150, 150);
 
         String textScore = score.getStringScore();

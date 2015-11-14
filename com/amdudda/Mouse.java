@@ -14,7 +14,7 @@ public class Mouse extends Kibble {
     // AMD: variables to help store the image associated with Kibble
     private BufferedImage img;
     private boolean validImage;
-    private static String imageLocation = "./data/mouse.jpg";
+    private static String imageLocation = "./data/mouse2.jpg";
     private static Color fallbackColor = Color.GREEN;
 
     public Mouse(Snake s) {
