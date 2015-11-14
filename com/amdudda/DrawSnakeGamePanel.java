@@ -1,9 +1,6 @@
 package com.amdudda;
 
 import java.awt.*;
-import java.awt.font.FontRenderContext;
-import java.awt.font.LineMetrics;
-import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -102,30 +99,32 @@ public class DrawSnakeGamePanel extends JPanel {
         */
         String playAgainInstructions ="Press any other key to play again";
         String quitInstructions = "Press q to quit the game";
-        int margin = Math.min(getLeftMargin(playAgainInstructions, g), getLeftMargin(quitInstructions,g));  // not sure which string is actually longer in pixels, so use the smaller margin.
+        int lm = Math.min(getLeftMargin(playAgainInstructions, g), getLeftMargin(quitInstructions,g));  // AMD: not sure which string is actually longer in pixels, so use the smaller margin.
+        int tm = getTopMargin(250);  // AMD: the number is taken from how far down the text rows spread
 
         // AMD: clear the entire screen, not just a portion of the board
         g.clearRect(0, 0, SnakeGame.getxPixelMaxDimension(), SnakeGame.getyPixelMaxDimension());
+        // AMD: let's make the game over text bigger, too
         Font f = g.getFont();
         int fSize = g.getFont().getSize();
         g.setFont(new Font(f.getName(),Font.BOLD,18));
-        g.drawString("GAME OVER", margin, 150);
+        g.drawString("GAME OVER", lm, tm);
         g.setFont(f);
 
         String textScore = score.getStringScore();
         String textHighScore = score.getStringHighScore();
         String newHighScore = score.newHighScore();
 
-        g.drawString("SCORE = " + textScore, margin, 250);
+        g.drawString("SCORE = " + textScore, lm, tm+100);
         Color oldcolor = g.getColor();
-        g.drawString("HIGH SCORE = " + textHighScore, margin, 300);
+        g.drawString("HIGH SCORE = " + textHighScore, lm, tm+150);
         // AMD: moved new High Score announcement so it's actually readable.
         g.setColor(Color.RED);
-        g.drawString(newHighScore, margin, 325);
+        g.drawString(newHighScore, lm, tm+175);
         g.setColor(oldcolor);
 
-        g.drawString(quitInstructions, margin, 350);
-        g.drawString(playAgainInstructions, margin, 400);
+        g.drawString(quitInstructions, lm, tm+200);
+        g.drawString(playAgainInstructions, lm, tm+250);
 
     }
 
@@ -173,10 +172,12 @@ public class DrawSnakeGamePanel extends JPanel {
     }
 
     private void displayInstructions(Graphics g) {
-        int margin = getLeftMargin("Press letter O to view and set game options.",g);
-        g.drawString("Press letter O to view and set game options.", margin, 200);
-        g.drawString("Press letter Q to quit the game.", margin, 250);
-        g.drawString("Press any other key to begin!", margin, 300);
+        int lm = getLeftMargin("Press letter O to view and set game options.",g);
+        int tm = getTopMargin(100);
+
+        g.drawString("Press letter O to view and set game options.", lm, tm);
+        g.drawString("Press letter Q to quit the game.", lm, tm + 50);
+        g.drawString("Press any other key to begin!", lm, tm + 100);
         // AMD: Resequenced this information so users read options & quit instructions before the start game instructions.
     }
 
@@ -201,6 +202,14 @@ public class DrawSnakeGamePanel extends JPanel {
         /* AMD: Oracle documentation is also pretty useful for understanding what's going on:
         http://docs.oracle.com/javase/7/docs/api/java/awt/Font.html#Font%28java.lang.String,%20int,%20int%29
          */
+    }
+
+    private int getTopMargin(int textBlockHeight) {
+        // AMD: Returns a number that positions the top line so text is centered vertically.
+        // This fudges by not taking into account the height of the last line of text.
+        // magic number???  how does the program know the height of text to use?
+        // For now, just feed it a number and let it do math.
+        return (SnakeGame.getyPixelMaxDimension() - textBlockHeight) / 2;
     }
 }
 
