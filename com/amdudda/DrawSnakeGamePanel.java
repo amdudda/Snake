@@ -1,6 +1,9 @@
 package com.amdudda;
 
 import java.awt.*;
+import java.awt.font.FontRenderContext;
+import java.awt.font.LineMetrics;
+import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -72,10 +75,11 @@ public class DrawSnakeGamePanel extends JPanel {
     }
 
     private void displayGameWon(Graphics g) {
-        // TODO Replace this with something really special!
         // AMD: Looked up how to play with fonts - looked at several sites, but these two started
         // the path to comprehension: http://www.coderanch.com/t/446177/GUI/java/change-font-JPanel
         // and http://stackoverflow.com/questions/15260484/java-swing-how-to-change-the-font-size-on-a-jpanels-titledborder
+
+        // AMD: clear the entire screen, not just a portion of the board
         g.clearRect(0, 0, SnakeGame.getxPixelMaxDimension(), SnakeGame.getyPixelMaxDimension());
         Font fontname = g.getFont();
         g.setFont(new Font(fontname.getName(),Font.BOLD,36));
@@ -87,30 +91,41 @@ public class DrawSnakeGamePanel extends JPanel {
         int b = rng.nextInt(255);
         Color farbe = new Color(r,v,b);
         g.setColor(farbe);
-        g.drawString("YOU WON SNAKE!!!", SnakeGame.getxPixelMaxDimension()/2 - 200, SnakeGame.getyPixelMaxDimension()/2 + 24);
+        g.drawString("YOU WON SNAKE!!!", getLeftMargin("YOU WON SNAKE!!!",g), SnakeGame.getyPixelMaxDimension()/2 + 24);
         g.setFont(fontname);
         g.setColor(oldcolor);
     }
 
     private void displayGameOver(Graphics g) {
+        /* AMD: Alignment should probably be based on overall board size, not on absolute values,
+        but font rendering is workstation dependent and so we can't just assume a given font-to-pixel ratio
+        */
+        String playAgainInstructions ="Press any other key to play again";
+        String quitInstructions = "Press q to quit the game";
+        int margin = Math.min(getLeftMargin(playAgainInstructions, g), getLeftMargin(quitInstructions,g));  // not sure which string is actually longer in pixels, so use the smaller margin.
 
+        // AMD: clear the entire screen, not just a portion of the board
         g.clearRect(0, 0, SnakeGame.getxPixelMaxDimension(), SnakeGame.getyPixelMaxDimension());
-        g.drawString("GAME OVER", 150, 150);
+        Font f = g.getFont();
+        int fSize = g.getFont().getSize();
+        g.setFont(new Font(f.getName(),Font.BOLD,18));
+        g.drawString("GAME OVER", margin, 150);
+        g.setFont(f);
 
         String textScore = score.getStringScore();
         String textHighScore = score.getStringHighScore();
         String newHighScore = score.newHighScore();
 
-        g.drawString("SCORE = " + textScore, 150, 250);
+        g.drawString("SCORE = " + textScore, margin, 250);
         Color oldcolor = g.getColor();
-        g.drawString("HIGH SCORE = " + textHighScore, 150, 300);
+        g.drawString("HIGH SCORE = " + textHighScore, margin, 300);
         // AMD: moved new High Score announcement so it's actually readable.
         g.setColor(Color.RED);
-        g.drawString(newHighScore, 150, 325);
+        g.drawString(newHighScore, margin, 325);
         g.setColor(oldcolor);
 
-        g.drawString("press a key to play again", 150, 350);
-        g.drawString("Press q to quit the game", 150, 400);
+        g.drawString(quitInstructions, margin, 350);
+        g.drawString(playAgainInstructions, margin, 400);
 
     }
 
@@ -153,21 +168,39 @@ public class DrawSnakeGamePanel extends JPanel {
 
         // if enabled features are on, and the axe is set to visible, display the axe for possible collection
         if (SnakeGame.getEnableExtendedFeatures() && SnakeGame.getGame_axe().isVisible()) {
-            //SnakeGame.game_axe.setVisible(true);  // TODO axe reappears until 6th kibble is eaten.  Should I let axe count as kibble eaten?
             SnakeGame.getGame_axe().drawImage(g);
         }
     }
 
     private void displayInstructions(Graphics g) {
-        g.drawString("Press letter O to view and set game options.", 100, 200);
-        g.drawString("Press letter Q to quit the game.", 100, 250);
-        g.drawString("Press any other key to begin!", 100, 300);
+        int margin = getLeftMargin("Press letter O to view and set game options.",g);
+        g.drawString("Press letter O to view and set game options.", margin, 200);
+        g.drawString("Press letter Q to quit the game.", margin, 250);
+        g.drawString("Press any other key to begin!", margin, 300);
         // AMD: Resequenced this information so users read options & quit instructions before the start game instructions.
     }
 
     public static ArrayList<MazeWall> getGameWalls() {
         //FINDBUGS: prompted by bug check
         return gameWalls;
+    }
+
+    private int getLeftMargin(String stringToCenter, Graphics q) {
+        // AMD: This returns the left pixel position that will center a given string on the screen.
+
+        /*AMD: hey, I found this, which is pretty slick!
+        http://stackoverflow.com/questions/258486/calculate-the-display-width-of-a-string-in-java*/
+        int width = q.getFontMetrics().stringWidth(stringToCenter);
+
+        // we want to calculate our pixel length for the string
+        // and subtract that from our window's x dimension
+        int textPixels = SnakeGame.getxPixelMaxDimension() - (width);
+        // then return half of that
+        return textPixels / 2;
+
+        /* AMD: Oracle documentation is also pretty useful for understanding what's going on:
+        http://docs.oracle.com/javase/7/docs/api/java/awt/Font.html#Font%28java.lang.String,%20int,%20int%29
+         */
     }
 }
 
