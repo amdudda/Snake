@@ -362,6 +362,8 @@ public class Snake {
     }
 
     public String toString() {
+        /* FINDBUGS recommends using a string buffer, which is a non-issue in smaller grids, but there might be performance
+        issues in the 50x50 grid, or if someone takes it into their head to make a gigantonormous grid of microscopic dots.
         String textsnake = "";
         //This looks the wrong way around. Actually need to do it this way or snake is drawn flipped 90 degrees.
         for (int y = 0; y < maxY; y++) {
@@ -371,6 +373,15 @@ public class Snake {
             textsnake += "\n";
         }
         return textsnake;
+        */
+        StringBuffer strBuf = new StringBuffer();
+        for (int y = 0; y < maxY; y++) {
+            for (int x = 0; x < maxX; x++) {
+                strBuf.append(snakeSquares[x][y]);
+            }
+            strBuf.append("\n");
+        }
+        return strBuf.toString();
     }
 
     // AMD: Allow the snake to draw itself.
