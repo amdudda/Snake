@@ -106,7 +106,6 @@ public class DrawSnakeGamePanel extends JPanel {
         g.clearRect(0, 0, SnakeGame.getxPixelMaxDimension(), SnakeGame.getyPixelMaxDimension());
         // AMD: let's make the game over text bigger, too
         Font f = g.getFont();
-        int fSize = g.getFont().getSize();
         g.setFont(new Font(f.getName(),Font.BOLD,18));
         g.drawString("GAME OVER", lm, tm);
         g.setFont(f);
