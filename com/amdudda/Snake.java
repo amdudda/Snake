@@ -242,8 +242,8 @@ public class Snake {
 
         //Does this make snake hit the wall?
         if (snakeHeadX >= maxX || snakeHeadX < 0 || snakeHeadY >= maxY || snakeHeadY < 0) {
-            hitWall = true;
-            if (this.didHitWall()) {  // AMD: but only end the game if the warpwalls are turned off
+            if (!SnakeGame.getHasWarpWalls()) {  // AMD: End the game if the warpwalls are turned off
+                hitWall = true;
                 SnakeGame.setGameStage(SnakeGame.GAME_OVER);
             } else {
                 //AMD: otherwise, move the snake's head to the other side of the board:
