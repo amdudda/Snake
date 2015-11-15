@@ -257,8 +257,11 @@ public class Snake {
                     // AMD: otherwise, it hit the top/bottom wall and we adjust the Y coordinate
                     snakeHeadY = maxY - Math.abs(snakeHeadY);
                 }
-                // AMD: Add the new head
+                // AMD: Show the new head
                 snakeSquares[snakeHeadX][snakeHeadY] = 1;
+                // AMD: The tip of the tail gets left behind for the head to run into later... how to
+                // fix this? - by checking that all elements larger than snake size get flipped to 0 in
+                // the "if (justAteMustGrowThisMuch == 0) {...}" code below.
             }
             return;
         }
@@ -279,11 +282,12 @@ public class Snake {
         //find highest number, which should now be the same as snakeSize+1, and set to 0
         /* AMD: justAte... variable is a flag for whether kibble has been eaten, with "0" meaning "hungry"
          and any other number meaning "just ate!"  This allows growthIncrement variable to modify at whim
-         without affecting other code.*/
+         without affecting other code. */
         if (justAteMustGrowThisMuch == 0) {
             for (int x = 0; x < maxX; x++) {
                 for (int y = 0; y < maxY; y++) {
-                    if (snakeSquares[x][y] == snakeSize + 1) {
+                    // AMD: change from == to >= fixes bug that leaves tip of warpwalled snake's tail behind
+                    if (snakeSquares[x][y] >= snakeSize + 1) {
                         snakeSquares[x][y] = 0;
                     }
                 }

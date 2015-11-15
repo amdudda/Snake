@@ -44,15 +44,14 @@ public class GameClock extends TimerTask {
                     axe.setVisible(false);
 				}
 				if (snake.didEatAxe(axe)) {
-					// AMD: tell axe to hide itself, move, and shrink the snake
+					// AMD: tell axe to hide itself & move - snake takes care of shrinking itself
 					axe.setVisible(false);
 					axe.moveKibble(snake);
-					// TODO: shrink the snake!
 				}
 				break;
 			}
 			case SnakeGame.GAME_OVER: {
-                this.cancel();		//Stop the Timer
+				this.cancel();		//Stop the Timer
 				break;	
 			}
 			case SnakeGame.GAME_WON: {
