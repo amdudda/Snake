@@ -202,7 +202,7 @@
         <properties>
           <background color="-4473925"/>
           <foreground color="-16777216"/>
-          <text value="Add a new maze wall every third kibble eaten."/>
+          <text value="Add a new maze wall every third game_mouse eaten."/>
         </properties>
       </component>
       <component id="221ab" class="javax.swing.JComboBox" binding="snakeColorComboBox">
@@ -240,7 +240,7 @@
           <foreground color="-16777216"/>
           <lineWrap value="true"/>
           <preferredSize width="550" height="48"/>
-          <text value="Also enables axe.  This appears every fifth kibble eaten, and lasts until it is passed over or the next kibble is eaten.  &quot;Eating&quot; the axe will reduce the size of your snake by half."/>
+          <text value="Also enables axe.  This appears every fifth game_mouse eaten, and lasts until it is passed over or the next game_mouse is eaten.  &quot;Eating&quot; the axe will reduce the size of your snake by half."/>
           <wrapStyleWord value="true"/>
         </properties>
       </component>

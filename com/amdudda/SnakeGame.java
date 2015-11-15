@@ -19,7 +19,7 @@ public class SnakeGame {
     // AMD: and a few other static final constants
     protected static final int NUM_MAZE_WALLS = 3; // Number of walls to build if maze walls enabled.
     protected static final int ADD_WALL_INTERVAL = 3; // Number of kibbles to eat between new maze walls
-    protected static final int SHOW_AXE_INTERVAL = 5; // axe shows up every fifth kibble
+    protected static final int SHOW_AXE_INTERVAL = 5; // axe shows up every fifth game_mouse
 
     // made Not Final so user can adjust this.
     private static int xPixelMaxDimension = INITIAL_GAME_SIZE + 1;  //Pixels in window. 501 to have 50-pixel squares plus 1 to draw a border on last square
@@ -34,9 +34,7 @@ public class SnakeGame {
 	private static boolean enableExtendedFeatures = false; // turns on/off additional mazewalls and axe
 
 	private static Snake snake ;
-
-	private static Mouse kibble;
-	// AMD: added Axe
+	private static Mouse game_mouse; // AMD: refactored kibble as game_mouse and added Axe object
 	private static Axe game_axe;
 
 	private static Score game_score;  // AMD: refactored this because I want to be clear that I'm referring to game score and not object's score variable
@@ -72,18 +70,18 @@ public class SnakeGame {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				initializeGame();
-				snakeFrame = new SnakeGameWindow(SnakeGame.getSnake(), SnakeGame.getKibble(), SnakeGame.getGame_score()); // AMD: formerly == createAndShowGUI();
+				snakeFrame = new SnakeGameWindow(SnakeGame.getSnake(), SnakeGame.getGame_mouse(), SnakeGame.getGame_score()); // AMD: formerly == createAndShowGUI();
 			}
 		});
 	}
 
 	protected static void initializeGame() {
-		//set up game_score, snake and first kibble
+		//set up game_score, snake and first game_mouse
 		xSquares = xPixelMaxDimension / squareSize;
 		ySquares = yPixelMaxDimension / squareSize;
 
 		snake = new Snake(xSquares, ySquares);
-        kibble = new Mouse(snake);
+        game_mouse = new Mouse(snake);
 		game_axe = new Axe(snake);
 		game_score = new Score();
 
@@ -93,7 +91,7 @@ public class SnakeGame {
 	protected static void newGame() {
 		// AMD: restart the timer when we kick off a new game.  Also updated Gameclock to deal with Axe.
         timer = new Timer();
-		GameClock clockTick = new GameClock(SnakeGame.getSnake(), SnakeGame.getKibble(), SnakeGame.getSnakePanel(), SnakeGame.getGame_axe());
+		GameClock clockTick = new GameClock(SnakeGame.getSnake(), SnakeGame.getGame_mouse(), SnakeGame.getSnakePanel(), SnakeGame.getGame_axe());
 		timer.scheduleAtFixedRate(clockTick, 0, SnakeGame.getClockInterval());
         /*AMD: this causes the game to refresh every clockInterval milliseconds so the snake
         * can be redrawn as game play progresses.
@@ -105,8 +103,8 @@ public class SnakeGame {
                 DrawSnakeGamePanel.getGameWalls().add(new MazeWall());
             }
         }
-        // AMD: and move the kibble so it's not in the same spot again.  TODO: write up bug report
-        kibble.moveKibble(snake);
+        // AMD: and move the game_mouse so it's not in the same spot again.  TODO: write up bug report
+        game_mouse.moveKibble(snake);
 	}
 
 
@@ -216,12 +214,12 @@ public class SnakeGame {
         SnakeGame.snake = snake;
     }
 
-    public static Kibble getKibble() {
-        return SnakeGame.kibble;
+    public static Kibble getGame_mouse() {
+        return SnakeGame.game_mouse;
     }
 
-    public static void setKibble(Mouse kibble) {
-        SnakeGame.kibble = kibble;
+    public static void setGame_mouse(Mouse game_mouse) {
+        SnakeGame.game_mouse = game_mouse;
     }
 
     public static Axe getGame_axe() {
@@ -255,7 +253,7 @@ public class SnakeGame {
     protected static void createAndShowGUI() {
         // DONE: this is technically a separate object; a container for the game.
         //Create and set up the window.
-        //snakeFrame = new SnakeGameWindow(snake, kibble, game_score);
+        //snakeFrame = new SnakeGameWindow(snake, game_mouse, game_score);
 		/*snakeFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         snakeFrame.setSize(xPixelMaxDimension, yPixelMaxDimension);
 		snakeFrame.setUndecorated(false); // AMD: Show title bar so game can be moved around screen //hide title bar
@@ -264,7 +262,7 @@ public class SnakeGame {
 
 		snakeFrame.setResizable(false);
 
-		snakePanel = new DrawSnakeGamePanel(snake, kibble, game_score);
+		snakePanel = new DrawSnakeGamePanel(snake, game_mouse, game_score);
 		snakePanel.setFocusable(true);
 		snakePanel.requestFocusInWindow(); //required to give this component the focus so it can generate KeyEvents
 
