@@ -17,7 +17,7 @@ public class Score {
     private static boolean haveNewHighScore = false;
 
     public Score() {
-        /*FINDBUGS: these should be "package protected"
+        /*FINDBUGS: these should be "package protected" -- In this version, there's only one Score object per game, so these can be static variables.
         score = 0;
         increment = 1;  //how many points for eating a kibble*/
         //Possible TODO get more points for eating kibbles, the longer the snake gets?

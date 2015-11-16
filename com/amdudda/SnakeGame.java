@@ -103,7 +103,7 @@ public class SnakeGame {
                 DrawSnakeGamePanel.getGameWalls().add(new MazeWall());
             }
         }
-        // AMD: and move the game_mouse so it's not in the same spot again.  TODO: write up bug report
+        // AMD: and move the game_mouse so it's not in the same spot again.
         game_mouse.moveKibble(snake);
 	}
 

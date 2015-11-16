@@ -495,7 +495,7 @@ public class Snake {
         // AMD: this shrinks the snake by 50%
         int cellsToDrop = snakeSize/2;
         this.snakeSize = snakeSize - cellsToDrop;
-        // TODO reset the 'lost' part of the tail to be snake-free
+        // AMD: Reset the tip of the tail to be snake-free
         for (int xCell = 0; xCell < maxX; xCell++) {
             for (int yCell = 0; yCell < maxY; yCell++) {
                 if (snakeSquares[xCell][yCell] > snakeSize) {
