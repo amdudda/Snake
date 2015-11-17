@@ -12,7 +12,7 @@ import javax.swing.*;
 public class SnakeGame {
 
     // AMD: what if we make timer global?
-    //FINDBUGS: make these protected rather than public?  or move them inside main method?
+    // FINDBUGS: make these protected rather than public?  or move them inside main method?
     private static Timer timer;
     // AMD: we want to set a final constant as a base dimension so we can multiply, then add 1 pixel, for board sizing.
     protected static final int INITIAL_GAME_SIZE = 500;
