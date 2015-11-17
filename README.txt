@@ -16,7 +16,7 @@ Snake Game v.2 added features:
 4. User can set screen size.
     a. Not all sizes will work on all monitors.
 5. User can set number of grid squares.
-    a. Note that I carefully selected numbers of squares that will result in full coverage of screens even when expanded.
+    a. Note that I carefully selected numbers of squares that will result in grids with no "partial squares" on screens even when resized.
 6. Extended Features:
     a. Add a new mazewall to board every 3 kibbles.
     b. Axe halves the length of the snake.  Appears every 5 kibbles but disappears once the next kibble is eaten.
