@@ -40,7 +40,8 @@ public class SnakeGameWindow extends JFrame {
         AMD: trying to get draggable window that doesn't hide bottom row(s) of board
         https://home.java.net/node/650887
         http://stackoverflow.com/questions/12803963/how-can-i-get-the-height-of-the-title-bar-of-a-jinternalframe
-        harrumph, that's annoying:
+        harrumph, that's annoying, the window sizing isn't measured to hold contents of a given size, so you have to
+        explicitly tell it to be big enough for its contents by telling it what size its borders are:
         http://www.coderanch.com/t/333985/GUI/java/getInsets-Frames
         */
         int titlebarheight = SnakeGameWindow.this.getInsets().top + SnakeGameWindow.this.getInsets().bottom;

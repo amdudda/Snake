@@ -10,7 +10,7 @@ import java.awt.event.KeyListener;
 public class GameControls implements KeyListener{
 
 	private Snake snake;
-    // AMD: global variable to track current gamestage to gatekeep response to keyTyped event.
+    // AMD: variable to track current gamestage to gatekeep response to keyTyped event.
 	private int gStage;
 
 	GameControls(Snake s){
