@@ -15,10 +15,11 @@ Snake Game v.2 added features:
     a. This is a grid line that counts as having hit the wall, even when warp walls are turned on.
 4. User can set screen size.
     a. Not all sizes will work on all monitors.
+    b. Window is not resizeable on the fly, but it is draggable to other parts of the screen.
 5. User can set number of grid squares.
     a. Note that I carefully selected numbers of squares that will result in grids with no "partial squares" on screens even when resized.
 6. Extended Features:
-    a. Add a new mazewall to board every 3 kibbles.
+    a. Add a new maze wall to board every 3 kibbles.
     b. Axe halves the length of the snake.  Appears every 5 kibbles but disappears once the next kibble is eaten.
 7. I converted the “createGUI” method to a SnakeGameWindow object – it made sense to me to encapsulate that, since it’s the entity that wraps around all of the display elements on the game board.
     a. SnakeGameWindow has a title bar and resizes with the game board.
