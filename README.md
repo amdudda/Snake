@@ -29,9 +29,7 @@
 
 
 
-
-
-# Image credits:
+## Image credits:
 * Mouse.jpg was hand-drawn using GIMP software.
 * Mouse2.jpg copied from http://free.clipartof.com/details/57-Free-Cartoon-Gray-Field-Mouse-Clipart-Illustration.  Rescaled and re-centered for use in this game.
 * Axe was modified from clip art found at https://openclipart.org/detail/167417/fire-axe-2 – it seems to be open source.
