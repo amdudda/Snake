@@ -1,7 +1,7 @@
 #Snake Game v.2 added features:
 
 1. Options screen.
-    a. Press ‘o’ at start of game to access options.
+    1. Press ‘o’ at start of game to access options.
         i. snake speed
         ii. grid layout – different numbers of squares in grid
         iii. game window size
